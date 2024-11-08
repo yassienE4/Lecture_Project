@@ -17,15 +17,13 @@ int main(int argc, char *argv[])
     loadscreen->setPixmap(QPixmap(":/images/loadingscreen.png"));
     loadscreen->show();
 
-    Game game(1920, 1080);
+    Game game(1280, 720);
 
-    //QTimer::singleShot(2000, [loadscreen, &game]() {
-      //  loadscreen->close();
-        //game.show();
-    //});
-
-    QTimer::singleShot(300,loadscreen,SLOT(close()));
-    QTimer::singleShot(300,&game,SLOT(show()));
+    QTimer::singleShot(5000, [loadscreen, &game]()
+    {
+        loadscreen->finish(&game);
+        game.show();
+    });
 
 
     return a.exec();

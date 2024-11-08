@@ -9,7 +9,7 @@ class Game : public QGraphicsView
 {
     Q_OBJECT //needed for qt
     public:
-        Game(int, int); // constructor with width and height paramters
+        Game(int w, int h); // constructor with width and height paramters
     private:
         QGraphicsScene* gamescene; // the scene for the game
 };

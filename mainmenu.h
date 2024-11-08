@@ -11,7 +11,7 @@ class mainmenu : public QGraphicsScene
         mainmenu(Game* game); // main menu takes game as a paramter
     private:
         Game* game;
-    private slots:
+    public slots:
         void new_game(); // for the button "New Game"
 
 };

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="images">
         <file>loadingscreen.png</file>
+        <file>startscreen.png</file>
     </qresource>
 </RCC>
