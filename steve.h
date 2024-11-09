@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QObject>
 #include <QKeyEvent>
+#include <QGraphicsPixmapItem>
 
 enum PlayerState
 {
@@ -14,17 +15,13 @@ enum PlayerState
     Static
 };
 
-class steve : QGraphicsItem
+class steve : public QGraphicsPixmapItem
 {
  Q_OBJECT
 public:
     steve();
 private:
     QPixmap playerpixmap;
-    int health;
-    int score;
-public slots:
-    void keyPressEvent(QKeyEvent * e);
 };
 
 #endif // STEVE_H

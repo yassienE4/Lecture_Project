@@ -1,6 +1,6 @@
 #include "steve.h"
 
-steve::steve() : QObject(), m_scene(scene), m_steve(null); {
+steve::steve()  {
     playerpixmap = QPixmap(":/images/steve.png");
 
 }

@@ -11,13 +11,14 @@ class baselevel : public QObject
 {
 Q_OBJECT
 public:
-    baselevel(QGraphicsScene *scene) : QObject()
+    baselevel(QGraphicsScene *scene);
     void initialize();
     void keyPressEvent(QKeyEvent * e);
 private slots:
     void update();
 private:
     steve *m_steve;
+    QGraphicsScene *m_scene;
 };
 
 #endif // BASELEVEL_H
