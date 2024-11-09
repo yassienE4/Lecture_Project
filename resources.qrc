@@ -2,5 +2,7 @@
     <qresource prefix="images">
         <file>loadingscreen.png</file>
         <file>startscreen.png</file>
+	<file>steve.png</file>
+	<file>level1scene.png</file>
     </qresource>
 </RCC>

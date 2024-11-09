@@ -12,12 +12,16 @@ SOURCES += \
     game.cpp \
     level1.cpp \
     main.cpp \
-    mainmenu.cpp
+    mainmenu.cpp \
+    mobs.cpp \
+    steve.cpp
 
 HEADERS += \
     game.h \
     level1.h \
-    mainmenu.h
+    mainmenu.h \
+    mobs.h \
+    steve.h
 
 FORMS +=
 
