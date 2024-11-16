@@ -6,7 +6,7 @@ obstacle::obstacle(int x, int y, int width, int height, const QString& imagePath
 
     setPos(x,y);
 
-    setPixmap(QPixmap(":/images/static_object1.jpg").scaled(width, height));
+    setPixmap(QPixmap(":/obstacle.jpg").scaled(width, height));
 
 
 

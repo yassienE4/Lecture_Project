@@ -1,10 +1,14 @@
 #ifndef LEVEL1_H
 #define LEVEL1_H
-
-class level1
+#include "baselevel.h"
+#include <QGraphicsRectItem>
+class level1 : public baselevel // inhert from baselevel
 {
+    Q_OBJECT
 public:
-    level1();
+    level1(QGraphicsScene *scene);
+    void initialize();
+
 };
 
 #endif // LEVEL1_H

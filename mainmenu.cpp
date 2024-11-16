@@ -24,7 +24,6 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
 
 
     addWidget(newGame_Button);
-    //connect(newGame_Button, SIGNAL(clicked()), this, SLOT(new_game()));
     connect(newGame_Button, &QPushButton::clicked, this, &mainmenu::new_game);
 }
 

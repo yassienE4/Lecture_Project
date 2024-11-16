@@ -12,19 +12,23 @@ SOURCES += \
     baselevel.cpp \
     game.cpp \
     level1.cpp \
+    levelselect.cpp \
     main.cpp \
     mainmenu.cpp \
     mobs.cpp \
     obstacle.cpp \
+    score.cpp \
     steve.cpp
 
 HEADERS += \
     baselevel.h \
     game.h \
     level1.h \
+    levelselect.h \
     mainmenu.h \
     mobs.h \
     obstacle.h \
+    score.h \
     steve.h
 
 FORMS +=
