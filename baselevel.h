@@ -19,6 +19,7 @@ private slots:
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;
+    QTimer *timer;
 };
 
 #endif // BASELEVEL_H

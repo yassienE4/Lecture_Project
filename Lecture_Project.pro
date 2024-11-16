@@ -15,6 +15,7 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     mobs.cpp \
+    obstacle.cpp \
     steve.cpp
 
 HEADERS += \
@@ -23,6 +24,7 @@ HEADERS += \
     level1.h \
     mainmenu.h \
     mobs.h \
+    obstacle.h \
     steve.h
 
 FORMS +=

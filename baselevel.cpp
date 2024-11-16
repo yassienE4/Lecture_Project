@@ -2,8 +2,11 @@
 
 baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_scene(scene), m_steve(nullptr)
 {
-
+    timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &baselevel::update);
+    timer->start(16);//60 fps
 }
+
 void baselevel::initialize()
 {
     m_steve = new steve();
@@ -24,9 +27,27 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
         m_steve->moveBy(10, 0);
     }
-    if(e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space)
+    if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
-        m_steve->setVelocity
+        m_steve->setstate(Jumping);
+        m_steve->setvelocity(-15);
+    }
+
+}
+
+void baselevel::update()
+{
+    //gravity
+    if(m_steve->getjump())
+    {
+        m_steve->moveBy(0, m_steve->getvelocity());
+        m_steve->setvelocity(m_steve->getvelocity() +1);
+        // check if hit obsticle /ground
+        if(true)
+        {
+            m_steve->setstate(Jumping);
+            m_steve->setY(500); //500 temp
+        }
     }
 
 }
