@@ -7,5 +7,9 @@
         <file>obstacle.jpg</file>
         <file>block.png</file>
         <file>background_select.jpg</file>
+        <file>mcbuttonimage.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>mcfont.ttf</file>
     </qresource>
 </RCC>
