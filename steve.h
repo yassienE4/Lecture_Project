@@ -3,7 +3,6 @@
 
 #include <QGraphicsItem>
 #include <QPixmap>
-#include <QObject>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 
@@ -17,7 +16,6 @@ enum PlayerState
 
 class steve : public QGraphicsPixmapItem
 {
- Q_OBJECT
 public:
     steve();
     void setstate(PlayerState x);

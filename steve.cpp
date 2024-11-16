@@ -2,7 +2,9 @@
 
 steve::steve()  {
     playerpixmap = QPixmap(":/images/steve.png");
-
+    setPixmap(playerpixmap);
+    state = Static;
+    player_velocity=0;
 }
 
 
@@ -24,11 +26,5 @@ int steve::getvelocity()
 }
 bool steve::getjump()
 {
-    if(state == Jumping)
-    {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return state == Jumping;
 }

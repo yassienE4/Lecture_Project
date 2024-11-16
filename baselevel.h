@@ -15,6 +15,7 @@ public:
     baselevel(QGraphicsScene *scene);
     void initialize();
     void keyPressEvent(QKeyEvent * e);
+    void setbackground(QGraphicsPixmapItem* x);
 private slots:
     void update();
 private:

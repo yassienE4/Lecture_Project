@@ -22,14 +22,16 @@ void Game::closemenu()
 
 void Game::openselect()
 {
-    gamescene = new levelselect(this);
+    QGraphicsScene* levelSelectScene = new levelselect(this);
+    this->setScene(levelSelectScene);
+    this->show();
 }
 
 void Game::openlevel1()
 {
-    this->hide();
     QGraphicsScene* level1Scene = new QGraphicsScene();
     class level1* level = new class level1(level1Scene);
     level->initialize();
     this->setScene(level1Scene);
+    this->show();
 }

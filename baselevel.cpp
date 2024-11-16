@@ -1,7 +1,8 @@
 #include "baselevel.h"
 
-baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_scene(scene), m_steve(nullptr)
+baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_steve(nullptr)
 {
+    m_scene = new QGraphicsScene(scene);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &baselevel::update);
     timer->start(16);//60 fps
@@ -14,7 +15,12 @@ void baselevel::initialize()
     m_steve->setPos(100,500);
 
 }
-
+void baselevel::setbackground(QGraphicsPixmapItem *x)
+{
+    m_scene->addItem(x);
+    x->setPos(0,0);
+    x->setZValue(-1);
+}
 
 void baselevel::keyPressEvent(QKeyEvent * e)
 {
