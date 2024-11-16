@@ -1,4 +1,5 @@
 #include "mainmenu.h"
+#include "levelselect.h"
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
 #include <QGraphicsScene>
@@ -29,5 +30,8 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
 
 void mainmenu::new_game()
 {
-    game->scene()->clear();
+    //game->scene()->clear();
+    game->closemenu();
+    game->openselect();
+
 }

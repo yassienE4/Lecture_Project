@@ -1,8 +1,11 @@
 <RCC>
-    <qresource prefix="images">
+    <qresource prefix="/images">
         <file>loadingscreen.png</file>
         <file>startscreen.png</file>
-	<file>steve.png</file>
-	<file>level1scene.png</file>
+        <file>steve.png</file>
+        <file>level1scene.png</file>
+        <file>obstacle.jpg</file>
+        <file>block.png</file>
+        <file>background_select.jpg</file>
     </qresource>
 </RCC>

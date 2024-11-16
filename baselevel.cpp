@@ -13,7 +13,6 @@ void baselevel::initialize()
     m_scene->addItem(m_steve);
     m_steve->setPos(100,500);
 
-    // obsticals will be here
 }
 
 

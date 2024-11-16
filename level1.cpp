@@ -7,5 +7,5 @@ level1::level1(QGraphicsScene *scene) : baselevel(scene)
 
 void level1::initialize()
 {
-    // add obstacles and stuff
+    //
 }

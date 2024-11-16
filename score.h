@@ -1,3 +1,4 @@
+/*
 #ifndef SCORE_H
 #define SCORE_H
 
@@ -29,3 +30,4 @@ private:
 };
 
 #endif // SCORE_H
+*/

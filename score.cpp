@@ -1,3 +1,5 @@
+/*
+
 #include "score.h"
 
 score:: score(QObject *parent)
@@ -21,3 +23,4 @@ void score:: save_score(){
     }
     your_score =0;
 }
+*/

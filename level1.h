@@ -8,7 +8,6 @@ class level1 : public baselevel // inhert from baselevel
 public:
     level1(QGraphicsScene *scene);
     void initialize();
-
 };
 
 #endif // LEVEL1_H
