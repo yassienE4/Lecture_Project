@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QKeyEvent>
 #include "steve.h"
+#include "obstacle.h"
 
 
 class baselevel : public QObject
