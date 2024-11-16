@@ -2,7 +2,7 @@
 
 baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_steve(nullptr)
 {
-    m_scene = new QGraphicsScene(scene);
+    m_scene = scene;
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &baselevel::update);
     timer->start(16);//60 fps
@@ -12,7 +12,7 @@ void baselevel::initialize()
 {
     m_steve = new steve();
     m_scene->addItem(m_steve);
-    m_steve->setPos(100,500);
+    m_steve->setPos(100,320);
 
 }
 void baselevel::setbackground(QGraphicsPixmapItem *x)
