@@ -26,7 +26,7 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     }
     if(e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space)
     {
-
+        m_steve->setVelocity
     }
 
 }
