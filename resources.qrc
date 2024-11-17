@@ -8,6 +8,7 @@
         <file>block.png</file>
         <file>background_select.jpg</file>
         <file>mcbuttonimage.png</file>
+        <file>steveleft.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

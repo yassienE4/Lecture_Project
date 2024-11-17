@@ -23,10 +23,15 @@ public:
     PlayerState getstate();
     int getvelocity();
     bool getjump();
+    void setdirection(bool x);
+
 private:
     QPixmap playerpixmap;
+    QPixmap leftplayerpixmap;
+    QPixmap rightplayerpixmap;
     PlayerState state;
     int player_velocity;
+    bool direction;
 };
 
 #endif // STEVE_H

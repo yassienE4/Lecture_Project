@@ -6,6 +6,7 @@
 #include <QKeyEvent>
 #include "steve.h"
 #include "obstacle.h"
+#include <QDebug>
 
 
 class baselevel : public QObject
@@ -15,13 +16,20 @@ public:
     baselevel(QGraphicsScene *scene);
     void initialize();
     void keyPressEvent(QKeyEvent * e);
+    void keyReleaseEvent(QKeyEvent *e);
     void setbackground(QGraphicsPixmapItem* x);
+
+    void moveHorizontally();
+    void moveVertically();
+
+    bool eventFilter(QObject *obj, QEvent *event);
 private slots:
     void update();
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;
     QTimer *timer;
+    bool leftpressed, rightpressed, spacepressed;
 };
 
 #endif // BASELEVEL_H
