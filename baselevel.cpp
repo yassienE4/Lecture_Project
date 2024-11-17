@@ -48,17 +48,19 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
         leftpressed = true;
         m_steve->setdirection(0);
+        m_steve->setstate(Moving);
     }
     if(e->key() == Qt::Key_Right || e->key() == Qt::Key_D)
     {
         rightpressed = true;
         m_steve->setdirection(1);
+        m_steve->setstate(Moving);
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
         spacepressed = true;
-        //m_steve->setstate(Jumping);
-        //m_steve->setvelocity(-15);
+        m_steve->setstate(Jumping);
+        m_steve->setvelocity(-15);
     }
 
 }
@@ -68,10 +70,12 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
     if(e->key() == Qt::Key_Left || e->key() == Qt::Key_A)
     {
         leftpressed = false;
+        m_steve->setstate(Static);
     }
     if(e->key() == Qt::Key_Right || e->key() == Qt::Key_D)
     {
         rightpressed = false;
+        m_steve->setstate(Static);
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
@@ -81,20 +85,9 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
 
 void baselevel::update()
 {
+    animate();
     moveHorizontally();
-    //gravity
-    if(m_steve->getjump())
-    {
-        m_steve->moveBy(0, m_steve->getvelocity());
-        m_steve->setvelocity(m_steve->getvelocity() +1);
-        // check if hit obsticle /ground
-        if(true)
-        {
-            m_steve->setstate(Jumping);
-            m_steve->setY(500); //500 temp
-        }
-    }
-
+    moveVertically();
 }
 
 void baselevel::moveHorizontally()
@@ -106,10 +99,76 @@ void baselevel::moveHorizontally()
         m_steve->moveBy(-10,0);
     }
     if(rightpressed)
+    {
         m_steve->moveBy(10,0);
+    }
 }
 
 void baselevel::moveVertically()
 {
+    //gravity
+    if(m_steve->getjump())
+    {
+        m_steve->moveBy(0, m_steve->getvelocity());
+        m_steve->setvelocity(m_steve->getvelocity() +1);
+        // check if hit obsticle /ground
+        if(m_steve->y() >= 520)
+        {
+            m_steve->setstate(Static);
+            m_steve->setY(520); //500 temp
+            m_steve->setvelocity(0);
+        }
+    }
+}
 
+void baselevel::animate()
+{
+    static int frameCounter = 0;
+    frameCounter = (frameCounter + 1) % 12; //control animation speed
+    if (frameCounter != 0)
+        return;
+    if(m_steve->getstate() == Static)
+    {
+        if(m_steve->getdirection())
+            m_steve->setpix(1);
+        else
+            m_steve->setpix(2);
+    }
+    if(m_steve->getstate() == Moving)
+    {
+        if(m_steve->getdirection())
+        {
+            static int rcount = 0;
+            switch(rcount)
+            {
+            case 0:
+                m_steve->setpix(3);
+                break;
+            case 1:
+                m_steve->setpix(1);
+                break;
+            case 2:
+                //m_steve->setpix(5);
+                break;
+            }
+            rcount = (rcount+1)%2;
+        }
+        else
+        {
+            static int lcount = 0;
+            switch(lcount)
+            {
+            case 0:
+                m_steve->setpix(4);
+                break;
+            case 1:
+                m_steve->setpix(2);
+                break;
+            case 2:
+                //m_steve->setpix(6);
+                break;
+            }
+            lcount = (lcount+1)%2;
+        }
+    }
 }

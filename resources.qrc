@@ -9,6 +9,10 @@
         <file>background_select.jpg</file>
         <file>mcbuttonimage.png</file>
         <file>steveleft.png</file>
+        <file>stevemoveleft1.png</file>
+        <file>stevemoveright1.png</file>
+        <file>stevemoveleft2.png</file>
+        <file>stevemoveright2.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

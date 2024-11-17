@@ -21,6 +21,7 @@ public:
 
     void moveHorizontally();
     void moveVertically();
+    void animate();
 
     bool eventFilter(QObject *obj, QEvent *event);
 private slots:

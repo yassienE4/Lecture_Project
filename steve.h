@@ -6,7 +6,7 @@
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 
-enum PlayerState
+enum PlayerState //mainly for animations
 {
     Moving,
     Jumping,
@@ -24,11 +24,17 @@ public:
     int getvelocity();
     bool getjump();
     void setdirection(bool x);
+    bool getdirection();
+    void setpix(int p);
 
 private:
     QPixmap playerpixmap;
     QPixmap leftplayerpixmap;
     QPixmap rightplayerpixmap;
+    QPixmap leftmoving;
+    QPixmap leftmoving2;
+    QPixmap rightmoving;
+    QPixmap rightmoving2;
     PlayerState state;
     int player_velocity;
     bool direction;
