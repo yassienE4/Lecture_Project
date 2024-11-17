@@ -48,13 +48,20 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
         leftpressed = true;
         m_steve->setdirection(0);
-        m_steve->setstate(Moving);
+        if(!m_steve->getjump())
+        {
+            m_steve->setstate(Moving);
+        }
+
     }
     if(e->key() == Qt::Key_Right || e->key() == Qt::Key_D)
     {
         rightpressed = true;
         m_steve->setdirection(1);
-        m_steve->setstate(Moving);
+        if(!m_steve->getjump())
+        {
+            m_steve->setstate(Moving);
+        }
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
@@ -70,16 +77,26 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
     if(e->key() == Qt::Key_Left || e->key() == Qt::Key_A)
     {
         leftpressed = false;
-        m_steve->setstate(Static);
+        if(!spacepressed)
+        {
+            m_steve->setstate(Static);
+        }
     }
     if(e->key() == Qt::Key_Right || e->key() == Qt::Key_D)
     {
         rightpressed = false;
-        m_steve->setstate(Static);
+        if(!spacepressed)
+        {
+            m_steve->setstate(Static);
+        }
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
         spacepressed = false;
+
+        if (!leftpressed && !rightpressed) {
+            m_steve->setstate(Static);
+        }
     }
 }
 
@@ -107,17 +124,42 @@ void baselevel::moveHorizontally()
 void baselevel::moveVertically()
 {
     //gravity
+
     if(m_steve->getjump())
     {
+
+
         m_steve->moveBy(0, m_steve->getvelocity());
         m_steve->setvelocity(m_steve->getvelocity() +1);
-        // check if hit obsticle /ground
-        if(m_steve->y() >= 520)
+        if(m_steve->y() >= 320)
         {
-            m_steve->setstate(Static);
-            m_steve->setY(520); //500 temp
+            if(!leftpressed && !rightpressed)
+            {
+                m_steve->setstate(Static);
+            }
+            m_steve->setY(320);
             m_steve->setvelocity(0);
         }
+
+
+        // check if hit obsticle /ground
+    }
+    else
+    {
+    if((!m_steve->getjump()) && (m_steve->y() <= 320))
+    {
+        m_steve->setvelocity(m_steve->getvelocity() +1);
+        m_steve->moveBy(0, m_steve->getvelocity());
+        if(m_steve->y() >= 320)
+        {
+            if(!leftpressed && !rightpressed)
+            {
+                m_steve->setstate(Static);
+            }
+            m_steve->setY(320);
+            m_steve->setvelocity(0);
+        }
+    }
     }
 }
 
@@ -134,7 +176,7 @@ void baselevel::animate()
         else
             m_steve->setpix(2);
     }
-    if(m_steve->getstate() == Moving)
+    if((m_steve->getstate() == Moving) || m_steve->getjump())
     {
         if(m_steve->getdirection())
         {
@@ -148,10 +190,12 @@ void baselevel::animate()
                 m_steve->setpix(1);
                 break;
             case 2:
-                //m_steve->setpix(5);
+                m_steve->setpix(5);
                 break;
+            case 3:
+                m_steve->setpix(1);
             }
-            rcount = (rcount+1)%2;
+            rcount = (rcount+1)%4;
         }
         else
         {
@@ -165,10 +209,13 @@ void baselevel::animate()
                 m_steve->setpix(2);
                 break;
             case 2:
-                //m_steve->setpix(6);
+                m_steve->setpix(6);
+                break;
+            case 3:
+                m_steve->setpix(2);
                 break;
             }
-            lcount = (lcount+1)%2;
+            lcount = (lcount+1)%4;
         }
     }
 }
