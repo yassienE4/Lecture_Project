@@ -2,7 +2,7 @@
 #define LEVEL1_H
 #include "baselevel.h"
 #include <QGraphicsRectItem>
-class level1 : public baselevel // inhert from baselevel
+class level1 : public vritual baselevel // inhert from baselevel
 {
     Q_OBJECT
 public:
