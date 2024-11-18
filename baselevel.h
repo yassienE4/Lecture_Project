@@ -22,7 +22,7 @@ public:
     void moveHorizontally();
     void moveVertically();
     void animate();
-
+    void addobstacle(obstacle* o);
     bool eventFilter(QObject *obj, QEvent *event);
 private slots:
     void update();

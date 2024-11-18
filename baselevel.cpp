@@ -17,6 +17,11 @@ void baselevel::initialize()
     m_scene->installEventFilter(this);
 
 }
+void baselevel::addobstacle(obstacle* o)
+{
+    m_scene->addItem(o);
+}
+
 
 bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focused so i overloaded
 {
@@ -103,8 +108,9 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
 void baselevel::update()
 {
     animate();
-    moveHorizontally();
     moveVertically();
+    moveHorizontally();
+
 }
 
 void baselevel::moveHorizontally()
