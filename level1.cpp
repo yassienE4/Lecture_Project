@@ -20,7 +20,7 @@ void level1::initialize()
     // add obstacles and stuff
 
 
-    obstacle *block1 = new obstacle(400,100,20,20,":/images/block.png");// the player must jump
+    obstacle *block1 = new obstacle(400,420,100,100,":/images/woodenblock.png");// the player must jump
     baselevel::addobstacle(block1);
 
     obstacle spike1(560,120,25,20,":/images/block.png");
