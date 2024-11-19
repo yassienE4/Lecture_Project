@@ -21,11 +21,18 @@ public:
 
     void moveHorizontally();
     void moveVertically();
+    void checkcolide();
     void animate();
     void addobstacle(obstacle* o);
     bool eventFilter(QObject *obj, QEvent *event);
+    bool colideright();
+    bool colideleft();
+    bool colideup();
+    bool colidedown();
 private slots:
     void update();
+protected:
+    QList<obstacle*> obstacles;
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;

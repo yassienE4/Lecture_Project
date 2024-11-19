@@ -6,6 +6,8 @@
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
 
+#include <QPainter>
+
 enum PlayerState //mainly for animations
 {
     Moving,
@@ -26,6 +28,17 @@ public:
     void setdirection(bool x);
     bool getdirection();
     void setpix(int p);
+    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
+    void setboundingboxes();
+    // coliding set/getters
+    bool getcolideright();
+    bool getcolideleft();
+    bool getcolideup();
+    bool getcolidedown();
+    void setcolideright(bool x);
+    void setcolideleft(bool x);
+    void setcolideup(bool x);
+    void setcolidedown(bool x);
 
 private:
     QPixmap playerpixmap;
@@ -38,6 +51,18 @@ private:
     PlayerState state;
     int player_velocity;
     bool direction;
+
+    //coliding bools
+    bool colideright;
+    bool colideleft;
+    bool colideup;
+    bool colidedown;
+
+    //bounding boxes
+    QRectF rightBoundingBox;
+    QRectF leftBoundingBox;
+    QRectF upBoundingBox;
+    QRectF downBoundingBox;
 };
 
 #endif // STEVE_H

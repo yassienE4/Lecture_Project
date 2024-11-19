@@ -110,7 +110,8 @@ void baselevel::update()
     animate();
     moveVertically();
     moveHorizontally();
-
+    checkcolide();
+    m_steve->update();
 }
 
 void baselevel::moveHorizontally()
@@ -166,6 +167,17 @@ void baselevel::moveVertically()
             m_steve->setvelocity(0);
         }
     }
+    }
+}
+
+void baselevel::checkcolide()
+{
+    for(int i =0; i< obstacles.size(); i++)
+    {
+        if(m_steve->)
+        {
+
+        }
     }
 }
 

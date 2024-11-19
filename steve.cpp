@@ -24,6 +24,9 @@ steve::steve()  {
     state = Static;
     player_velocity=0;
     direction = 1;
+
+    setboundingboxes();
+    //setOpacity(0.5); // to check bounding box
 }
 
 
@@ -71,3 +74,75 @@ bool steve::getdirection()
 {
     return direction;
 }
+
+bool steve::getcolideright()
+{
+    return colideright;
+}
+bool steve::getcolideleft()
+{
+    return colideleft;
+}
+bool steve::getcolideup()
+{
+    return colideup;
+}
+bool steve::getcolidedown()
+{
+    return colidedown;
+}
+void steve::setcolideright(bool x)
+{
+    colideright = x;
+}
+void steve::setcolideleft(bool x)
+{
+    colideleft = x;
+}
+void steve::setcolideup(bool x)
+{
+    colideup =x;
+}
+void steve::setcolidedown(bool x)
+{
+    colidedown = x;
+}
+
+void steve::setboundingboxes()
+{
+    int width = playerpixmap.width();
+    int height = playerpixmap.height();
+    int x = (width - (width / 3)) / 2;
+    rightBoundingBox = QRectF(width/2,0, width/6, height);
+    leftBoundingBox = QRectF(width/3, 0, width / 6, height);
+    upBoundingBox = QRectF(x, 0, width/3, height / 2);
+    downBoundingBox = QRectF(x, height / 2, width/3, height / 2);
+}
+
+
+//testing bounding box
+/*
+void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+{
+
+
+    qDebug() << "Painting steve item";
+
+
+        painter->setPen(QPen(Qt::red));
+        painter->setBrush(Qt::transparent);
+        painter->drawRect(rightBoundingBox);
+
+        painter->setPen(QPen(Qt::blue));
+        painter->drawRect(leftBoundingBox);
+
+        painter->setPen(QPen(Qt::green));
+        painter->drawRect(upBoundingBox);
+
+        painter->setPen(QPen(Qt::yellow));
+        painter->drawRect(downBoundingBox);
+
+        QGraphicsPixmapItem::paint(painter, option, widget);
+
+}
+*/

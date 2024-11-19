@@ -20,8 +20,8 @@ void level1::initialize()
     // add obstacles and stuff
 
 
-    obstacle *block1 = new obstacle(400,420,100,100,":/images/woodenblock.png");// the player must jump
-    baselevel::addobstacle(block1);
+    obstacles.push_back(new obstacle(400,420,100,100,":/images/woodenblock.png")); // need to empty qlist after level1 ends
+    baselevel::addobstacle(obstacles.front());
 
     obstacle spike1(560,120,25,20,":/images/block.png");
     obstacle wooden_block(300,200,200,50,":/images/block.png"); //want to place coins above it
