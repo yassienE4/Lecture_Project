@@ -13,7 +13,6 @@ class Game : public QGraphicsView
         void closemenu();
         void openselect();
         void openlevel1();
-        void ensurevisablefunction();
     private:
         QGraphicsScene* gamescene; // the scene for the game
 

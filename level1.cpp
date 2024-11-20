@@ -1,6 +1,6 @@
 #include "level1.h"
 
-level1::level1(QGraphicsScene *scene) : baselevel(scene)
+level1::level1(QGraphicsScene *scene, Game * game) : baselevel(scene,game)
 {
 
 }

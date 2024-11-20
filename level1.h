@@ -8,7 +8,7 @@ class level1 : public virtual baselevel // inhert from baselevel
     Q_OBJECT
 private:
 public:
-    level1(QGraphicsScene *scene);
+    level1(QGraphicsScene *scene, Game* game);
     void initialize();
 };
 

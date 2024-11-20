@@ -7,13 +7,14 @@
 #include "steve.h"
 #include "obstacle.h"
 #include <QDebug>
+#include "game.h"
 
 
 class baselevel : public QObject
 {
 Q_OBJECT
 public:
-    baselevel(QGraphicsScene *scene);
+    baselevel(QGraphicsScene *scene, Game *game);
     void initialize();
     void keyPressEvent(QKeyEvent * e);
     void keyReleaseEvent(QKeyEvent *e);
@@ -37,6 +38,7 @@ protected:
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;
+    Game *m_game;
     QTimer *timer;
     bool leftpressed, rightpressed, spacepressed;
 };

@@ -1,7 +1,7 @@
 #include "baselevel.h"
 #include <QDebug>
 
-baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_steve(nullptr)
+baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
 {
     m_scene = scene;
     timer = new QTimer(this);
@@ -127,6 +127,7 @@ void baselevel::moveHorizontally()
     {
         m_steve->moveBy(10,0);
     }
+    m_game->ensureVisible(m_steve,50,0);
 }
 /*
 void baselevel::moveVertically()
