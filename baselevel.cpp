@@ -13,7 +13,7 @@ void baselevel::initialize()
 {
     m_steve = new steve();
     m_scene->addItem(m_steve);
-    m_steve->setPos(100,320);
+    m_steve->setPos(100,325);
     m_scene->installEventFilter(this);
 
 }
@@ -205,13 +205,14 @@ void baselevel::moveVertically()
 
         m_steve->moveBy(0, m_steve->getvelocity());
         m_steve->setvelocity(m_steve->getvelocity() +1);
-        if(m_steve->getcolidedown())
+        if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
         {
             if(!leftpressed && !rightpressed)
             {
                 m_steve->setstate(Static);
             }
-            m_steve->setY(m_steve->y());
+            int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+            m_steve->setY(floor);
             m_steve->setvelocity(0);
         }
 
@@ -220,17 +221,18 @@ void baselevel::moveVertically()
     }
     else
     {
-        if((!m_steve->getjump()) && m_steve->getcolidedown())
+        if((!m_steve->getjump()) && (m_steve->y() <= 320) && !m_steve->getcolidedown())
         {
             m_steve->setvelocity(m_steve->getvelocity() +1);
             m_steve->moveBy(0, m_steve->getvelocity());
-            if(m_steve->getcolidedown())
+            if(m_steve->y() >= 320 ) //||  m_steve->getcolidedown()
             {
                 if(!leftpressed && !rightpressed)
                 {
                     m_steve->setstate(Static);
                 }
-                m_steve->setY(m_steve->y());
+                int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+                m_steve->setY(floor);
                 m_steve->setvelocity(0);
             }
         }
