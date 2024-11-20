@@ -15,6 +15,7 @@
         <file>stevemoveright2.png</file>
         <file>level1recursive.png</file>
         <file>woodenblock.png</file>
+        <file>groundimage.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>
