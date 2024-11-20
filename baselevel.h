@@ -22,6 +22,7 @@ public:
     void moveHorizontally();
     void moveVertically();
     void checkcolide();
+    void checkgrounded();
     void animate();
     void addobstacle(obstacle* o);
     bool eventFilter(QObject *obj, QEvent *event);

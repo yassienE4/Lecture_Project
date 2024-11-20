@@ -35,10 +35,12 @@ public:
     bool getcolideleft();
     bool getcolideup();
     bool getcolidedown();
+    bool getgrounded();
     void setcolideright(bool x);
     void setcolideleft(bool x);
     void setcolideup(bool x);
     void setcolidedown(bool x);
+    void setgrounded(bool x);
     //boundingbox getters
     QRectF getrightBoundingBox();
     QRectF getleftBoundingBox();
@@ -62,6 +64,7 @@ private:
     bool colideleft;
     bool colideup;
     bool colidedown;
+    bool grounded;
 
     //bounding boxes
     QRectF rightBoundingBox;

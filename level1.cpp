@@ -20,7 +20,7 @@ void level1::initialize()
     // add obstacles and stuff
 
 
-    obstacles.push_back(new obstacle(400,420,100,100,":/images/woodenblock.png")); // need to empty qlist after level1 ends
+    obstacles.push_back(new obstacle(400,420,400,100,":/images/woodenblock.png")); // need to empty qlist after level1 ends
     baselevel::addobstacle(obstacles.front());
 
     obstacle spike1(560,120,25,20,":/images/block.png");

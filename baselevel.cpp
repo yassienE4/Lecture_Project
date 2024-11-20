@@ -110,6 +110,7 @@ void baselevel::update()
     animate();
     moveVertically();
     moveHorizontally();
+    checkgrounded();
     checkcolide();
     m_steve->update();
 }
@@ -222,7 +223,7 @@ void baselevel::moveVertically()
         {
             m_steve->setvelocity(m_steve->getvelocity() +1);
             m_steve->moveBy(0, m_steve->getvelocity());
-            if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
+            if(m_steve->y() >= 320 ) //||  m_steve->getcolidedown()
             {
                 if(!leftpressed && !rightpressed)
                 {
@@ -236,7 +237,17 @@ void baselevel::moveVertically()
     }
 }
 
-
+void baselevel::checkgrounded()
+{
+    if(m_steve->getvelocity()==0 && m_steve->getcolidedown())
+    {
+        m_steve->setgrounded(true);
+    }
+    else
+    {
+        m_steve->setgrounded(false);
+    }
+}
 void baselevel::checkcolide()
 {
     for(auto * obs : obstacles)
@@ -250,6 +261,7 @@ void baselevel::checkcolide()
         if(steveRightBox.intersects(obstacleBox))
         {
             m_steve->setcolideright(true);
+            qDebug() << "colideright";
         }
         else
         {
@@ -259,6 +271,7 @@ void baselevel::checkcolide()
         if(steveLeftBox.intersects(obstacleBox))
         {
             m_steve->setcolideleft(true);
+            qDebug() << "colideleft";
         }
         else
         {
@@ -268,15 +281,17 @@ void baselevel::checkcolide()
         if(steveUpBox.intersects(obstacleBox))
         {
             m_steve->setcolideup(true);
+            qDebug() << "colideup";
         }
         else
         {
             m_steve->setcolideup(false);
         }
 
-        if(steveDownBox.intersects(obstacleBox) && m_steve->getvelocity()!=0)
+        if(steveDownBox.intersects(obstacleBox) && !m_steve->getgrounded())
         {
             m_steve->setcolidedown(true);
+            qDebug() << "colidedown";
         }
         else
         {

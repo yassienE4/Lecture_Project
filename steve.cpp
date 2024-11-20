@@ -26,7 +26,7 @@ steve::steve()  {
     direction = 1;
 
     setboundingboxes();
-    //setOpacity(0.5); // to check bounding box
+    setOpacity(0.5); // to check bounding box
 }
 
 
@@ -93,6 +93,10 @@ bool steve::getcolidedown()
 {
     return colidedown;
 }
+bool steve::getgrounded()
+{
+    return grounded;
+}
 void steve::setcolideright(bool x)
 {
     colideright = x;
@@ -109,7 +113,10 @@ void steve::setcolidedown(bool x)
 {
     colidedown = x;
 }
-
+void steve::setgrounded(bool x)
+{
+    grounded = x;
+}
 //bounding box getters
 
 QRectF steve::getrightBoundingBox()
@@ -134,15 +141,16 @@ void steve::setboundingboxes()
     int width = playerpixmap.width();
     int height = playerpixmap.height();
     int x = (width - (width / 3)) / 2;
-    rightBoundingBox = QRectF(width/2,0, width/6, height);
-    leftBoundingBox = QRectF(width/3, 0, width / 6, height);
-    upBoundingBox = QRectF(x, 0, width/3, height / 2);
-    downBoundingBox = QRectF(x, height / 2, width/3, height / 2);
+    rightBoundingBox = QRectF(width/2,10, width/6, (height-20));
+    leftBoundingBox = QRectF(width/3, 10, width / 6, (height-20));
+
+    upBoundingBox = QRectF(x+10, 0, (width/3 - 20), height / 12);
+    downBoundingBox = QRectF(x+10, (height-height/12), (width/3 -20), height / 12);
 }
 
 
 //testing bounding box
-/*
+ /*
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
