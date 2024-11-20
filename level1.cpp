@@ -8,7 +8,7 @@ level1::level1(QGraphicsScene *scene, Game * game) : baselevel(scene,game)
 void level1::initialize()
 {
 
-    QPixmap backgroundpixmap(":/images/level1recursive");
+    QPixmap backgroundpixmap(":/images/level1scene");
     QSize targetSize(1280, 720);
     QPixmap scaledPixmap = backgroundpixmap.scaled(targetSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
