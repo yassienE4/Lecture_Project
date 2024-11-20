@@ -75,6 +75,8 @@ bool steve::getdirection()
     return direction;
 }
 
+//colide set/get
+
 bool steve::getcolideright()
 {
     return colideright;
@@ -106,6 +108,25 @@ void steve::setcolideup(bool x)
 void steve::setcolidedown(bool x)
 {
     colidedown = x;
+}
+
+//bounding box getters
+
+QRectF steve::getrightBoundingBox()
+{
+    return rightBoundingBox;
+}
+QRectF steve::getleftBoundingBox()
+{
+    return leftBoundingBox;
+}
+QRectF steve::getupBoundingBox()
+{
+    return upBoundingBox;
+}
+QRectF steve::getdownBoundingBox()
+{
+    return downBoundingBox;
 }
 
 void steve::setboundingboxes()

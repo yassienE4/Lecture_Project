@@ -1,5 +1,5 @@
 #include "baselevel.h"
-
+#include <QDebug>
 
 baselevel::baselevel(QGraphicsScene *scene) : QObject(), m_steve(nullptr)
 {
@@ -118,15 +118,79 @@ void baselevel::moveHorizontally()
 {
     if(leftpressed && rightpressed) return; //cant go left and right at same time
     if(!leftpressed && !rightpressed) return; // no button pressed
-    if(leftpressed)
+    if(leftpressed && !m_steve->getcolideleft())
     {
         m_steve->moveBy(-10,0);
     }
-    if(rightpressed)
+    if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
     }
 }
+/*
+void baselevel::moveVertically()
+{
+    //gravity
+
+    if(m_steve->getjump())
+    {
+
+        m_steve->moveBy(0, m_steve->getvelocity());
+        m_steve->setvelocity(m_steve->getvelocity() +1); // velocity++
+        if(m_steve->y() >= 320)
+        {
+            if(!leftpressed && !rightpressed)
+            {
+                m_steve->setstate(Static);
+            }
+            m_steve->setY(320);
+            m_steve->setvelocity(0);
+        }
+
+
+        if(m_steve->getcolidedown())
+        {
+            m_steve->setvelocity(0);
+            m_steve->setY(m_steve->y() - m_steve->getvelocity());
+            if(!leftpressed && !rightpressed)
+            {
+                m_steve->setstate(Static);
+            }
+        }
+    }
+    else
+    {
+        if(m_steve->getcolidedown())
+        {
+            m_steve->setvelocity(0);
+            m_steve->setY(m_steve->y() - m_steve->getvelocity());
+            if(!leftpressed && !rightpressed)
+            {
+                m_steve->setstate(Static);
+            }
+        }
+        else
+        {
+            if((!m_steve->getjump()) && (m_steve->y() <= 320))
+            {
+                m_steve->setvelocity(m_steve->getvelocity() +1);
+                m_steve->moveBy(0, m_steve->getvelocity()+10);
+                if(m_steve->y() >= 320)
+                {
+                    if(!leftpressed && !rightpressed)
+                    {
+                        m_steve->setstate(Static);
+                    }
+                    m_steve->setY(320);
+                    m_steve->setvelocity(0);
+                }
+            }
+        }
+
+
+    }
+}
+*/
 
 void baselevel::moveVertically()
 {
@@ -138,13 +202,14 @@ void baselevel::moveVertically()
 
         m_steve->moveBy(0, m_steve->getvelocity());
         m_steve->setvelocity(m_steve->getvelocity() +1);
-        if(m_steve->y() >= 320)
+        if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
         {
             if(!leftpressed && !rightpressed)
             {
                 m_steve->setstate(Static);
             }
-            m_steve->setY(320);
+            int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+            m_steve->setY(floor);
             m_steve->setvelocity(0);
         }
 
@@ -153,30 +218,69 @@ void baselevel::moveVertically()
     }
     else
     {
-    if((!m_steve->getjump()) && (m_steve->y() <= 320))
-    {
-        m_steve->setvelocity(m_steve->getvelocity() +1);
-        m_steve->moveBy(0, m_steve->getvelocity());
-        if(m_steve->y() >= 320)
+        if((!m_steve->getjump()) && (m_steve->y() <= 320) && !m_steve->getcolidedown())
         {
-            if(!leftpressed && !rightpressed)
+            m_steve->setvelocity(m_steve->getvelocity() +1);
+            m_steve->moveBy(0, m_steve->getvelocity());
+            if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
             {
-                m_steve->setstate(Static);
+                if(!leftpressed && !rightpressed)
+                {
+                    m_steve->setstate(Static);
+                }
+                int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+                m_steve->setY(floor);
+                m_steve->setvelocity(0);
             }
-            m_steve->setY(320);
-            m_steve->setvelocity(0);
         }
-    }
     }
 }
 
+
 void baselevel::checkcolide()
 {
-    for(int i =0; i< obstacles.size(); i++)
+    for(auto * obs : obstacles)
     {
-        if(m_steve->)
-        {
+        QRectF obstacleBox = obs->boundingRect().translated(obs->pos()); // turning obs into a qrectf to compare with steve boundingboxes(also qrectf)
+        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
 
+        if(steveRightBox.intersects(obstacleBox))
+        {
+            m_steve->setcolideright(true);
+        }
+        else
+        {
+            m_steve->setcolideright(false);
+        }
+
+        if(steveLeftBox.intersects(obstacleBox))
+        {
+            m_steve->setcolideleft(true);
+        }
+        else
+        {
+            m_steve->setcolideleft(false);
+        }
+
+        if(steveUpBox.intersects(obstacleBox))
+        {
+            m_steve->setcolideup(true);
+        }
+        else
+        {
+            m_steve->setcolideup(false);
+        }
+
+        if(steveDownBox.intersects(obstacleBox) && m_steve->getvelocity()!=0)
+        {
+            m_steve->setcolidedown(true);
+        }
+        else
+        {
+            m_steve->setcolidedown(false);
         }
     }
 }

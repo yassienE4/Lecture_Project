@@ -39,6 +39,11 @@ public:
     void setcolideleft(bool x);
     void setcolideup(bool x);
     void setcolidedown(bool x);
+    //boundingbox getters
+    QRectF getrightBoundingBox();
+    QRectF getleftBoundingBox();
+    QRectF getupBoundingBox();
+    QRectF getdownBoundingBox();
 
 private:
     QPixmap playerpixmap;
