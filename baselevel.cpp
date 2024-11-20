@@ -112,6 +112,7 @@ void baselevel::update()
     moveHorizontally();
     checkgrounded();
     checkcolide();
+    m_game->ensureVisible(m_steve,500,0);
     m_steve->update();
 }
 
@@ -127,7 +128,7 @@ void baselevel::moveHorizontally()
     {
         m_steve->moveBy(10,0);
     }
-    m_game->ensureVisible(m_steve,50,0);
+
 }
 /*
 void baselevel::moveVertically()

@@ -2,6 +2,7 @@
 #define BASELEVEL_H
 
 #include <QGraphicsScene>
+#include <QGraphicsView>
 #include <QTimer>
 #include <QKeyEvent>
 #include "steve.h"

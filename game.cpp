@@ -33,6 +33,7 @@ void Game::openlevel1()
     level1Scene->setSceneRect(0, 0, 1280, 720);
     class level1* level = new class level1(level1Scene, this);
     level->initialize();
+    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
     this->setScene(level1Scene);
     this->show();
 }
