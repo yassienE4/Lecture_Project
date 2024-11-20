@@ -28,7 +28,7 @@ public:
     void setdirection(bool x);
     bool getdirection();
     void setpix(int p);
-    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
     void setboundingboxes();
     // coliding set/getters
     bool getcolideright();

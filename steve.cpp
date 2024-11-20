@@ -150,7 +150,7 @@ void steve::setboundingboxes()
 
 
 //testing bounding box
- /*
+ ///*
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
@@ -174,4 +174,4 @@ void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QGraphicsPixmapItem::paint(painter, option, widget);
 
 }
-*/
+//*/
