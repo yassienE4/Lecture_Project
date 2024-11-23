@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     mobs.cpp \
+    moving_enemy.cpp \
     obstacle.cpp \
     score.cpp \
     steve.cpp
@@ -27,6 +28,7 @@ HEADERS += \
     levelselect.h \
     mainmenu.h \
     mobs.h \
+    moving_enemy.h \
     obstacle.h \
     score.h \
     steve.h

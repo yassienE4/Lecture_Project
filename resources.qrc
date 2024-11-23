@@ -16,6 +16,7 @@
         <file>level1recursive.png</file>
         <file>woodenblock.png</file>
         <file>groundimage.png</file>
+        <file>movingenemy.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

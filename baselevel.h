@@ -2,6 +2,7 @@
 #define BASELEVEL_H
 
 #include <QGraphicsScene>
+#include <QGraphicsRectItem>
 #include <QGraphicsView>
 #include <QTimer>
 #include <QKeyEvent>
@@ -9,18 +10,24 @@
 #include "obstacle.h"
 #include <QDebug>
 #include "game.h"
+#include <QMessageBox>
+#include<QWidget>
 
+
+
+class Game;
+class moving_enemy;
 
 class baselevel : public QObject
 {
 Q_OBJECT
 public:
     baselevel(QGraphicsScene *scene, Game *game);
+    steve*  getSteve();
     void initialize();
     void keyPressEvent(QKeyEvent * e);
     void keyReleaseEvent(QKeyEvent *e);
     void setbackground(QGraphicsPixmapItem* x);
-
     void moveHorizontally();
     void moveVertically();
     void checkcolide();
@@ -32,6 +39,10 @@ public:
     bool colideleft();
     bool colideup();
     bool colidedown();
+    void check_collision();
+public slots:
+    void spawn_enemy();
+    void endGame();
 private slots:
     void update();
 protected:
@@ -42,6 +53,7 @@ private:
     Game *m_game;
     QTimer *timer;
     bool leftpressed, rightpressed, spacepressed;
+    QGraphicsRectItem* Steve;
 };
 
 #endif // BASELEVEL_H

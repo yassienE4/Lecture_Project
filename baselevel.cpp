@@ -1,4 +1,5 @@
 #include "baselevel.h"
+#include<moving_enemy.h>
 #include <QDebug>
 
 baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
@@ -7,6 +8,11 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, this, &baselevel::update);
     timer->start(16);//60 fps
+
+    QTimer* spawnTimer = new QTimer(this);
+    connect(spawnTimer, &QTimer::timeout, this, &baselevel::spawn_enemy);
+    spawnTimer->start(2000);
+
 }
 
 void baselevel::initialize()
@@ -357,4 +363,30 @@ void baselevel::animate()
             lcount = (lcount+1)%4;
         }
     }
+}
+void baselevel:: spawn_enemy(){
+    moving_enemy *enemy = new moving_enemy(this,":/images/movingenemy.png");
+    enemy->set_bound(0, m_scene->width());
+    enemy->set_speed(3);
+    enemy->setPos(rand() % static_cast<int>(m_scene->width()), 0);
+    m_scene->addItem(enemy);
+
+}
+// to check for collision between steve aand enemies
+void baselevel:: check_collision(){
+    for (auto *item : m_scene->items()){
+        moving_enemy *enemy = dynamic_cast<moving_enemy*>(item);
+        if (enemy && m_steve->collidesWithItem(enemy)){
+            qDebug() << "Collision with enemy!";
+             m_scene->removeItem(enemy);
+             delete enemy;
+        }
+    }
+}
+void baselevel::endGame(){
+    QMessageBox::critical(nullptr, "Game Over", "The enemy has touched Steve! Game Over.");
+     m_scene->deleteLater();
+}
+steve* baselevel::getSteve() {
+    return m_steve;
 }
