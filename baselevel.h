@@ -44,7 +44,7 @@ public:
     void checkdiamondcolide();
 public slots:
     void spawn_enemy();
-    void endGame();
+    //void endGame();
 private slots:
     void update();
 protected:

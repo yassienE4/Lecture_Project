@@ -403,14 +403,15 @@ void baselevel:: check_collision(){
         if (enemy && m_steve->collidesWithItem(enemy)){
             qDebug() << "Collision with enemy!";
              m_scene->removeItem(enemy);
-             delete enemy;
+             enemy->setPos(100000,10000);
         }
     }
 }
-void baselevel::endGame(){
-    QMessageBox::critical(nullptr, "Game Over", "The enemy has touched Steve! Game Over.");
-     m_scene->deleteLater();
-}
+//fix the end game function
+// void baselevel::endGame(){
+//     QMessageBox::critical(nullptr, "Game Over", "The enemy has touched Steve! Game Over.");
+//      m_scene->deleteLater();
+// }
 steve* baselevel::getSteve() {
     return m_steve;
 }
