@@ -18,6 +18,7 @@
         <file>groundimage.png</file>
         <file>movingenemy.png</file>
         <file>diamonds.png</file>
+        <file>pausemenu.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

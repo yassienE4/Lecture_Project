@@ -13,6 +13,9 @@
 #include <QMessageBox>
 #include<QWidget>
 #include "diamonds.h"
+#include <QFontDatabase>
+#include <QPushButton>
+
 
 
 class Game;
@@ -42,6 +45,8 @@ public:
     void check_collision();
     void adddiamond(diamonds * d);
     void checkdiamondcolide();
+    void checkpaused();
+    void back_button();
 public slots:
     void spawn_enemy();
     void endGame();
@@ -57,6 +62,13 @@ private:
     QTimer *timer;
     bool leftpressed, rightpressed, spacepressed;
     QGraphicsRectItem* Steve;
+    bool ispaused;
+    bool pausemenushown = false;
+    int pausecount;
+    QGraphicsPixmapItem * pause;
+    QPushButton* back_button1;
+    QGraphicsProxyWidget *proxyButton;
+
 };
 
 #endif // BASELEVEL_H

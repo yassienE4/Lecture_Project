@@ -2,6 +2,8 @@
 #include<moving_enemy.h>
 #include <QDebug>
 
+
+
 baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
 {
     m_scene = scene;
@@ -22,7 +24,71 @@ void baselevel::initialize()
     m_steve->setPos(100,325);
     m_scene->installEventFilter(this);
 
+    QPixmap pixmap(":/images/pausemenu.png");
+    pause = new QGraphicsPixmapItem(pixmap);
+    pause->setOpacity(0.5);
+
 }
+
+void baselevel::checkpaused()
+{
+    if(ispaused)
+    {
+        if(!pausemenushown)
+        {
+            m_scene->addItem(pause); // transparant pix map
+            QPixmap buttonimage(":/images/mcbuttonimage");
+            int fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
+            QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+
+            back_button1 = new QPushButton();
+            back_button1->setFixedSize(buttonimage.size());
+            back_button1->setText("Back to Main Menu");
+            back_button1->setObjectName(QString("back_button"));
+            back_button1->setToolTip("Goes back to main menu");
+            back_button1->setStyleSheet(
+                "QPushButton {"
+                "    border: none;"                // Remove border
+                "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
+                "    background-repeat: no-repeat;"
+                "    background-position: center;"
+                "    color: white;"                // Set text color
+                "    font-family: '" + fontFamily + "';" // Set the custom font
+                               "    font-size: 16px;"             // Set text size
+                               "    text-align: center;"          // Center the text
+                               "}"
+                );
+
+
+
+            proxyButton = m_scene->addWidget(back_button1);
+            back_button1->move(448,600);
+            connect(back_button1, &QPushButton::clicked, this, &baselevel::back_button);
+            pausemenushown = true;
+        }
+
+    }
+    else
+    {
+        if(pausemenushown)
+        {
+            m_scene->removeItem(pause);
+            pausemenushown = false;
+        }
+        if(back_button1)
+        {
+            //m_scene->removeItem(proxyButton);
+        }
+    }
+}
+
+void baselevel::back_button()
+{
+    qDebug() << "works";
+    m_game->closemenu();
+    m_game->openselect();
+}
+
 void baselevel::addobstacle(obstacle* o)
 {
     m_scene->addItem(o);
@@ -83,6 +149,18 @@ void baselevel::keyPressEvent(QKeyEvent * e)
         m_steve->setstate(Jumping);
         m_steve->setvelocity(-15);
     }
+    if(e->key() == Qt::Key_Escape)
+    {
+        if(pausecount %2 == 0)
+        {
+            ispaused = true;
+        }
+        else
+        {
+            ispaused = false;
+        }
+        pausecount++;
+    }
 
 }
 
@@ -116,14 +194,20 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
 
 void baselevel::update()
 {
-    animate();
-    moveVertically();
-    moveHorizontally();
-    checkgrounded();
-    checkcolide();
-    checkdiamondcolide();
-    m_game->ensureVisible(m_steve,500,0);
-    m_steve->update();
+
+    checkpaused();
+    if(!ispaused)
+    {
+        animate();
+        moveVertically();
+        moveHorizontally();
+        checkgrounded();
+        checkcolide();
+        checkdiamondcolide();
+        m_game->ensureVisible(m_steve,500,0);
+        m_steve->update();
+    }
+
 }
 
 void baselevel::moveHorizontally()
@@ -323,7 +407,7 @@ void baselevel::checkcolide()
         if(steveDownBox.intersects(obstacleBox) && !m_steve->getgrounded())
         {
             m_steve->setcolidedown(true);
-            qDebug() << "colidedown";
+            //qDebug() << "colidedown";
         }
         else
         {
