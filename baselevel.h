@@ -12,7 +12,7 @@
 #include "game.h"
 #include <QMessageBox>
 #include<QWidget>
-
+#include "diamonds.h"
 
 
 class Game;
@@ -40,6 +40,8 @@ public:
     bool colideup();
     bool colidedown();
     void check_collision();
+    void adddiamond(diamonds * d);
+    void checkdiamondcolide();
 public slots:
     void spawn_enemy();
     void endGame();
@@ -47,6 +49,7 @@ private slots:
     void update();
 protected:
     QList<obstacle*> obstacles;
+    QList<diamonds*> diamond;
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;

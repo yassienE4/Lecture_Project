@@ -34,6 +34,11 @@ void level1::initialize()
     obstacle block5(560,950,20,20,":/images/block.png");
     obstacle wooden_block3(300,1050,200,50,":/images/block.png"); //want to place coins above it
 
+
+    // adding coins(diamonds)
+    diamond.push_back(new diamonds(500,300));
+    baselevel::adddiamond(diamond[0]);
+
     // must declare coin here (doing a class named coin)
 
 

@@ -28,7 +28,10 @@ void baselevel::addobstacle(obstacle* o)
     m_scene->addItem(o);
 }
 
-
+void baselevel::adddiamond(diamonds* d)
+{
+    m_scene->addItem(d);
+}
 bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focused so i overloaded
 {
     if (event->type() == QEvent::KeyPress)
@@ -118,6 +121,7 @@ void baselevel::update()
     moveHorizontally();
     checkgrounded();
     checkcolide();
+    checkdiamondcolide();
     m_game->ensureVisible(m_steve,500,0);
     m_steve->update();
 }
@@ -256,6 +260,26 @@ void baselevel::checkgrounded()
         m_steve->setgrounded(false);
     }
 }
+
+void baselevel::checkdiamondcolide()
+{
+    for(auto * dia : diamond)
+    {
+        QRectF diamondBox = dia->boundingRect().translated(dia->pos());
+        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+
+        if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
+        {
+            qDebug() << "score+1";
+            dia->setPos(100000,10000); // should be delete
+            // add one to score
+        }
+    }
+}
+
 void baselevel::checkcolide()
 {
     for(auto * obs : obstacles)

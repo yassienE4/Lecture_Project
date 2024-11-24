@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     Game game(1280, 720);
 
-    QTimer::singleShot(5000, [loadscreen, &game]()
+    QTimer::singleShot(100, [loadscreen, &game]()
     {
         loadscreen->finish(&game);
         game.show();

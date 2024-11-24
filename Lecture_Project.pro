@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     baselevel.cpp \
+    diamonds.cpp \
     game.cpp \
     level1.cpp \
     levelselect.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 
 HEADERS += \
     baselevel.h \
+    diamonds.h \
     game.h \
     level1.h \
     levelselect.h \

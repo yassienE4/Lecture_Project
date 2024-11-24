@@ -26,7 +26,7 @@ steve::steve()  {
     direction = 1;
 
     setboundingboxes();
-    setOpacity(0.5); // to check bounding box
+    //setOpacity(0.5); // to check bounding box
 }
 
 
@@ -150,7 +150,7 @@ void steve::setboundingboxes()
 
 
 //testing bounding box
- ///*
+/*
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
@@ -174,4 +174,4 @@ void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QGraphicsPixmapItem::paint(painter, option, widget);
 
 }
-//*/
+*/
