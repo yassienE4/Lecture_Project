@@ -77,7 +77,7 @@ void baselevel::checkpaused()
         }
         if(back_button1)
         {
-            //m_scene->removeItem(proxyButton);
+            m_scene->removeItem(proxyButton);
         }
     }
 }
@@ -357,6 +357,7 @@ void baselevel::checkdiamondcolide()
 
         if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
         {
+            // add one to score
             qDebug() << "score+1";
             dia->setPos(100000,10000); // should be delete
             // add one to score

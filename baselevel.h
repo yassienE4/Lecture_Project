@@ -15,6 +15,8 @@
 #include "diamonds.h"
 #include <QFontDatabase>
 #include <QPushButton>
+#include <QGraphicsProxyWidget>
+
 
 
 

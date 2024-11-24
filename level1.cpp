@@ -39,6 +39,8 @@ void level1::initialize()
     diamond.push_back(new diamonds(500,300));
     baselevel::adddiamond(diamond[0]);
 
+
+
     // must declare coin here (doing a class named coin)
 
 
