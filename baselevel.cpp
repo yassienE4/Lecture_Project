@@ -85,7 +85,7 @@ void baselevel::checkpaused()
 void baselevel::back_button()
 {
     qDebug() << "works";
-    m_game->closemenu();
+    m_game->closelevel();
     m_game->openselect();
 }
 
