@@ -29,6 +29,7 @@ class baselevel : public QObject
 Q_OBJECT
 public:
     baselevel(QGraphicsScene *scene, Game *game);
+    ~baselevel();
     steve*  getSteve();
     void initialize();
     void keyPressEvent(QKeyEvent * e);

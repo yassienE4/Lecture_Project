@@ -17,6 +17,18 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
 
 }
 
+baselevel::~baselevel()
+{
+    delete m_steve;
+    delete m_scene;
+    delete m_game;
+    delete timer;
+    delete Steve;
+    delete pause;
+    delete back_button1;
+    delete proxyButton;
+}
+
 void baselevel::initialize()
 {
     m_steve = new steve();
