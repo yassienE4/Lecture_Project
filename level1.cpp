@@ -26,7 +26,7 @@ void level1::initialize()
     baselevel::addobstacle(obstacles[1]);
     obstacles.push_back(new obstacle(700,300,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[2]);
-    obstacles.push_back(new obstacle(1200,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    obstacles.push_back(new obstacle(1500,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[3]);
 
 
@@ -35,12 +35,17 @@ void level1::initialize()
     baselevel::adddiamond(diamond[0]);
     diamond.push_back(new diamonds(800,180)); // diamond at 500,300
     baselevel::adddiamond(diamond[1]);
-    diamond.push_back(new diamonds(1300,300)); // diamond at 500,300
+    diamond.push_back(new diamonds(1600,300)); // diamond at 500,300
     baselevel::adddiamond(diamond[2]);
+    diamond.push_back(new diamonds(1700,300)); // diamond at 500,300
+    baselevel::adddiamond(diamond[3]);
+
 
     // adding enemies
     enemies.push_back(new moving_enemy(500,320,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[0]);
+    enemies.push_back(new moving_enemy(1900,420,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
+    baselevel::spawn_enemy(enemies[1]);
 
 
 
