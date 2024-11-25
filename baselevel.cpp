@@ -354,10 +354,10 @@ void baselevel::checkend()
     {
         qDebug() << "End Game";
         portaltouched = true;
-        //QTimer::singleShot(250, this, [this]() {
+        QTimer::singleShot(250, this, [this]() {
             m_game->closelevel();
             m_game->openselect();
-        //});
+        });
 
     }
 }
