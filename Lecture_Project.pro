@@ -12,6 +12,7 @@ SOURCES += \
     baselevel.cpp \
     diamonds.cpp \
     game.cpp \
+    health.cpp \
     level1.cpp \
     levelselect.cpp \
     main.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     baselevel.h \
     diamonds.h \
     game.h \
+    health.h \
     level1.h \
     levelselect.h \
     mainmenu.h \
