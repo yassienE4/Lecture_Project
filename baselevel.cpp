@@ -422,6 +422,7 @@ void baselevel::checkcolide()
         if(steveRightBox.intersects(obstacleBox))
         {
             m_steve->setcolideright(true);
+            return;
             // qDebug() << "colideright";
         }
         else
@@ -432,6 +433,7 @@ void baselevel::checkcolide()
         if(steveLeftBox.intersects(obstacleBox))
         {
             m_steve->setcolideleft(true);
+            return;
             // qDebug() << "colideleft";
         }
         else
