@@ -309,6 +309,16 @@ void baselevel::moveVertically()
 void baselevel::moveVertically()
 {
     //gravity
+    obstacle* ground = m_steve->isGrounded(obstacles);
+    int floor;
+    if(ground)
+    {
+        floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
+    }
+    else
+        floor = 320;
+
+
 
     if(m_steve->getjump())
     {
@@ -316,13 +326,12 @@ void baselevel::moveVertically()
 
         m_steve->moveBy(0, m_steve->getvelocity());
         m_steve->setvelocity(m_steve->getvelocity() +1);
-        if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
+        if(m_steve->y() >= floor)
         {
             if(!leftpressed && !rightpressed)
             {
                 m_steve->setstate(Static);
             }
-            int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
             m_steve->setY(floor);
             m_steve->setvelocity(0);
         }
@@ -336,13 +345,12 @@ void baselevel::moveVertically()
         {
             m_steve->setvelocity(m_steve->getvelocity() +1);
             m_steve->moveBy(0, m_steve->getvelocity());
-            if(m_steve->y() >= 320 ) //||  m_steve->getcolidedown()
+            if(m_steve->y() >= floor ) //||  m_steve->getcolidedown()
             {
                 if(!leftpressed && !rightpressed)
                 {
                     m_steve->setstate(Static);
                 }
-                int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
                 m_steve->setY(floor);
                 m_steve->setvelocity(0);
             }

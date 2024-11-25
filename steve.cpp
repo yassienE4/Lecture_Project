@@ -147,7 +147,18 @@ void steve::setboundingboxes()
     upBoundingBox = QRectF(x+10, 0, (width/3 - 20), height / 12);
     downBoundingBox = QRectF(x+10, (height-height/12), (width/3 -20), height / 12);
 }
-
+obstacle *steve::isGrounded(const QList<obstacle *> & obstacles)
+{
+    QRectF rect(x(), y() + boundingRect().height() - 5, boundingRect().width(), 5);
+    for(auto * item : obstacles)
+    {
+        QRectF otherRect(item->x() + item->boundingRect().x() + 6, item->y() + item->boundingRect().y(), item->boundingRect().width() - 3, 5);
+        if(rect.intersects(otherRect)) {
+            return item;
+        }
+    }
+    return nullptr;
+}
 
 //testing bounding box
 /*

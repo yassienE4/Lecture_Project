@@ -5,7 +5,7 @@
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
-
+#include "obstacle.h"
 #include <QPainter>
 
 enum PlayerState //mainly for animations
@@ -46,6 +46,8 @@ public:
     QRectF getleftBoundingBox();
     QRectF getupBoundingBox();
     QRectF getdownBoundingBox();
+
+    obstacle* isGrounded(const QList<obstacle*>&);
 
 private:
     QPixmap playerpixmap;
