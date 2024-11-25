@@ -29,6 +29,7 @@ void Game::openselect()
 
 void Game::openlevel1()
 {
+
     QGraphicsScene* level1Scene = new QGraphicsScene();
     level1Scene->setSceneRect(0, 0, 1280, 720);
     class level1* level = new class level1(level1Scene, this);

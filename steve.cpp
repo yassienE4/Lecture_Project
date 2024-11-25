@@ -136,6 +136,43 @@ QRectF steve::getdownBoundingBox()
     return downBoundingBox;
 }
 
+obstacle *steve::isGrounded(const QList<obstacle *> & obstacles)
+{
+    QRectF rect(x(), y() + boundingRect().height() - 5, boundingRect().width(), 5);
+
+    for(auto * item : obstacles)
+    {
+        QRectF otherRect(item->x() + item->boundingRect().x() + 6, item->y() + item->boundingRect().y(), item->boundingRect().width() - 3, 5);
+        if(rect.intersects(otherRect)) {
+            return item;
+        }
+    }
+    return nullptr;
+}
+
+// obstacle* steve::isBlockedHorizontally(const QList<QGraphicsItem*>& items, int& direction) {
+//     direction = 0;
+//     for(QGraphicsItem* item : items) {
+//         GroundEntity* entity = dynamic_cast<GroundEntity*>(item);
+//         if(entity != nullptr) {
+//             QRectF rect(x(), y(), boundingRect().width(), boundingRect().height());
+//             QRectF leftRect(item->x() - 3, item->y() + 3, 10, item->boundingRect().height() - 6);
+//             if (rect.intersects(leftRect)) {
+//                 direction += 1;
+//                 return entity;
+//             }
+//             QRectF rightRect(item->x() + item->boundingRect().width() + 3, item->y() + 3, 10, item->boundingRect().height() - 6);
+//             if (rect.intersects(rightRect)) {
+//                 direction -= 1;
+//                 return entity;
+//             }
+//         }
+//     }
+//     return nullptr;
+// }
+
+
+
 void steve::setboundingboxes()
 {
     int width = playerpixmap.width();
@@ -150,28 +187,28 @@ void steve::setboundingboxes()
 
 
 //testing bounding box
-/*
+
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
 
-    qDebug() << "Painting steve item";
+    // qDebug() << "Painting steve item";
 
 
-        painter->setPen(QPen(Qt::red));
-        painter->setBrush(Qt::transparent);
-        painter->drawRect(rightBoundingBox);
+        // painter->setPen(QPen(Qt::red));
+        // painter->setBrush(Qt::transparent);
+        // painter->drawRect(rightBoundingBox);
 
-        painter->setPen(QPen(Qt::blue));
-        painter->drawRect(leftBoundingBox);
+        // painter->setPen(QPen(Qt::blue));
+        // painter->drawRect(leftBoundingBox);
 
-        painter->setPen(QPen(Qt::green));
-        painter->drawRect(upBoundingBox);
+        // painter->setPen(QPen(Qt::green));
+        // painter->drawRect(upBoundingBox);
 
         painter->setPen(QPen(Qt::yellow));
-        painter->drawRect(downBoundingBox);
+        painter->drawRect((getdownBoundingBox()));
 
         QGraphicsPixmapItem::paint(painter, option, widget);
 
 }
-*/
+

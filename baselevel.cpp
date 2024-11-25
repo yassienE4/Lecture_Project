@@ -21,7 +21,7 @@ void baselevel::initialize()
 {
     m_steve = new steve();
     m_scene->addItem(m_steve);
-    m_steve->setPos(100,325);
+    m_steve->setPos(100,200);
     m_scene->installEventFilter(this);
 
     QPixmap pixmap(":/images/pausemenu.png");
@@ -156,11 +156,10 @@ void baselevel::keyPressEvent(QKeyEvent * e)
             m_steve->setstate(Moving);
         }
     }
-    if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
+    if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space))
     {
         spacepressed = true;
         m_steve->setstate(Jumping);
-        m_steve->setvelocity(-15);
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -195,13 +194,13 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
             m_steve->setstate(Static);
         }
     }
-    if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
+    if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space))
     {
         spacepressed = false;
 
-        if (!leftpressed && !rightpressed) {
-            m_steve->setstate(Static);
-        }
+        // if (!leftpressed && !rightpressed) {
+        //     m_steve->setstate(Static);
+        // }
     }
 }
 
@@ -308,46 +307,72 @@ void baselevel::moveVertically()
 
 void baselevel::moveVertically()
 {
+    obstacle* ground = m_steve->isGrounded(obstacles);
+
     //gravity
+    qDebug() <<  "What the actual fuck" << (ground == nullptr ? "not grounded" : "grounded");
+    qDebug() << "Pressing space" << spacepressed;
 
-    if(m_steve->getjump())
-    {
 
-
-        m_steve->moveBy(0, m_steve->getvelocity());
-        m_steve->setvelocity(m_steve->getvelocity() +1);
-        if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
-        {
-            if(!leftpressed && !rightpressed)
-            {
-                m_steve->setstate(Static);
-            }
-            int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
-            m_steve->setY(floor);
-            m_steve->setvelocity(0);
+    if(ground) {
+        // m_steve->setstate(Static);
+        if(spacepressed) {
+            m_steve->moveBy(0, -10);
+            m_steve->setstate(Jumping);
+        } else {
+            m_steve->setPos(m_steve->x(), ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height());
         }
-
-
-        // check if hit obsticle /ground
-    }
-    else
-    {
-        if((!m_steve->getjump()) && (m_steve->y() <= 320) && !m_steve->getcolidedown())
-        {
-            m_steve->setvelocity(m_steve->getvelocity() +1);
+    } else {
+        if(m_steve->getstate() == Jumping) {
             m_steve->moveBy(0, m_steve->getvelocity());
-            if(m_steve->y() >= 320 ) //||  m_steve->getcolidedown()
-            {
-                if(!leftpressed && !rightpressed)
-                {
-                    m_steve->setstate(Static);
-                }
-                int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
-                m_steve->setY(floor);
-                m_steve->setvelocity(0);
-            }
+            m_steve->setvelocity(m_steve->getvelocity() +1);
+        } else {
+            // if(m_steve->getvelocity() < 0) {
+            //     m_steve->setvelocity(0);
+            // }
+            m_steve->setvelocity(1);
+            m_steve->moveBy(0, m_steve->getvelocity());
         }
     }
+
+    // if(m_steve->getjump())
+    // {
+
+
+    //     m_steve->moveBy(0, m_steve->getvelocity());
+    //     m_steve->setvelocity(m_steve->getvelocity() +1);
+    //     if(m_steve->y() >= 320 ||  m_steve->getcolidedown())
+    //     {
+    //         if(!leftpressed && !rightpressed)
+    //         {
+    //             m_steve->setstate(Static);
+    //         }
+    //         int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+    //         m_steve->setY(floor);
+    //         m_steve->setvelocity(0);
+    //     }
+
+
+    //     // check if hit obsticle /ground
+    // }
+    // else
+    // {
+    //     if((!m_steve->getjump()) && (m_steve->y() <= 320) && !m_steve->getcolidedown())
+    //     {
+    //         m_steve->setvelocity(m_steve->getvelocity() +1);
+    //         m_steve->moveBy(0, m_steve->getvelocity());
+    //         if(m_steve->y() >= 320 ) //||  m_steve->getcolidedown()
+    //         {
+    //             if(!leftpressed && !rightpressed)
+    //             {
+    //                 m_steve->setstate(Static);
+    //             }
+    //             int floor = !m_steve->getcolidedown() ? 320 : m_steve->y();
+    //             m_steve->setY(floor);
+    //             m_steve->setvelocity(0);
+    //         }
+    //     }
+    // }
 }
 
 void baselevel::checkgrounded()
@@ -406,7 +431,7 @@ void baselevel::checkcolide()
         QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
         QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
         QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
-        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+        // QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
 
         if(steveRightBox.intersects(obstacleBox))
         {
@@ -415,7 +440,7 @@ void baselevel::checkcolide()
         }
         else
         {
-            m_steve->setcolideright(false);
+            m_steve->setcolideright(true);
         }
 
         if(steveLeftBox.intersects(obstacleBox))
@@ -436,16 +461,6 @@ void baselevel::checkcolide()
         else
         {
             m_steve->setcolideup(false);
-        }
-
-        if(steveDownBox.intersects(obstacleBox) && !m_steve->getgrounded())
-        {
-            m_steve->setcolidedown(true);
-            //qDebug() << "colidedown";
-        }
-        else
-        {
-            m_steve->setcolidedown(false);
         }
     }
 }

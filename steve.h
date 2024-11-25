@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QGraphicsPixmapItem>
+#include "obstacle.h"
 
 #include <QPainter>
 
@@ -28,7 +29,7 @@ public:
     void setdirection(bool x);
     bool getdirection();
     void setpix(int p);
-    //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
     void setboundingboxes();
     // coliding set/getters
     bool getcolideright();
@@ -46,6 +47,8 @@ public:
     QRectF getleftBoundingBox();
     QRectF getupBoundingBox();
     QRectF getdownBoundingBox();
+
+    obstacle* isGrounded(const QList<obstacle*>&);
 
 private:
     QPixmap playerpixmap;
