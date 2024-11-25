@@ -43,6 +43,10 @@ void level1::initialize()
     diamond.push_back(new diamonds(500,300));
     baselevel::adddiamond(diamond[0]);
 
+    // adding enemies
+    enemies.push_back(new moving_enemy(500,280,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
+    baselevel::spawn_enemy(enemies[0]);
+
 
 
 

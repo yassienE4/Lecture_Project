@@ -11,9 +11,9 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
     connect(timer, &QTimer::timeout, this, &baselevel::update);
     timer->start(16);//60 fps
 
-    QTimer* spawnTimer = new QTimer(this);
-    connect(spawnTimer, &QTimer::timeout, this, &baselevel::spawn_enemy);
-    spawnTimer->start(2000);
+    // QTimer* spawnTimer = new QTimer(this);
+    // connect(spawnTimer, &QTimer::timeout, this, &baselevel::spawn_enemy);
+    // spawnTimer->start(2000);
 
 }
 
@@ -236,6 +236,8 @@ void baselevel::update()
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
         m_steve->update();
+        moveEnemy();
+        checkenemycollision();
         if(!portaltouched)
         {
             checkend();
@@ -259,70 +261,6 @@ void baselevel::moveHorizontally()
     }
 
 }
-/*
-void baselevel::moveVertically()
-{
-    //gravity
-
-    if(m_steve->getjump())
-    {
-
-        m_steve->moveBy(0, m_steve->getvelocity());
-        m_steve->setvelocity(m_steve->getvelocity() +1); // velocity++
-        if(m_steve->y() >= 320)
-        {
-            if(!leftpressed && !rightpressed)
-            {
-                m_steve->setstate(Static);
-            }
-            m_steve->setY(320);
-            m_steve->setvelocity(0);
-        }
-
-
-        if(m_steve->getcolidedown())
-        {
-            m_steve->setvelocity(0);
-            m_steve->setY(m_steve->y() - m_steve->getvelocity());
-            if(!leftpressed && !rightpressed)
-            {
-                m_steve->setstate(Static);
-            }
-        }
-    }
-    else
-    {
-        if(m_steve->getcolidedown())
-        {
-            m_steve->setvelocity(0);
-            m_steve->setY(m_steve->y() - m_steve->getvelocity());
-            if(!leftpressed && !rightpressed)
-            {
-                m_steve->setstate(Static);
-            }
-        }
-        else
-        {
-            if((!m_steve->getjump()) && (m_steve->y() <= 320))
-            {
-                m_steve->setvelocity(m_steve->getvelocity() +1);
-                m_steve->moveBy(0, m_steve->getvelocity()+10);
-                if(m_steve->y() >= 320)
-                {
-                    if(!leftpressed && !rightpressed)
-                    {
-                        m_steve->setstate(Static);
-                    }
-                    m_steve->setY(320);
-                    m_steve->setvelocity(0);
-                }
-            }
-        }
-
-
-    }
-}
-*/
 
 void baselevel::moveVertically()
 {
@@ -438,7 +376,7 @@ void baselevel::checkcolide()
         if(steveRightBox.intersects(obstacleBox))
         {
             m_steve->setcolideright(true);
-            qDebug() << "colideright";
+            // qDebug() << "colideright";
         }
         else
         {
@@ -448,7 +386,7 @@ void baselevel::checkcolide()
         if(steveLeftBox.intersects(obstacleBox))
         {
             m_steve->setcolideleft(true);
-            qDebug() << "colideleft";
+            // qDebug() << "colideleft";
         }
         else
         {
@@ -458,7 +396,7 @@ void baselevel::checkcolide()
         if(steveUpBox.intersects(obstacleBox))
         {
             m_steve->setcolideup(true);
-            qDebug() << "colideup";
+            // qDebug() << "colideup";
         }
         else
         {
@@ -497,7 +435,7 @@ void baselevel::animate()
             {
             case 0:
                 m_steve->setpix(3);
-                qDebug() << "animate";
+                // qDebug() << "animate";
                 break;
             case 1:
                 m_steve->setpix(1);
@@ -532,35 +470,61 @@ void baselevel::animate()
     }
 
 }
-QGraphicsScene* baselevel::getScene() const {
-    return m_scene;
-}
-int enemyCount = 0;
-void baselevel:: spawn_enemy(){
 
-    if (enemyCount < 10) {
-         moving_enemy *enemy = new moving_enemy(this,":/images/movingenemy.png");
-         getScene()->addItem(enemy);
-         enemyCount++;
+void baselevel::spawn_enemy(moving_enemy* enemy)
+{
+    m_scene->addItem(enemy);
+}
+
+
+void baselevel::moveEnemy()
+{
+    // Horizontal movement
+
+    for(auto enemy : enemies)
+    {
+        if(enemy->x() == enemy->getmaxrange()) //enemy->getmaxrange()
+        {
+            enemy->setdirection(0);
+        }
+        if(enemy->x() == enemy->getminrange())
+        {
+            enemy->setdirection(1);
+        }
+        if(enemy->getdirection())
+        {
+            enemy->moveBy(1,0);
+        }
+        else
+        {
+            enemy->moveBy(-1,0);
+        }
     }
 
 }
-// to check for collision between steve aand enemies
-void baselevel:: check_collision(){
-    for (auto *item : m_scene->items()){
-        moving_enemy *enemy = dynamic_cast<moving_enemy*>(item);
-        if (enemy && m_steve->collidesWithItem(enemy)){
-            qDebug() << "Collision with enemy!";
-             m_scene->removeItem(enemy);
-             enemy->setPos(100000,10000);
+
+void baselevel::checkenemycollision()
+{
+    for(auto * ene : enemies)
+    {
+        QRectF enemybox = ene->boundingRect().translated(ene->pos());
+        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+
+        if((steveRightBox.intersects(enemybox)) || (steveLeftBox.intersects(enemybox)) || (steveUpBox.intersects(enemybox)) || (steveDownBox.intersects(enemybox)))
+        {
+            // add one to score
+            qDebug() << "enemy colided";
+            // add one to score
         }
     }
 }
+
+
 //fix the end game function
 // void baselevel::endGame(){
 //     QMessageBox::critical(nullptr, "Game Over", "The enemy has touched Steve! Game Over.");
 //      m_scene->deleteLater();
 // }
-steve* baselevel::getSteve() {
-    return m_steve;
-}

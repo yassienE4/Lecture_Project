@@ -20,6 +20,8 @@
         <file>diamonds.png</file>
         <file>pausemenu.png</file>
         <file>Nether_Portal.png</file>
+        <file>movingenemyleft.png</file>
+        <file>movingenemyright.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

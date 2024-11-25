@@ -17,12 +17,11 @@
 #include <QPushButton>
 #include <QGraphicsProxyWidget>
 #include "portal.h"
+#include "moving_enemy.h"
 
 
 
 
-class Game;
-class moving_enemy;
 
 class baselevel : public QObject
 {
@@ -46,7 +45,6 @@ public:
     bool colideleft();
     bool colideup();
     bool colidedown();
-    void check_collision();
     void adddiamond(diamonds * d);
     void addportal(portal * p);
     void checkdiamondcolide();
@@ -54,14 +52,19 @@ public:
     void back_button();
     void checkend();
     QGraphicsScene* getScene() const;
+
+    void spawn_enemy(moving_enemy* enemy);
+    void moveEnemy();
+    void checkenemycollision();
 public slots:
-    void spawn_enemy();
+    // void spawn_enemy();
     //void endGame();
 private slots:
     void update();
 protected:
     QList<obstacle*> obstacles;
     QList<diamonds*> diamond;
+    QList<moving_enemy*> enemies;
     portal* nportal;
 private:
     steve *m_steve;
