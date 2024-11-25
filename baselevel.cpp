@@ -389,8 +389,10 @@ void baselevel::checkend()
     if(stevebox.intersects(nportalbox))
     {
         qDebug() << "End Game";
-        m_game->closelevel();
-        m_game->openselect();
+        QTimer::singleShot(250, this, [this]() {
+            m_game->closelevel();
+            m_game->openselect();
+        });
 
     }
 }
