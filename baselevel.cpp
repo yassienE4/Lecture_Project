@@ -28,6 +28,10 @@ void baselevel::initialize()
     pause = new QGraphicsPixmapItem(pixmap);
     pause->setOpacity(0.5);
 
+    //nportal->setOpacity(0.25);
+
+
+
 }
 
 void baselevel::checkpaused()
@@ -62,7 +66,10 @@ void baselevel::checkpaused()
 
 
             proxyButton = m_scene->addWidget(back_button1);
-            back_button1->move(448,600);
+            int pos = m_steve->x() - 100;
+            if(pos < 448)
+                pos = 448;
+            back_button1->move(pos,600);
             connect(back_button1, &QPushButton::clicked, this, &baselevel::back_button);
             pausemenushown = true;
         }
@@ -98,6 +105,12 @@ void baselevel::adddiamond(diamonds* d)
 {
     m_scene->addItem(d);
 }
+
+void baselevel::addportal(portal * p)
+{
+    m_scene->addItem(p);
+}
+
 bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focused so i overloaded
 {
     if (event->type() == QEvent::KeyPress)
@@ -192,6 +205,9 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
+
+
+
 void baselevel::update()
 {
 
@@ -206,6 +222,7 @@ void baselevel::update()
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
         m_steve->update();
+        checkend();
     }
 
 }
@@ -364,6 +381,20 @@ void baselevel::checkdiamondcolide()
         }
     }
 }
+
+void baselevel::checkend()
+{
+    QRectF stevebox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+    QRectF nportalbox = nportal->mapRectToScene(nportal->getportalbox());
+    if(stevebox.intersects(nportalbox))
+    {
+        qDebug() << "End Game";
+        m_game->closelevel();
+        m_game->openselect();
+
+    }
+}
+
 
 void baselevel::checkcolide()
 {

@@ -16,6 +16,7 @@
 #include <QFontDatabase>
 #include <QPushButton>
 #include <QGraphicsProxyWidget>
+#include "portal.h"
 
 
 
@@ -46,9 +47,11 @@ public:
     bool colidedown();
     void check_collision();
     void adddiamond(diamonds * d);
+    void addportal(portal * p);
     void checkdiamondcolide();
     void checkpaused();
     void back_button();
+    void checkend();
 public slots:
     void spawn_enemy();
     //void endGame();
@@ -57,6 +60,7 @@ private slots:
 protected:
     QList<obstacle*> obstacles;
     QList<diamonds*> diamond;
+    portal* nportal;
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;

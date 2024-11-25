@@ -19,6 +19,7 @@
         <file>movingenemy.png</file>
         <file>diamonds.png</file>
         <file>pausemenu.png</file>
+        <file>Nether_Portal.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

@@ -19,6 +19,7 @@ SOURCES += \
     mobs.cpp \
     moving_enemy.cpp \
     obstacle.cpp \
+    portal.cpp \
     score.cpp \
     steve.cpp
 
@@ -32,6 +33,7 @@ HEADERS += \
     mobs.h \
     moving_enemy.h \
     obstacle.h \
+    portal.h \
     score.h \
     steve.h
 

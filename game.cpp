@@ -44,5 +44,6 @@ void Game::closelevel()
     QGraphicsScene* menuScene = new QGraphicsScene();
     menuScene->setSceneRect(0, 0, 1280, 720); // Example default scene size
     this->setScene(menuScene); // Set to a default or empty scene
+    this->setSceneRect(0,0,1280,720);
     this->show();
 }
