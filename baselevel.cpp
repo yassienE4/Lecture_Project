@@ -505,13 +505,19 @@ void baselevel::animate()
             lcount = (lcount+1)%4;
         }
     }
+
 }
+QGraphicsScene* baselevel::getScene() const {
+    return m_scene;
+}
+int enemyCount = 0;
 void baselevel:: spawn_enemy(){
-    moving_enemy *enemy = new moving_enemy(this,":/images/movingenemy.png");
-    enemy->set_bound(0, m_scene->width());
-    enemy->set_speed(3);
-    enemy->setPos(rand() % static_cast<int>(m_scene->width()), 0);
-    m_scene->addItem(enemy);
+
+    if (enemyCount < 10) {
+         moving_enemy *enemy = new moving_enemy(this,":/images/movingenemy.png");
+         getScene()->addItem(enemy);
+         enemyCount++;
+    }
 
 }
 // to check for collision between steve aand enemies

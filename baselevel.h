@@ -52,6 +52,7 @@ public:
     void checkpaused();
     void back_button();
     void checkend();
+    QGraphicsScene* getScene() const;
 public slots:
     void spawn_enemy();
     //void endGame();
