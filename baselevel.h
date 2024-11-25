@@ -87,6 +87,8 @@ private:
     health h;
     QElapsedTimer invincibilityTimer; // Tracks time since last damage
     const int graceperiod = 1000; // grace period
+    int score;
+    QGraphicsTextItem* scoreText;
 
 };
 

@@ -27,6 +27,7 @@ baselevel::~baselevel()
     delete pause;
     delete back_button1;
     delete proxyButton;
+    delete scoreText;
 }
 
 void baselevel::initialize()
@@ -48,8 +49,34 @@ void baselevel::initialize()
     m_scene->addItem(&h);
     invincibilityTimer.start();
 
+    score = 0; // Initialize score to 0
+    scoreText = new QGraphicsTextItem();
+    scoreText->setPlainText(QString("Score: %1").arg(score));
+    scoreText->setDefaultTextColor(Qt::white);
+    scoreText->setFont(QFont("Arial", 16));
+    scoreText->setPos(10, 10); // Position on the screen
+    m_scene->addItem(scoreText);
 
 
+
+}
+void baselevel::checkdiamondcolide()
+{
+    for(auto * dia : diamond)
+    {
+        QRectF diamondBox = dia->boundingRect().translated(dia->pos());
+        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+        QRectF steveLeftBox = m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+
+        if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
+        {
+            score++; // Increment score
+            scoreText->setPlainText(QString("Score: %1").arg(score)); // Update displayed score
+            dia->setPos(100000, 10000); // Move diamond out of view or delete it
+        }
+    }
 }
 
 void baselevel::checkpaused()
@@ -335,25 +362,25 @@ void baselevel::checkgrounded()
     }
 }
 
-void baselevel::checkdiamondcolide()
-{
-    for(auto * dia : diamond)
-    {
-        QRectF diamondBox = dia->boundingRect().translated(dia->pos());
-        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
-        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
-        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
-        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+// void baselevel::checkdiamondcolide()
+// {
+//     for(auto * dia : diamond)
+//     {
+//         QRectF diamondBox = dia->boundingRect().translated(dia->pos());
+//         QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+//         QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+//         QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+//         QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
 
-        if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
-        {
-            // add one to score
-            qDebug() << "score+1";
-            dia->setPos(100000,10000); // should be delete
-            // add one to score
-        }
-    }
-}
+//         if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
+//         {
+//             // add one to score
+//             qDebug() << "score+1";
+//             dia->setPos(100000,10000); // should be delete
+//             // add one to score
+//         }
+//     }
+// }
 
 void baselevel::checkend()
 {
