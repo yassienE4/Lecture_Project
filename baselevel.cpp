@@ -40,6 +40,8 @@ void baselevel::initialize()
     pause = new QGraphicsPixmapItem(pixmap);
     pause->setOpacity(0.5);
 
+    portaltouched = false;
+
     //nportal->setOpacity(0.25);
 
 
@@ -234,7 +236,11 @@ void baselevel::update()
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
         m_steve->update();
-        checkend();
+        if(!portaltouched)
+        {
+            checkend();
+        }
+
     }
 
 }
@@ -406,13 +412,14 @@ void baselevel::checkend()
 {
     QRectF stevebox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
     QRectF nportalbox = nportal->mapRectToScene(nportal->getportalbox());
-    if(stevebox.intersects(nportalbox))
+    if(stevebox.intersects(nportalbox) && !portaltouched)
     {
         qDebug() << "End Game";
-        QTimer::singleShot(250, this, [this]() {
+        portaltouched = true;
+        //QTimer::singleShot(250, this, [this]() {
             m_game->closelevel();
             m_game->openselect();
-        });
+        //});
 
     }
 }
@@ -472,7 +479,6 @@ void baselevel::checkcolide()
 
 void baselevel::animate()
 {
-    static int frameCounter = 0;
     frameCounter = (frameCounter + 1) % 12; //control animation speed
     if (frameCounter != 0)
         return;
@@ -487,11 +493,11 @@ void baselevel::animate()
     {
         if(m_steve->getdirection())
         {
-            static int rcount = 0;
             switch(rcount)
             {
             case 0:
                 m_steve->setpix(3);
+                qDebug() << "animate";
                 break;
             case 1:
                 m_steve->setpix(1);
@@ -506,7 +512,6 @@ void baselevel::animate()
         }
         else
         {
-            static int lcount = 0;
             switch(lcount)
             {
             case 0:

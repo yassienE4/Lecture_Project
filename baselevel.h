@@ -76,6 +76,10 @@ private:
     QGraphicsPixmapItem * pause;
     QPushButton* back_button1;
     QGraphicsProxyWidget *proxyButton;
+    bool portaltouched;
+    int frameCounter;
+    int rcount;
+    int lcount;
 
 };
 
