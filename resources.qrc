@@ -22,6 +22,11 @@
         <file>Nether_Portal.png</file>
         <file>movingenemyleft.png</file>
         <file>movingenemyright.png</file>
+        <file>2hearts.png</file>
+        <file>3hearts.png</file>
+        <file>4hearts.png</file>
+        <file>heart.png</file>
+        <file>nohearts.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

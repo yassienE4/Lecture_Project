@@ -18,7 +18,7 @@
 #include <QGraphicsProxyWidget>
 #include "portal.h"
 #include "moving_enemy.h"
-
+#include "health.h"
 
 
 
@@ -83,6 +83,10 @@ private:
     int frameCounter;
     int rcount;
     int lcount;
+
+    health h;
+    QElapsedTimer invincibilityTimer; // Tracks time since last damage
+    const int graceperiod = 1000; // grace period
 
 };
 

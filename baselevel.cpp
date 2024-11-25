@@ -37,12 +37,16 @@ void baselevel::initialize()
     m_scene->installEventFilter(this);
 
     QPixmap pixmap(":/images/pausemenu.png");
+    pixmap =pixmap.scaled(5000,720);
     pause = new QGraphicsPixmapItem(pixmap);
     pause->setOpacity(0.5);
 
     portaltouched = false;
 
     //nportal->setOpacity(0.25);
+
+    m_scene->addItem(&h);
+    invincibilityTimer.start();
 
 
 
@@ -254,10 +258,15 @@ void baselevel::moveHorizontally()
     if(leftpressed && !m_steve->getcolideleft())
     {
         m_steve->moveBy(-10,0);
+        if(m_steve->x()>500)
+            h.moveBy(-10,0);
+
     }
     if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
+        if(m_steve->x()>500)
+            h.moveBy(10,0);
     }
 
 }
@@ -515,9 +524,16 @@ void baselevel::checkenemycollision()
 
         if((steveRightBox.intersects(enemybox)) || (steveLeftBox.intersects(enemybox)) || (steveUpBox.intersects(enemybox)) || (steveDownBox.intersects(enemybox)))
         {
-            // add one to score
+
             qDebug() << "enemy colided";
-            // add one to score
+            if(invincibilityTimer.elapsed() > graceperiod) // timer
+            {
+                h.applydamage();
+                invincibilityTimer.restart();
+            }
+            else
+                qDebug() << "collision ignored";
+
         }
     }
 }

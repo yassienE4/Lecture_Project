@@ -22,16 +22,19 @@ void level1::initialize()
     obstacles.push_back(new obstacle(0,517,5000,10,":/images/groundimage.png")); // ground
     baselevel::addobstacle(obstacles[0]);
 
-    obstacles.push_back(new obstacle(400,420,400,100,":/images/woodenblock.png")); // need to empty qlist after level1 ends
+    obstacles.push_back(new obstacle(400,420,400,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[1]);
 
+
     // adding coins(diamonds)
-    diamond.push_back(new diamonds(500,300));
+    diamond.push_back(new diamonds(500,300)); // diamond at 500,300
     baselevel::adddiamond(diamond[0]);
 
     // adding enemies
-    enemies.push_back(new moving_enemy(500,280,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
+    enemies.push_back(new moving_enemy(500,320,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[0]);
+
+
 
 
 

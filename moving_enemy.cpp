@@ -8,8 +8,8 @@ moving_enemy::moving_enemy(int startpos, int ypos ,int maxpos, int minpos) : QOb
     right = QPixmap(":/images/movingenemyright.png");
     left = QPixmap(":/images/movingenemyleft.png");
 
-    right = right.scaled(100, 200,Qt::KeepAspectRatio );
-    left = left.scaled(100,200,Qt::KeepAspectRatio);
+    right = right.scaled(75, 150,Qt::KeepAspectRatio );
+    left = left.scaled(75,150,Qt::KeepAspectRatio);
 
     x_max = maxpos;
     x_min = minpos;
