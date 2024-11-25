@@ -30,8 +30,18 @@ void level1::initialize()
     baselevel::addobstacle(obstacles[3]);
     obstacles.push_back(new obstacle(1700,350,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[4]);
-    obstacles.push_back(new obstacle(2000,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    //obstacles.push_back(new obstacle(2000,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    //baselevel::addobstacle(obstacles[5]);
+    obstacles.push_back(new obstacle(2200,390,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[5]);
+    obstacles.push_back(new obstacle(2400,340,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    baselevel::addobstacle(obstacles[6]);
+    obstacles.push_back(new obstacle(2600,290,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    baselevel::addobstacle(obstacles[7]);
+    obstacles.push_back(new obstacle(2800,240,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    baselevel::addobstacle(obstacles[8]);
+    obstacles.push_back(new obstacle(3300,420,300,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    baselevel::addobstacle(obstacles[9]);
 
 
     // adding coins(diamonds)
@@ -41,10 +51,20 @@ void level1::initialize()
     baselevel::adddiamond(diamond[1]);
     diamond.push_back(new diamonds(1600,300)); // diamond at 500,300
     baselevel::adddiamond(diamond[2]);
-    diamond.push_back(new diamonds(1700,300)); // diamond at 500,300
+    diamond.push_back(new diamonds(1700,220)); // diamond at 500,300
     baselevel::adddiamond(diamond[3]);
     diamond.push_back(new diamonds(1800,220)); // diamond at 500,300
-    baselevel::adddiamond(diamond[3]);
+    baselevel::adddiamond(diamond[4]);
+    diamond.push_back(new diamonds(2200,270)); // diamond at 500,300
+    baselevel::adddiamond(diamond[5]);
+    diamond.push_back(new diamonds(2400,220)); // diamond at 500,300
+    baselevel::adddiamond(diamond[6]);
+    diamond.push_back(new diamonds(2600,170)); // diamond at 500,300
+    baselevel::adddiamond(diamond[7]);
+    diamond.push_back(new diamonds(2800,120)); // diamond at 500,300
+    baselevel::adddiamond(diamond[8]);
+
+
 
 
     // adding enemies
