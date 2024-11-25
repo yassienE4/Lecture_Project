@@ -205,7 +205,7 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
         spacepressed = true;
         m_steve->setstate(Jumping);
-        m_steve->setvelocity(-20);
+        m_steve->setvelocity(-15);
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -272,6 +272,10 @@ void baselevel::update()
         if(!portaltouched)
         {
             checkend();
+        }
+        if(h.gethealth() == 0)
+        {
+            ispaused = true;
         }
 
     }
@@ -569,6 +573,7 @@ void baselevel::checkenemycollision()
 
         }
     }
+
 }
 
 
