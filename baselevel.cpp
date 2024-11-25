@@ -54,7 +54,7 @@ void baselevel::initialize()
     scoreText->setPlainText(QString("Score: %1").arg(score));
     scoreText->setDefaultTextColor(Qt::white);
     scoreText->setFont(QFont("Arial", 16));
-    scoreText->setPos(10, 10); // Position on the screen
+    scoreText->setPos(0, 100); // Position on the screen
     m_scene->addItem(scoreText);
 
 
@@ -205,7 +205,7 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
         spacepressed = true;
         m_steve->setstate(Jumping);
-        m_steve->setvelocity(-15);
+        m_steve->setvelocity(-20);
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -286,14 +286,20 @@ void baselevel::moveHorizontally()
     {
         m_steve->moveBy(-10,0);
         if(m_steve->x()>500)
+        {
+            scoreText->moveBy(-10,0);
             h.moveBy(-10,0);
+        }
 
     }
     if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
         if(m_steve->x()>500)
+        {
+            scoreText->moveBy(10,0);
             h.moveBy(10,0);
+        }
     }
 
 }
