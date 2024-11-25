@@ -259,11 +259,11 @@ void baselevel::update()
     checkpaused();
     if(!ispaused)
     {
+        checkcolide();
         animate();
         moveVertically();
         moveHorizontally();
         checkgrounded();
-        checkcolide();
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
         m_steve->update();
