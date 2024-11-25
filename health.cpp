@@ -27,3 +27,8 @@ void health::applydamage()
         setPixmap(nohearts);
 
 }
+
+int health::gethealth()
+{
+    return healthpoints;
+}
