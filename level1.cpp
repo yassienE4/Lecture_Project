@@ -63,6 +63,13 @@ void level1::initialize()
     baselevel::adddiamond(diamond[7]);
     diamond.push_back(new diamonds(2800,120)); // diamond at 500,300
     baselevel::adddiamond(diamond[8]);
+    diamond.push_back(new diamonds(3300,300)); // diamond at 500,300
+    baselevel::adddiamond(diamond[9]);
+    diamond.push_back(new diamonds(3400,300)); // diamond at 500,300
+    baselevel::adddiamond(diamond[10]);
+    diamond.push_back(new diamonds(3500,300)); // diamond at 500,300
+    baselevel::adddiamond(diamond[11]);
+
 
 
 
@@ -73,7 +80,7 @@ void level1::initialize()
 
     enemies.push_back(new moving_enemy(1900,420,2000,1800)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[1]);
-    enemies.push_back(new moving_enemy(2800,420,2800,3200)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
+    enemies.push_back(new moving_enemy(3700,420,4200,3600)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[2]);
 
 
