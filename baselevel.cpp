@@ -1,7 +1,7 @@
 #include "baselevel.h"
 #include<moving_enemy.h>
 #include <QDebug>
-
+#include <QPointF>
 
 
 baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
@@ -111,10 +111,13 @@ void baselevel::checkpaused()
 
 
             proxyButton = m_scene->addWidget(back_button1);
-            int pos = m_steve->x() - 100;
-            if(pos < 448)
-                pos = 448;
-            back_button1->move(pos,600);
+            // int pos = m_steve->x() - 100;
+            // if(pos < 448)
+            //     pos = 448;
+
+            QPointF scenePos = m_game->mapToScene(448,600);
+
+            back_button1->move(scenePos.x(),scenePos.y());
             connect(back_button1, &QPushButton::clicked, this, &baselevel::back_button);
             pausemenushown = true;
         }
@@ -266,6 +269,11 @@ void baselevel::update()
         checkgrounded();
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
+
+        QPointF scenePos = m_game->mapToScene(0,0);
+        h.setPos(scenePos.x(), scenePos.y());
+        scoreText->setPos(scenePos.x(),scenePos.y()+100);
+
         m_steve->update();
         moveEnemy();
         checkenemycollision();
@@ -289,21 +297,21 @@ void baselevel::moveHorizontally()
     if(leftpressed && !m_steve->getcolideleft())
     {
         m_steve->moveBy(-10,0);
-        if(m_steve->x()>500)
-        {
-            scoreText->moveBy(-10,0);
-            h.moveBy(-10,0);
-        }
+        // if(m_steve->x()>500)
+        // {
+        //     scoreText->moveBy(-10,0);
+        //     h.moveBy(-10,0);
+        // }
 
     }
     if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
-        if(m_steve->x()>500)
-        {
-            scoreText->moveBy(10,0);
-            h.moveBy(10,0);
-        }
+        // if(m_steve->x()>500)
+        // {
+        //     scoreText->moveBy(10,0);
+        //     h.moveBy(10,0);
+        // }
     }
 
 }
