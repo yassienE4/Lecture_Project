@@ -57,6 +57,9 @@ void baselevel::initialize()
     scoreText->setPos(0, 100); // Position on the screen
     m_scene->addItem(scoreText);
 
+    fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
+    fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+
 
 
 }
@@ -87,8 +90,7 @@ void baselevel::checkpaused()
         {
             m_scene->addItem(pause); // transparant pix map
             QPixmap buttonimage(":/images/mcbuttonimage");
-            int fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
-            QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+            QPointF scenePos = m_game->mapToScene(448, 600);
 
             back_button1 = new QPushButton();
             back_button1->setFixedSize(buttonimage.size());
@@ -111,11 +113,6 @@ void baselevel::checkpaused()
 
 
             proxyButton = m_scene->addWidget(back_button1);
-            // int pos = m_steve->x() - 100;
-            // if(pos < 448)
-            //     pos = 448;
-
-            QPointF scenePos = m_game->mapToScene(448,600);
 
             back_button1->move(scenePos.x(),scenePos.y());
             connect(back_button1, &QPushButton::clicked, this, &baselevel::back_button);
@@ -284,6 +281,13 @@ void baselevel::update()
         if(h.gethealth() == 0)
         {
             ispaused = true;
+            QPointF scenePos = m_game->mapToScene(448, 600);
+            QGraphicsTextItem* gameover = new QGraphicsTextItem("GAME OVER!");
+            QFont font(fontFamily, 64);
+            gameover->setFont(font);
+            gameover->setDefaultTextColor(Qt::black);
+            gameover->setPos(scenePos.x(), scenePos.y() - 350);
+            m_scene->addItem(gameover);
         }
 
     }

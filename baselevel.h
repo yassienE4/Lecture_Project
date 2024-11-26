@@ -90,6 +90,9 @@ private:
     int score;
     QGraphicsTextItem* scoreText;
 
+    int fontId;
+    QString fontFamily;
+
 };
 
 #endif // BASELEVEL_H
