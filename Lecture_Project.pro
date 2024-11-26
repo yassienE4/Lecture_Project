@@ -14,6 +14,10 @@ SOURCES += \
     game.cpp \
     health.cpp \
     level1.cpp \
+    level2.cpp \
+    level3.cpp \
+    level4.cpp \
+    level5.cpp \
     levelselect.cpp \
     main.cpp \
     mainmenu.cpp \
@@ -30,6 +34,10 @@ HEADERS += \
     game.h \
     health.h \
     level1.h \
+    level2.h \
+    level3.h \
+    level4.h \
+    level5.h \
     levelselect.h \
     mainmenu.h \
     mobs.h \

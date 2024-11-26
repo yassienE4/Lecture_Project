@@ -2,6 +2,11 @@
 #include "mainmenu.h"
 #include "levelselect.h"
 #include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "level4.h"
+#include "level5.h"
+
 
 Game::Game(int width, int height)
 {
@@ -45,5 +50,49 @@ void Game::closelevel()
     menuScene->setSceneRect(0, 0, 1280, 720); // Example default scene size
     this->setScene(menuScene); // Set to a default or empty scene
     this->setSceneRect(0,0,1280,720);
+    this->show();
+}
+
+void Game::openlevel2()
+{
+    QGraphicsScene* level2Scene = new QGraphicsScene();
+    level2Scene->setSceneRect(0, 0, 1280, 720);
+    class level2* level = new class level2(level2Scene, this);
+    level->initialize();
+    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
+    this->setScene(level2Scene);
+    this->show();
+}
+
+void Game::openlevel3()
+{
+    QGraphicsScene* level3Scene = new QGraphicsScene();
+    level3Scene->setSceneRect(0, 0, 1280, 720);
+    class level3* level = new class level3(level3Scene, this);
+    level->initialize();
+    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
+    this->setScene(level3Scene);
+    this->show();
+}
+
+void Game::openlevel4()
+{
+    QGraphicsScene* level4Scene = new QGraphicsScene();
+    level4Scene->setSceneRect(0, 0, 1280, 720);
+    class level4* level = new class level4(level4Scene, this);
+    level->initialize();
+    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
+    this->setScene(level4Scene);
+    this->show();
+}
+
+void Game::openlevel5()
+{
+    QGraphicsScene* level5Scene = new QGraphicsScene();
+    level5Scene->setSceneRect(0, 0, 1280, 720);
+    class level5* level = new class level5(level5Scene, this);
+    level->initialize();
+    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
+    this->setScene(level5Scene);
     this->show();
 }

@@ -142,13 +142,21 @@ void levelselect::level1()
 
 void levelselect::level2()
 {
+    game->closemenu();
+    game->openlevel2();
 }
 void levelselect::level3()
 {
+    game->closemenu();
+    game->openlevel3();
 }
 void levelselect::level4()
 {
+    game->closemenu();
+    game->openlevel4();
 }
 void levelselect::level5()
 {
+    game->closemenu();
+    game->openlevel5();
 }

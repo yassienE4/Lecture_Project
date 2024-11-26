@@ -12,8 +12,12 @@ class Game : public QGraphicsView
         Game(int w, int h); // constructor with width and height paramters
         void closemenu();
         void openselect();
-        void openlevel1();
         void closelevel();
+        void openlevel1();
+        void openlevel2();
+        void openlevel3();
+        void openlevel4();
+        void openlevel5();
     private:
         QGraphicsScene* gamescene; // the scene for the game
 
