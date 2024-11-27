@@ -28,6 +28,7 @@ baselevel::~baselevel()
     delete back_button1;
     delete proxyButton;
     delete scoreText;
+
 }
 
 void baselevel::initialize()
@@ -90,7 +91,8 @@ void baselevel::checkpaused()
         {
             m_scene->addItem(pause); // transparant pix map
             QPixmap buttonimage(":/images/mcbuttonimage");
-            scenePos = m_game->mapToScene(448, 600);
+
+            QPointF scenePos = m_game->mapToScene(448, 600);
 
             back_button1 = new QPushButton();
             back_button1->setFixedSize(buttonimage.size());
@@ -133,7 +135,6 @@ void baselevel::checkpaused()
 
 void baselevel::back_button()
 {
-    qDebug() << "works";
     m_game->closelevel();
     m_game->openselect();
 }
@@ -372,25 +373,6 @@ void baselevel::checkgrounded()
     }
 }
 
-// void baselevel::checkdiamondcolide()
-// {
-//     for(auto * dia : diamond)
-//     {
-//         QRectF diamondBox = dia->boundingRect().translated(dia->pos());
-//         QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
-//         QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
-//         QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
-//         QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
-
-//         if((steveRightBox.intersects(diamondBox)) || (steveLeftBox.intersects(diamondBox)) || (steveUpBox.intersects(diamondBox)) || (steveDownBox.intersects(diamondBox)))
-//         {
-//             // add one to score
-//             qDebug() << "score+1";
-//             dia->setPos(100000,10000); // should be delete
-//             // add one to score
-//         }
-//     }
-// }
 
 void baselevel::checkend()
 {
