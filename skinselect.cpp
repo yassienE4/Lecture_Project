@@ -125,6 +125,7 @@ skinselect::skinselect(Game* game)
     mariolabel.move(162, 300);
     addWidget(&mariolabel);
     mariogif->start();
+    mariolabel.setStyleSheet("background: transparent;");
 
 
 
