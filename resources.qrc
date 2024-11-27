@@ -41,6 +41,7 @@
         <file>marioright.png</file>
         <file>mariorightwalk1.png</file>
         <file>mariorightwalk2.png</file>
+        <file>mariopreview.gif</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

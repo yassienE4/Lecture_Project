@@ -13,6 +13,8 @@ public:
 private:
     Game* game;
     QLabel alexlabel;
+    QLabel stevelabel;
+    QLabel mariolabel;
 public slots:
     void selectsteve();
     void selectalex();

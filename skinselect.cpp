@@ -47,6 +47,16 @@ skinselect::skinselect(Game* game)
     addWidget(steve_Button);
     connect(steve_Button, &QPushButton::clicked, this, &skinselect::selectsteve);
 
+    QMovie *stevegif = new QMovie(":/images/stevepreview.gif");
+    stevelabel.setMovie(stevegif);
+    stevelabel.resize(stevegif->scaledSize());
+    stevelabel.show();
+    stevelabel.resize(stevegif->scaledSize());
+    stevelabel.move(567, 300); // Adjust the position as needed
+    addWidget(&stevelabel);
+    stevegif->start();
+    stevelabel.setStyleSheet("background: transparent;");
+
     QPushButton* alex_Button = new QPushButton();
     alex_Button->setFixedSize(buttonimage.size());
     alex_Button->move(850,600);
@@ -72,24 +82,15 @@ skinselect::skinselect(Game* game)
     connect(alex_Button, &QPushButton::clicked, this, &skinselect::selectalex);
 
 
-    // QLabel stevelabel;
-    // QMovie *stevegif = new QMovie(":/images/stevepreview.gif");
-    // stevelabel.setMovie(stevegif);
-    // stevegif->start();
-    // stevelabel.resize(stevegif->scaledSize());
-    // stevelabel.show();
-
-    /*
     QMovie *alexgif = new QMovie(":/images/alexpreview.gif");
     alexlabel.setMovie(alexgif);
-    alexgif->start();
     alexlabel.resize(alexgif->scaledSize());
     alexlabel.show();
-
     alexlabel.resize(alexgif->scaledSize());
-    alexlabel.move(645, 500); // Adjust the position as needed
+    alexlabel.move(974, 300); // Adjust the position as needed
     addWidget(&alexlabel);
-    */
+    alexgif->start();
+    alexlabel.setStyleSheet("background: transparent;");
 
 
     QPushButton* mario_Button = new QPushButton();
@@ -115,6 +116,15 @@ skinselect::skinselect(Game* game)
 
     addWidget(mario_Button);
     connect(mario_Button, &QPushButton::clicked, this, &skinselect::selectmario);
+
+    QMovie *mariogif = new QMovie(":/images/mariopreview.gif");
+    mariolabel.setMovie(mariogif);
+    mariolabel.resize(mariogif->scaledSize());
+    mariolabel.show();
+    mariolabel.resize(mariogif->scaledSize());
+    mariolabel.move(162, 300); // Adjust the position as needed
+    addWidget(&mariolabel);
+    mariogif->start();
 
 
 
