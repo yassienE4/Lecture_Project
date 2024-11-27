@@ -3,6 +3,8 @@
 
 #include <QGraphicsScene>
 #include "game.h"
+#include <QMediaPlayer>
+#include <QAudioOutput>
 
 class mainmenu : public QGraphicsScene
 {
@@ -11,6 +13,8 @@ class mainmenu : public QGraphicsScene
         mainmenu(Game* game); // main menu takes game as a paramter
     private:
         Game* game;
+        QMediaPlayer *backgroundMusic;
+        QAudioOutput *audioOutput;
     public slots:
         void new_game(); // for the button "New Game"
         void skinSelector();

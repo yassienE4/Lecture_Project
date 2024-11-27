@@ -2,6 +2,7 @@
 #include<moving_enemy.h>
 #include <QDebug>
 #include <QPointF>
+#include <QSoundEffect>
 
 
 baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
@@ -92,6 +93,10 @@ void baselevel::checkpaused()
             m_scene->addItem(pause); // transparant pix map
             QPixmap buttonimage(":/images/mcbuttonimage");
 
+            QSoundEffect *buttonsound = new QSoundEffect(this);
+            buttonsound->setSource(QUrl("qrc:/sounds/buttonclick.wav"));
+            buttonsound->setVolume(1);
+
             QPointF scenePos = m_game->mapToScene(448, 600);
 
             back_button1 = new QPushButton();
@@ -117,7 +122,10 @@ void baselevel::checkpaused()
             proxyButton = m_scene->addWidget(back_button1);
 
             back_button1->move(scenePos.x(),scenePos.y());
-            connect(back_button1, &QPushButton::clicked, this, &baselevel::back_button);
+            connect(back_button1, &QPushButton::clicked, this, [this, buttonsound]() {
+                buttonsound->play();
+                back_button();
+            });
             pausemenushown = true;
         }
 
@@ -541,6 +549,9 @@ void baselevel::checkenemycollision()
         QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
         QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
         QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+        QSoundEffect *hurtsound = new QSoundEffect(this);
+        hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
+        hurtsound->setVolume(1);
 
         if((steveRightBox.intersects(enemybox)) || (steveLeftBox.intersects(enemybox)) || (steveUpBox.intersects(enemybox)) || (steveDownBox.intersects(enemybox)))
         {
@@ -549,6 +560,7 @@ void baselevel::checkenemycollision()
             if(invincibilityTimer.elapsed() > graceperiod) // timer
             {
                 h.applydamage();
+                hurtsound->play();
                 invincibilityTimer.restart();
             }
             else

@@ -7,6 +7,7 @@
 #include <QLabel>
 #include <QMovie>
 #include "steve.h"
+#include <QSoundEffect>
 
 skinselect::skinselect(Game* game)
 {
@@ -21,6 +22,10 @@ skinselect::skinselect(Game* game)
     QPixmap buttonimage(":/images/mcbuttonimage");
     int fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+
+    QSoundEffect *buttonsound = new QSoundEffect(this);
+    buttonsound->setSource(QUrl("qrc:/sounds/buttonclick.wav"));
+    buttonsound->setVolume(1);
 
 
     QPushButton* steve_Button = new QPushButton();
@@ -45,7 +50,10 @@ skinselect::skinselect(Game* game)
 
 
     addWidget(steve_Button);
-    connect(steve_Button, &QPushButton::clicked, this, &skinselect::selectsteve);
+    connect(steve_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        selectsteve();
+    });
 
     QMovie *stevegif = new QMovie(":/images/stevepreview.gif");
     stevelabel.setMovie(stevegif);
@@ -79,7 +87,10 @@ skinselect::skinselect(Game* game)
 
 
     addWidget(alex_Button);
-    connect(alex_Button, &QPushButton::clicked, this, &skinselect::selectalex);
+    connect(alex_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        selectalex();
+    });
 
 
     QMovie *alexgif = new QMovie(":/images/alexpreview.gif");
@@ -115,7 +126,10 @@ skinselect::skinselect(Game* game)
 
 
     addWidget(mario_Button);
-    connect(mario_Button, &QPushButton::clicked, this, &skinselect::selectmario);
+    connect(mario_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        selectmario();
+    });
 
     QMovie *mariogif = new QMovie(":/images/mariopreview.gif");
     mariolabel.setMovie(mariogif);

@@ -4,10 +4,24 @@
 #include <QPushButton>
 #include <QGraphicsScene>
 #include <QFontDatabase>
+#include <QSoundEffect>
+#include <QRandomGenerator>
 
 mainmenu::mainmenu(Game* game): QGraphicsScene()
 {
     this->game = game;
+
+    backgroundMusic = new QMediaPlayer(this);
+    audioOutput = new QAudioOutput(this);
+    backgroundMusic->setAudioOutput(audioOutput);
+    int random = QRandomGenerator::global()->bounded(2);
+    if(random ==1)
+        backgroundMusic->setSource(QUrl("qrc:/sounds/moogcity.mp3"));
+    else
+        backgroundMusic->setSource(QUrl("qrc:/sounds/wethands.mp3"));
+    audioOutput->setVolume(1);
+    backgroundMusic->setLoops(QMediaPlayer::Infinite);
+    backgroundMusic->play();
 
     QPixmap background(":/images/background_select");
     background = background.scaled(1280,720, Qt::KeepAspectRatioByExpanding);
@@ -59,12 +73,23 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
         );
 
 
+    QSoundEffect *buttonsound = new QSoundEffect(this);
+    buttonsound->setSource(QUrl("qrc:/sounds/buttonclick.wav"));
+    buttonsound->setVolume(1);
 
     addWidget(newGame_Button);
-    connect(newGame_Button, &QPushButton::clicked, this, &mainmenu::new_game);
+    connect(newGame_Button, &QPushButton::clicked, this, [this, buttonsound] ()
+    {
+        buttonsound->play();   // Play sound
+        new_game();
+    });
 
     addWidget(skinSelector);
-    connect(skinSelector, &QPushButton::clicked, this, &mainmenu::skinSelector);
+    connect(skinSelector, &QPushButton::clicked, this, [this, buttonsound] ()
+    {
+        buttonsound->play();
+        mainmenu::skinSelector();
+    });
 }
 
 void mainmenu::new_game()

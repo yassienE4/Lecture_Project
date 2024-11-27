@@ -2,7 +2,7 @@
 
 steve::steve()
 {
-
+    height = 200;
     setskin(skin_static);
     setPixmap(playerpixmap);
     state = Static;
@@ -20,63 +20,63 @@ void steve::setskin(int x)
         playerpixmap = QPixmap(":/images/steve.png");
         leftplayerpixmap = QPixmap(":/images/steveleft.png");
         rightplayerpixmap = QPixmap(":/images/steve.png");
-        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
-        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        int scaledWidth = playerpixmap.width() * height / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
 
         rightmoving = QPixmap(":/images/stevemoveright1.png");
-        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        int movescaled = rightmoving.width() * height / rightmoving.height();
         leftmoving = QPixmap(":/images/stevemoveleft1.png");
-        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving = rightmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
 
         rightmoving2 = QPixmap(":/images/stevemoveright2.png");
         leftmoving2 = QPixmap(":/images/stevemoveleft2.png");
-        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
     if(x ==2)
     {
         playerpixmap = QPixmap(":/images/alexright.png");
         leftplayerpixmap = QPixmap(":/images/alexleft.png");
         rightplayerpixmap = QPixmap(":/images/alexright.png");
-        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
-        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        int scaledWidth = playerpixmap.width() * height / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
 
         rightmoving = QPixmap(":/images/alexrightwalk1.png");
-        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        int movescaled = rightmoving.width() * height / rightmoving.height();
         leftmoving = QPixmap(":/images/alexleftwalk1.png");
-        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving = rightmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
 
         rightmoving2 = QPixmap(":/images/alexrightwalk2.png");
         leftmoving2 = QPixmap(":/images/alexleftwalk2.png");
-        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
     if(x ==3)
     {
         playerpixmap = QPixmap(":/images/marioright.png");
         leftplayerpixmap = QPixmap(":/images/marioleft.png");
         rightplayerpixmap = QPixmap(":/images/marioright.png");
-        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
-        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        int scaledWidth = playerpixmap.width() * height / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, height, Qt::KeepAspectRatio);
 
         rightmoving = QPixmap(":/images/mariorightwalk1.png");
-        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        int movescaled = rightmoving.width() * height / rightmoving.height();
         leftmoving = QPixmap(":/images/marioleftwalk1.png");
-        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving = rightmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, height,Qt::KeepAspectRatio );
 
         rightmoving2 = QPixmap(":/images/mariorightwalk2.png");
         leftmoving2 = QPixmap(":/images/marioleftwalk2.png");
-        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
-        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
 }
 

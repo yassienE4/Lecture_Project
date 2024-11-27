@@ -3,6 +3,7 @@
 #include <QPushButton>
 #include <QGraphicsScene>
 #include <QFontDatabase>
+#include <QSoundEffect>
 
 levelselect::levelselect(Game* game)
 {
@@ -17,6 +18,10 @@ levelselect::levelselect(Game* game)
     QPixmap buttonimage(":/images/mcbuttonimage");
     int fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+
+    QSoundEffect *buttonsound = new QSoundEffect(this);
+    buttonsound->setSource(QUrl("qrc:/sounds/buttonclick.wav"));
+    buttonsound->setVolume(1);
 
     QPushButton* level1_Button = new QPushButton();
     level1_Button->setFixedSize(buttonimage.size());
@@ -146,13 +151,35 @@ levelselect::levelselect(Game* game)
     addWidget(back_Button);
 
 
-    connect(level1_Button, &QPushButton::clicked, this, &levelselect::level1);
+    connect(level1_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        level1();
+    });
 
-    connect(level2_Button, &QPushButton::clicked, this, &levelselect::level2);
-    connect(level3_Button, &QPushButton::clicked, this, &levelselect::level3);
-    connect(level4_Button, &QPushButton::clicked, this, &levelselect::level4);
-    connect(level5_Button, &QPushButton::clicked, this, &levelselect::level5);
-    connect(back_Button, &QPushButton::clicked, this, &levelselect::back);
+    connect(level2_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        level2();
+    });
+
+    connect(level3_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        level3();
+    });
+
+    connect(level4_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        level4();
+    });
+
+    connect(level5_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        level5();
+    });
+
+    connect(back_Button, &QPushButton::clicked, this, [this, buttonsound]() {
+        buttonsound->play();
+        back();
+    });
 
 }
 

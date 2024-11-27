@@ -81,6 +81,8 @@ private:
     QRectF upBoundingBox;
     QRectF downBoundingBox;
 
+    int height;
+
 };
 
 
