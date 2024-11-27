@@ -3,7 +3,6 @@
 
 #include <QGraphicsScene>
 #include "game.h"
-#include "level1.h"
 
 class levelselect : public QGraphicsScene
 {
@@ -18,6 +17,7 @@ public slots:
     void level3();
     void level4();
     void level5();
+    void back();
 };
 
 #endif // LEVELSELECT_H

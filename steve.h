@@ -16,6 +16,7 @@ enum PlayerState //mainly for animations
     Static
 };
 
+
 class steve : public QGraphicsPixmapItem
 {
 public:
@@ -27,6 +28,7 @@ public:
     bool getjump();
     void setdirection(bool x);
     bool getdirection();
+    void setskin(int x);
     void setpix(int p);
     //void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget); //used for checking bounding box pos
     void setboundingboxes();
@@ -48,6 +50,11 @@ public:
     QRectF getdownBoundingBox();
 
     obstacle* isGrounded(const QList<obstacle*>&);
+
+    //for skin select
+    static int skin_static;
+
+
 
 private:
     QPixmap playerpixmap;
@@ -73,6 +80,9 @@ private:
     QRectF leftBoundingBox;
     QRectF upBoundingBox;
     QRectF downBoundingBox;
+
 };
+
+
 
 #endif // STEVE_H

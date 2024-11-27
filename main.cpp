@@ -6,12 +6,12 @@
 #include <QGraphicsView>
 #include <QGraphicsPixmapItem>
 #include "mainmenu.h"
+#include "steve.h"
 
-
+int steve::skin_static = 1;
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     //loading screen implementation
     QSplashScreen *loadscreen = new QSplashScreen;
     loadscreen->setPixmap(QPixmap(":/images/loadingscreen.png"));

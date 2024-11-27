@@ -1,11 +1,14 @@
-#include "mainmenu.h"
-#include "levelselect.h"
+#include "skinselect.h"
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
 #include <QGraphicsScene>
 #include <QFontDatabase>
 
-mainmenu::mainmenu(Game* game): QGraphicsScene()
+#include <QLabel>
+#include <QMovie>
+#include "steve.h"
+
+skinselect::skinselect(Game* game)
 {
     this->game = game;
 
@@ -19,33 +22,14 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
     int fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
 
-    QPushButton* newGame_Button = new QPushButton();
-    newGame_Button->setFixedSize(buttonimage.size());
-    newGame_Button->move(448,600);
-    newGame_Button->setText("New Game");
-    newGame_Button->setObjectName(QString("newGame_Button"));
-    newGame_Button->setToolTip("New Game");
-    newGame_Button->setStyleSheet(
-        "QPushButton {"
-        "    border: none;"                // Remove border
-        "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
-        "    background-repeat: no-repeat;"
-        "    background-position: center;"
-        "    color: white;"                // Set text color
-        "    font-family: '" + fontFamily + "';" // Set the custom font
-                       "    font-size: 16px;"             // Set text size
-                       "    text-align: center;"          // Center the text
-                       "}"
-        );
 
-
-    QPushButton* skinSelector = new QPushButton();
-    skinSelector->setFixedSize(buttonimage.size());
-    skinSelector->move(448,500);
-    skinSelector->setText("Change Skin");
-    skinSelector->setObjectName(QString("skinSelector"));
-    skinSelector->setToolTip("Change Skins");
-    skinSelector->setStyleSheet(
+    QPushButton* steve_Button = new QPushButton();
+    steve_Button->setFixedSize(buttonimage.size());
+    steve_Button->move(250,600);
+    steve_Button->setText("Steve");
+    steve_Button->setObjectName(QString("steve_Button"));
+    steve_Button->setToolTip("Change Skin to Steve");
+    steve_Button->setStyleSheet(
         "QPushButton {"
         "    border: none;"                // Remove border
         "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
@@ -60,23 +44,71 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
 
 
 
-    addWidget(newGame_Button);
-    connect(newGame_Button, &QPushButton::clicked, this, &mainmenu::new_game);
+    addWidget(steve_Button);
+    connect(steve_Button, &QPushButton::clicked, this, &skinselect::selectsteve);
 
-    addWidget(skinSelector);
-    connect(skinSelector, &QPushButton::clicked, this, &mainmenu::skinSelector);
+    QPushButton* alex_Button = new QPushButton();
+    alex_Button->setFixedSize(buttonimage.size());
+    alex_Button->move(645,600);
+    alex_Button->setText("Alex");
+    alex_Button->setObjectName(QString("alex_Button"));
+    alex_Button->setToolTip("Change Skin to Alex");
+    alex_Button->setStyleSheet(
+        "QPushButton {"
+        "    border: none;"                // Remove border
+        "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
+        "    background-repeat: no-repeat;"
+        "    background-position: center;"
+        "    color: white;"                // Set text color
+        "    font-family: '" + fontFamily + "';" // Set the custom font
+                       "    font-size: 16px;"             // Set text size
+                       "    text-align: center;"          // Center the text
+                       "}"
+        );
+
+
+
+    addWidget(alex_Button);
+    connect(alex_Button, &QPushButton::clicked, this, &skinselect::selectalex);
+
+
+    // QLabel stevelabel;
+    // QMovie *stevegif = new QMovie(":/images/stevepreview.gif");
+    // stevelabel.setMovie(stevegif);
+    // stevegif->start();
+    // stevelabel.resize(stevegif->scaledSize());
+    // stevelabel.show();
+
+    /*
+    QMovie *alexgif = new QMovie(":/images/alexpreview.gif");
+    alexlabel.setMovie(alexgif);
+    alexgif->start();
+    alexlabel.resize(alexgif->scaledSize());
+    alexlabel.show();
+
+    alexlabel.resize(alexgif->scaledSize());
+    alexlabel.move(645, 500); // Adjust the position as needed
+    addWidget(&alexlabel);
+    */
+
+
+
+
+
 }
 
-void mainmenu::new_game()
+void skinselect::selectsteve()
 {
-    //game->scene()->clear();
+    //go back to main
+    steve::skin_static = 1;
     game->closemenu();
-    game->openselect();
-
+    game->openmenu();
 }
 
-void mainmenu::skinSelector()
+void skinselect::selectalex()
 {
+    //go back to main
+    steve::skin_static = 2;
     game->closemenu();
-    game->openskinselect();
+    game->openmenu();
 }

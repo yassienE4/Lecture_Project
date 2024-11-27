@@ -27,6 +27,14 @@
         <file>4hearts.png</file>
         <file>heart.png</file>
         <file>nohearts.png</file>
+        <file>alexleft.png</file>
+        <file>alexleftwalk1.png</file>
+        <file>alexleftwalk2.png</file>
+        <file>alexright.png</file>
+        <file>alexrightwalk1.png</file>
+        <file>alexrightwalk2.png</file>
+        <file>alexpreview.gif</file>
+        <file>stevepreview.gif</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

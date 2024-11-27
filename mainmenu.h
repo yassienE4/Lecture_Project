@@ -13,6 +13,7 @@ class mainmenu : public QGraphicsScene
         Game* game;
     public slots:
         void new_game(); // for the button "New Game"
+        void skinSelector();
 
 };
 

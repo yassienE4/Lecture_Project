@@ -1,25 +1,9 @@
 #include "steve.h"
 
-steve::steve()  {
-    playerpixmap = QPixmap(":/images/steve.png");
-    leftplayerpixmap = QPixmap(":/images/steveleft.png");
-    rightplayerpixmap = QPixmap(":/images/steve.png");
-    int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
-    playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-    rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
-    leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+steve::steve()
+{
 
-    rightmoving = QPixmap(":/images/stevemoveright1");
-    int movescaled = rightmoving.width() * 200 / rightmoving.height();
-    leftmoving = QPixmap(":/images/stevemoveleft1");
-    rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
-    leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
-
-    rightmoving2 = QPixmap(":/images/stevemoveright2");
-    leftmoving2 = QPixmap(":/images/stevemoveleft2");
-    rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
-    leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
-
+    setskin(skin_static);
     setPixmap(playerpixmap);
     state = Static;
     player_velocity=0;
@@ -27,6 +11,52 @@ steve::steve()  {
 
     setboundingboxes();
     //setOpacity(0.5); // to check bounding box
+}
+
+void steve::setskin(int x)
+{
+    if(x ==1)
+    {
+        playerpixmap = QPixmap(":/images/steve.png");
+        leftplayerpixmap = QPixmap(":/images/steveleft.png");
+        rightplayerpixmap = QPixmap(":/images/steve.png");
+        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+
+        rightmoving = QPixmap(":/images/stevemoveright1.png");
+        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        leftmoving = QPixmap(":/images/stevemoveleft1.png");
+        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+
+        rightmoving2 = QPixmap(":/images/stevemoveright2.png");
+        leftmoving2 = QPixmap(":/images/stevemoveleft2.png");
+        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+    }
+    if(x ==2)
+    {
+        playerpixmap = QPixmap(":/images/alexright.png");
+        leftplayerpixmap = QPixmap(":/images/alexleft.png");
+        rightplayerpixmap = QPixmap(":/images/alexright.png");
+        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+
+        rightmoving = QPixmap(":/images/alexrightwalk1.png");
+        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        leftmoving = QPixmap(":/images/alexleftwalk1.png");
+        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+
+        rightmoving2 = QPixmap(":/images/alexrightwalk2.png");
+        leftmoving2 = QPixmap(":/images/alexleftwalk2.png");
+        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+    }
 }
 
 
@@ -162,7 +192,7 @@ obstacle *steve::isGrounded(const QList<obstacle *> & obstacles)
 }
 
 //testing bounding box
-/*
+ /*
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
 
@@ -186,4 +216,4 @@ void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QGraphicsPixmapItem::paint(painter, option, widget);
 
 }
-*/
+ */

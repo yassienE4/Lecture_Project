@@ -1,6 +1,7 @@
 #include "game.h"
 #include "mainmenu.h"
 #include "levelselect.h"
+#include "skinselect.h"
 #include "level1.h"
 #include "level2.h"
 #include "level3.h"
@@ -25,10 +26,29 @@ void Game::closemenu()
     this->hide();
 }
 
+void Game::openmenu()
+{
+
+    // QGraphicsScene* menu = new mainmenu(this);
+    // this->setScene(menu);
+    // this->show();
+    this->setScene(gamescene);
+    this->show();
+
+}
+
 void Game::openselect()
 {
     QGraphicsScene* levelSelectScene = new levelselect(this);
     this->setScene(levelSelectScene);
+    this->show();
+}
+
+void Game::openskinselect()
+{
+    QGraphicsScene * skinscene = new skinselect(this);
+
+    this->setScene(skinscene);
     this->show();
 }
 

@@ -116,6 +116,26 @@ levelselect::levelselect(Game* game)
         );
 
 
+    QPushButton* back_Button = new QPushButton();
+    back_Button->setFixedSize(buttonimage.size());
+    back_Button->move(850,600);
+    back_Button->setText("Back");
+    back_Button->setObjectName(QString("back_Button"));
+    back_Button->setToolTip("Opens main menu");
+    back_Button->setStyleSheet(
+        "QPushButton {"
+        "    border: none;"                // Remove border
+        "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
+        "    background-repeat: no-repeat;"
+        "    background-position: center;"
+        "    color: white;"                // Set text color
+        "    font-family: '" + fontFamily + "';" // Set the custom font
+                       "    font-size: 16px;"             // Set text size
+                       "    text-align: center;"          // Center the text
+                       "}"
+        );
+
+
 
     addWidget(level1_Button);
 
@@ -123,6 +143,7 @@ levelselect::levelselect(Game* game)
     addWidget(level3_Button);
     addWidget(level4_Button);
     addWidget(level5_Button);
+    addWidget(back_Button);
 
 
     connect(level1_Button, &QPushButton::clicked, this, &levelselect::level1);
@@ -131,6 +152,7 @@ levelselect::levelselect(Game* game)
     connect(level3_Button, &QPushButton::clicked, this, &levelselect::level3);
     connect(level4_Button, &QPushButton::clicked, this, &levelselect::level4);
     connect(level5_Button, &QPushButton::clicked, this, &levelselect::level5);
+    connect(back_Button, &QPushButton::clicked, this, &levelselect::back);
 
 }
 
@@ -159,4 +181,9 @@ void levelselect::level5()
 {
     game->closemenu();
     game->openlevel5();
+}
+void levelselect::back()
+{
+    game->closemenu();
+    game->openmenu();
 }

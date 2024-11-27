@@ -26,6 +26,7 @@ SOURCES += \
     obstacle.cpp \
     portal.cpp \
     score.cpp \
+    skinselect.cpp \
     steve.cpp
 
 HEADERS += \
@@ -45,6 +46,7 @@ HEADERS += \
     obstacle.h \
     portal.h \
     score.h \
+    skinselect.h \
     steve.h
 
 FORMS +=
