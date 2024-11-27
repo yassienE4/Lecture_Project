@@ -301,21 +301,11 @@ void baselevel::moveHorizontally()
     if(leftpressed && !m_steve->getcolideleft())
     {
         m_steve->moveBy(-10,0);
-        // if(m_steve->x()>500)
-        // {
-        //     scoreText->moveBy(-10,0);
-        //     h.moveBy(-10,0);
-        // }
 
     }
     if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
-        // if(m_steve->x()>500)
-        // {
-        //     scoreText->moveBy(10,0);
-        //     h.moveBy(10,0);
-        // }
     }
 
 }
@@ -328,6 +318,7 @@ void baselevel::moveVertically()
     if(ground)
     {
         floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
+        //floor = ground->y() + ground->boundingRect().y() - ground->getheight();
     }
     else
         floor = 320;
@@ -591,8 +582,3 @@ void baselevel::checkenemycollision()
 }
 
 
-//fix the end game function
-// void baselevel::endGame(){
-//     QMessageBox::critical(nullptr, "Game Over", "The enemy has touched Steve! Game Over.");
-//      m_scene->deleteLater();
-// }
