@@ -52,7 +52,7 @@ skinselect::skinselect(Game* game)
     stevelabel.resize(stevegif->scaledSize());
     stevelabel.show();
     stevelabel.resize(stevegif->scaledSize());
-    stevelabel.move(567, 300); // Adjust the position as needed
+    stevelabel.move(567, 300);
     addWidget(&stevelabel);
     stevegif->start();
     stevelabel.setStyleSheet("background: transparent;");
@@ -87,7 +87,7 @@ skinselect::skinselect(Game* game)
     alexlabel.resize(alexgif->scaledSize());
     alexlabel.show();
     alexlabel.resize(alexgif->scaledSize());
-    alexlabel.move(974, 300); // Adjust the position as needed
+    alexlabel.move(974, 300);
     addWidget(&alexlabel);
     alexgif->start();
     alexlabel.setStyleSheet("background: transparent;");
@@ -122,7 +122,7 @@ skinselect::skinselect(Game* game)
     mariolabel.resize(mariogif->scaledSize());
     mariolabel.show();
     mariolabel.resize(mariogif->scaledSize());
-    mariolabel.move(162, 300); // Adjust the position as needed
+    mariolabel.move(162, 300);
     addWidget(&mariolabel);
     mariogif->start();
 

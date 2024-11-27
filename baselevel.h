@@ -92,6 +92,7 @@ private:
 
     int fontId;
     QString fontFamily;
+    QPointF scenePos;
 
 };
 

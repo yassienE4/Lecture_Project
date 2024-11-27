@@ -90,7 +90,7 @@ void baselevel::checkpaused()
         {
             m_scene->addItem(pause); // transparant pix map
             QPixmap buttonimage(":/images/mcbuttonimage");
-            QPointF scenePos = m_game->mapToScene(448, 600);
+            scenePos = m_game->mapToScene(448, 600);
 
             back_button1 = new QPushButton();
             back_button1->setFixedSize(buttonimage.size());
@@ -125,11 +125,8 @@ void baselevel::checkpaused()
         if(pausemenushown)
         {
             m_scene->removeItem(pause);
-            pausemenushown = false;
-        }
-        if(back_button1)
-        {
             m_scene->removeItem(proxyButton);
+            pausemenushown = false;
         }
     }
 }
@@ -401,7 +398,6 @@ void baselevel::checkend()
     QRectF nportalbox = nportal->mapRectToScene(nportal->getportalbox());
     if(stevebox.intersects(nportalbox) && !portaltouched)
     {
-        qDebug() << "End Game";
         portaltouched = true;
         QTimer::singleShot(250, this, [this]() {
             m_game->closelevel();
