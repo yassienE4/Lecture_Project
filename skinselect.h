@@ -16,6 +16,7 @@ private:
 public slots:
     void selectsteve();
     void selectalex();
+    void selectmario();
 };
 
 #endif // SKINSELECT_H

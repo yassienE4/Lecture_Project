@@ -35,6 +35,12 @@
         <file>alexrightwalk2.png</file>
         <file>alexpreview.gif</file>
         <file>stevepreview.gif</file>
+        <file>marioleft.png</file>
+        <file>marioleftwalk1.png</file>
+        <file>marioleftwalk2.png</file>
+        <file>marioright.png</file>
+        <file>mariorightwalk1.png</file>
+        <file>mariorightwalk2.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

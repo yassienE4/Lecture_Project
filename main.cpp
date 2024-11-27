@@ -8,7 +8,8 @@
 #include "mainmenu.h"
 #include "steve.h"
 
-int steve::skin_static = 1;
+int steve::skin_static = 1; // sets default skin to steve
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

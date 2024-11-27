@@ -57,6 +57,27 @@ void steve::setskin(int x)
         rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
         leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
     }
+    if(x ==3)
+    {
+        playerpixmap = QPixmap(":/images/marioright.png");
+        leftplayerpixmap = QPixmap(":/images/marioleft.png");
+        rightplayerpixmap = QPixmap(":/images/marioright.png");
+        int scaledWidth = playerpixmap.width() * 200 / playerpixmap.height();
+        playerpixmap = playerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        rightplayerpixmap = rightplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+        leftplayerpixmap = leftplayerpixmap.scaled(scaledWidth, 200, Qt::KeepAspectRatio);
+
+        rightmoving = QPixmap(":/images/mariorightwalk1.png");
+        int movescaled = rightmoving.width() * 200 / rightmoving.height();
+        leftmoving = QPixmap(":/images/marioleftwalk1.png");
+        rightmoving = rightmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving = leftmoving.scaled(movescaled, 200,Qt::KeepAspectRatio );
+
+        rightmoving2 = QPixmap(":/images/mariorightwalk2.png");
+        leftmoving2 = QPixmap(":/images/marioleftwalk2.png");
+        rightmoving2 = rightmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+        leftmoving2 = leftmoving2.scaled(movescaled, 200,Qt::KeepAspectRatio );
+    }
 }
 
 
