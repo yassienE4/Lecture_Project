@@ -7,7 +7,7 @@ level4::level4(QGraphicsScene *scene, Game * game) : baselevel(scene,game)
 
 void level4::initialize()
 {
-    QPixmap backgroundpixmap(":/images/level1scene");
+    QPixmap backgroundpixmap(":/images/level4scene");
 
     QGraphicsPixmapItem* background1 = new QGraphicsPixmapItem(backgroundpixmap);
     baselevel::setbackground(background1);

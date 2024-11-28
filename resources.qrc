@@ -72,6 +72,10 @@
         <file>sounds/bowsound.wav</file>
         <file>images/arrowleft.png</file>
         <file>sounds/dingsound.wav</file>
+        <file>images/level2scene.png</file>
+        <file>images/level3scene.png</file>
+        <file>images/level4scene.png</file>
+        <file>images/level5scene.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

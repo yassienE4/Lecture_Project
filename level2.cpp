@@ -7,7 +7,7 @@ level2::level2(QGraphicsScene *scene, Game * game) : baselevel(scene,game)
 
 void level2::initialize()
 {
-    QPixmap backgroundpixmap(":/images/level1scene");
+    QPixmap backgroundpixmap(":/images/level2scene.png");
 
     QGraphicsPixmapItem* background1 = new QGraphicsPixmapItem(backgroundpixmap);
     baselevel::setbackground(background1);
@@ -16,4 +16,5 @@ void level2::initialize()
     baselevel::addportal(nportal);
 
     baselevel::initialize();
+
 }

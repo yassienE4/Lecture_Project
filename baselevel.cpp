@@ -82,6 +82,9 @@ void baselevel::checkdiamondcolide()
             score++; // Increment score
             scoreText->setPlainText(QString("Score: %1").arg(score)); // Update displayed score
             dia->setPos(100000, 10000); // Move diamond out of view or delete it
+            // if(dia)
+            // {delete dia; dia= nullptr;}
+
         }
     }
 }
@@ -457,16 +460,20 @@ void baselevel::moveHorizontally()
 
 void baselevel::moveVertically()
 {
-    //gravity
+
+    //static int previousFloor = 380;
+
     obstacle* ground = m_steve->isGrounded(obstacles);
     int floor;
     if(ground)
     {
         floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
+        //previousFloor = floor;
         //floor = ground->y() + ground->boundingRect().y() - ground->getheight();
     }
     else
         floor = 320;
+        //floor = previousFloor;
 
 
 
