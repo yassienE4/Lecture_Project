@@ -19,6 +19,8 @@ private:
     QPixmap left1;
     QPixmap right2;
     QPixmap left2;
+    QPixmap right3;
+    QPixmap left3;
     bool dir;
 };
 

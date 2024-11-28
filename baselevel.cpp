@@ -617,10 +617,25 @@ void baselevel::animate()
         if(m_steve->getdirection())
         {   m_steve->setpix(7);
             bowitem->changedirection(m_steve->x(),m_steve->y(),1);
+            if(chargetime.elapsed()>333)
+                bowitem->setpix(3);
+            if(chargetime.elapsed()>666)
+                bowitem->setpix(5);
+            if(chargetime.elapsed()>999)
+                bowitem->setpix(7);
+
+
             return;}
         else
         {   m_steve->setpix(8);
             bowitem->changedirection(m_steve->x(),m_steve->y(),0);
+            if(chargetime.elapsed()>333)
+                bowitem->setpix(4);
+            if(chargetime.elapsed()>666)
+                bowitem->setpix(6);
+            if(chargetime.elapsed()>999)
+                bowitem->setpix(8);
+
             return;}
     }
     else

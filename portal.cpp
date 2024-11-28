@@ -5,6 +5,7 @@ portal::portal(int x, int y)
     setPos(x,y);
     setPixmap(QPixmap(":/images/Nether_Portal.png").scaled(320, 400));
     setboundingbox(x,y);
+    setZValue(-0.6);
 }
 
 void portal::setboundingbox(int x, int y)

@@ -8,6 +8,8 @@ bow::bow(int x, int y, bool d)
     left1 = QPixmap(":/images/bowleft1.png").scaled(100, 100, Qt::KeepAspectRatio);
     right2 = QPixmap(":/images/bowright2.png").scaled(100, 100, Qt::KeepAspectRatio);
     left2 = QPixmap(":/images/bowleft2.png").scaled(100, 100, Qt::KeepAspectRatio);
+    right3 = QPixmap(":/images/bowright3.png").scaled(100, 100, Qt::KeepAspectRatio);
+    left3 = QPixmap(":/images/bowleft3.png").scaled(100, 100, Qt::KeepAspectRatio);
     if(d)
     {
         setPos(x+65,y+10);
@@ -36,7 +38,7 @@ void bow::changedirection(int x, int y,bool d)
         setPixmap(left);
     }
 }
-/* too lazy to animate rn
+
 void bow::setpix(int x)
 {
     if(x == 1)
@@ -51,10 +53,14 @@ void bow::setpix(int x)
         setPixmap(right2);
     if(x == 6)
         setPixmap(left2);
+    if(x == 7)
+        setPixmap(right3);
+    if(x == 8)
+        setPixmap(left3);
 
 
 }
-*/
+
 bool bow::getdirection()
 {
     return dir;
