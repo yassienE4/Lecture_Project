@@ -18,3 +18,13 @@ bool arrow::getdirection()
 {
     return dir;
 }
+
+double arrow::getvelocity()
+{
+    return velocityY;
+}
+
+void arrow::gravity()
+{
+    velocityY += 0.01;
+}

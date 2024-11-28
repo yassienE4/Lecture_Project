@@ -300,15 +300,16 @@ void baselevel::movearrows()
 {
     for(auto arr : arrows)
     {
-
+        double y = arr->getvelocity();
         if(arr->getdirection())
         {
-            arr->moveBy(5,0);
+            arr->moveBy(5,y);
         }
         else
         {
-            arr->moveBy(-5,0);
+            arr->moveBy(-5,y);
         }
+        arr->gravity();
     }
 }
 
