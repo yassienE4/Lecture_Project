@@ -7,15 +7,20 @@
 #include <QGraphicsPixmapItem>
 #include "mainmenu.h"
 #include "steve.h"
+#include <QIcon>
 
 int steve::skin_static = 1; // sets default skin to steve
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+    //adding icon to app
+    a.setWindowIcon(QIcon(":/images/icon.png"));
+
     //loading screen implementation
     QSplashScreen *loadscreen = new QSplashScreen;
-    loadscreen->setPixmap(QPixmap(":/images/loadingscreen.png"));
+    loadscreen->setPixmap(QPixmap(":/images/loadingscreen.png").scaled(1280, 720));
     loadscreen->show();
 
     Game game(1280, 720);

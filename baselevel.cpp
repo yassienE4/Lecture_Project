@@ -164,6 +164,7 @@ void baselevel::addportal(portal * p)
 
 bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focused so i overloaded
 {
+
     if (event->type() == QEvent::KeyPress)
     {
         QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
@@ -176,6 +177,7 @@ bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focus
         keyReleaseEvent(keyEvent);
         return true;
     }
+
     return QObject::eventFilter(obj, event);
 }
 
@@ -225,6 +227,10 @@ void baselevel::keyPressEvent(QKeyEvent * e)
         }
         pausecount++;
     }
+    if(e->key() == Qt::Key_C)
+    {
+        qDebug() << "charge";
+    }
 
 }
 
@@ -253,6 +259,10 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
         if (!leftpressed && !rightpressed) {
             m_steve->setstate(Static);
         }
+    }
+    if(e->key() == Qt::Key_C)
+    {
+        qDebug() << "shoot";
     }
 }
 
@@ -388,10 +398,16 @@ void baselevel::checkend()
     QRectF nportalbox = nportal->mapRectToScene(nportal->getportalbox());
     if(stevebox.intersects(nportalbox) && !portaltouched)
     {
+        portalsound->setSource(QUrl("qrc:/sounds/portalsound.wav"));
+        portalsound->setVolume(1);
         portaltouched = true;
+        portalsound->play();
         QTimer::singleShot(250, this, [this]() {
             m_game->closelevel();
             m_game->openselect();
+        });
+        QTimer::singleShot(2750,this,[this](){
+            portalsound->stop();
         });
 
     }

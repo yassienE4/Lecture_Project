@@ -52,6 +52,24 @@
         <file>sounds/hurtsound.wav</file>
         <file>sounds/moogcity.mp3</file>
         <file>sounds/wethands.mp3</file>
+        <file>images/icon.png</file>
+        <file>images/arrow.png</file>
+        <file>images/bowleft.png</file>
+        <file>images/bowleft1.png</file>
+        <file>images/bowleft2.png</file>
+        <file>images/bowleft3.png</file>
+        <file>images/bowright.png</file>
+        <file>images/bowright1.png</file>
+        <file>images/bowright2.png</file>
+        <file>images/bowright3.png</file>
+        <file>images/alexholdingleft.png</file>
+        <file>images/alexholdingright.png</file>
+        <file>images/marioholdingleft.png</file>
+        <file>images/marioholdingright.png</file>
+        <file>images/steveholdingleft.png</file>
+        <file>images/steveholdingright.png</file>
+        <file>sounds/bowsound.mp3</file>
+        <file>sounds/portalsound.wav</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

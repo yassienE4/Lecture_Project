@@ -19,6 +19,8 @@
 #include "portal.h"
 #include "moving_enemy.h"
 #include "health.h"
+#include <QMouseEvent>
+#include <QSoundEffect>
 
 
 
@@ -66,6 +68,9 @@ protected:
     QList<diamonds*> diamond;
     QList<moving_enemy*> enemies;
     portal* nportal;
+
+    // for arrow
+
 private:
     steve *m_steve;
     QGraphicsScene *m_scene;
@@ -92,6 +97,7 @@ private:
 
     int fontId;
     QString fontFamily;
+    QSoundEffect *portalsound = new QSoundEffect(this);
 
 };
 
