@@ -68,8 +68,10 @@
         <file>images/marioholdingright.png</file>
         <file>images/steveholdingleft.png</file>
         <file>images/steveholdingright.png</file>
-        <file>sounds/bowsound.mp3</file>
         <file>sounds/portalsound.wav</file>
+        <file>sounds/bowsound.wav</file>
+        <file>images/arrowleft.png</file>
+        <file>sounds/dingsound.wav</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

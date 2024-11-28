@@ -21,6 +21,7 @@
 #include "health.h"
 #include <QMouseEvent>
 #include <QSoundEffect>
+#include "arrow.h"
 
 
 
@@ -58,6 +59,9 @@ public:
     void spawn_enemy(moving_enemy* enemy);
     void moveEnemy();
     void checkenemycollision();
+    void shootarrow();
+    void movearrows();
+    void checkarrowhitenemy();
 public slots:
     // void spawn_enemy();
     //void endGame();
@@ -67,9 +71,10 @@ protected:
     QList<obstacle*> obstacles;
     QList<diamonds*> diamond;
     QList<moving_enemy*> enemies;
+    QList<arrow*> arrows;
     portal* nportal;
 
-    // for arrow
+
 
 private:
     steve *m_steve;
@@ -90,7 +95,7 @@ private:
     int lcount;
 
     health h;
-    QElapsedTimer invincibilityTimer; // Tracks time since last damage
+    QElapsedTimer invincibilityTimer; // tracks grace period
     const int graceperiod = 1000; // grace period
     int score;
     QGraphicsTextItem* scoreText;
@@ -98,6 +103,12 @@ private:
     int fontId;
     QString fontFamily;
     QSoundEffect *portalsound = new QSoundEffect(this);
+
+    //arrow/bow
+    bool charging;
+    QElapsedTimer chargetime;
+    QSoundEffect *bowsound = new QSoundEffect(this);
+    QSoundEffect *dingsound = new QSoundEffect(this);
 
 };
 

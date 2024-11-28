@@ -64,6 +64,9 @@ private:
     QPixmap leftmoving2;
     QPixmap rightmoving;
     QPixmap rightmoving2;
+    QPixmap rightholding;
+    QPixmap leftholding;
+
     PlayerState state;
     int player_velocity;
     bool direction;

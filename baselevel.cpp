@@ -16,6 +16,8 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
     // connect(spawnTimer, &QTimer::timeout, this, &baselevel::spawn_enemy);
     // spawnTimer->start(2000);
 
+
+
 }
 
 baselevel::~baselevel()
@@ -229,7 +231,12 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     }
     if(e->key() == Qt::Key_C)
     {
-        qDebug() << "charge";
+        if(!charging)
+        {
+            charging = true;
+            chargetime.start();
+            qDebug() << "called";
+        }
     }
 
 }
@@ -262,11 +269,83 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
     }
     if(e->key() == Qt::Key_C)
     {
-        qDebug() << "shoot";
+        if(charging)
+        {
+            charging = false;
+            if(chargetime.elapsed()>1000)
+            {
+                qDebug() << "shoot";
+                shootarrow();
+            }
+            else
+                chargetime.restart();
+        }
     }
 }
 
+void baselevel::shootarrow()
+{
+    bowsound->setSource(QUrl("qrc:/sounds/bowsound.wav"));
+    bowsound->setVolume(1);
+    bowsound->play();
+    int x = m_steve->x();
+    int y = m_steve->y();
+    bool d = m_steve->getdirection();
+    arrows.push_back(new arrow(x,y,d));
+    m_scene->addItem(arrows.back());
 
+}
+
+void baselevel::movearrows()
+{
+    for(auto arr : arrows)
+    {
+
+        if(arr->getdirection())
+        {
+            arr->moveBy(5,0);
+        }
+        else
+        {
+            arr->moveBy(-5,0);
+        }
+    }
+}
+
+void baselevel::checkarrowhitenemy()
+{
+    for(auto it = arrows.begin(); it != arrows.end();)
+    {
+        arrow* arr = *it;
+        QRectF arrowbox = arr->boundingRect().translated(arr->pos());
+        bool arrowDeleted = false;
+        for(auto enemyIt = enemies.begin(); enemyIt != enemies.end();)
+        {
+            moving_enemy* enemy = *enemyIt;
+            QRectF enemybox = enemy->boundingRect().translated(enemy->pos());
+            if(arrowbox.intersects(enemybox))
+            {
+                dingsound->setSource(QUrl("qrc:/sounds/dingsound.wav"));
+                dingsound->setVolume(1);
+                dingsound->play();
+
+
+                m_scene->removeItem(arr);
+                m_scene->removeItem(enemy);
+                delete arr;
+                delete enemy;
+                enemyIt = enemies.erase(enemyIt);
+                it = arrows.erase(it);
+                arrowDeleted = true;
+                break;
+            }
+            else
+                ++enemyIt;
+        }
+        if (!arrowDeleted)
+            ++it;
+    }
+}
 
 
 void baselevel::update()
@@ -290,6 +369,8 @@ void baselevel::update()
         m_steve->update();
         moveEnemy();
         checkenemycollision();
+        movearrows();
+        checkarrowhitenemy();
         if(!portaltouched)
         {
             checkend();
@@ -362,7 +443,7 @@ void baselevel::moveVertically()
     }
     else
     {
-        if((!m_steve->getjump()) && (m_steve->y() <= 320) && !m_steve->getcolidedown())
+        if((!m_steve->getjump()) && (m_steve->y() <= floor) && !m_steve->getcolidedown())
         {
             m_steve->setvelocity(m_steve->getvelocity() +1);
             m_steve->moveBy(0, m_steve->getvelocity());
@@ -473,6 +554,16 @@ void baselevel::animate()
     frameCounter = (frameCounter + 1) % 12; //control animation speed
     if (frameCounter != 0)
         return;
+
+    if(charging)
+    {
+        if(m_steve->getdirection())
+        {   m_steve->setpix(7);
+            return;}
+        else
+        {   m_steve->setpix(8);
+            return;}
+    }
     if(m_steve->getstate() == Static)
     {
         if(m_steve->getdirection())

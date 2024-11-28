@@ -35,6 +35,11 @@ void steve::setskin(int x)
         leftmoving2 = QPixmap(":/images/stevemoveleft2.png");
         rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
         leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+
+        rightholding = QPixmap(":/images/steveholdingright.png");
+        leftholding = QPixmap(":/images/steveholdingleft.png");
+        rightholding = rightholding.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftholding = leftholding.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
     if(x ==2)
     {
@@ -56,6 +61,11 @@ void steve::setskin(int x)
         leftmoving2 = QPixmap(":/images/alexleftwalk2.png");
         rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
         leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+
+        rightholding = QPixmap(":/images/alexholdingright.png");
+        leftholding = QPixmap(":/images/alexholdingleft.png");
+        rightholding = rightholding.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftholding = leftholding.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
     if(x ==3)
     {
@@ -77,6 +87,11 @@ void steve::setskin(int x)
         leftmoving2 = QPixmap(":/images/marioleftwalk2.png");
         rightmoving2 = rightmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
         leftmoving2 = leftmoving2.scaled(movescaled, height,Qt::KeepAspectRatio );
+
+        rightholding = QPixmap(":/images/marioholdingright.png");
+        leftholding = QPixmap(":/images/marioholdingleft.png");
+        rightholding = rightholding.scaled(movescaled, height,Qt::KeepAspectRatio );
+        leftholding = leftholding.scaled(movescaled, height,Qt::KeepAspectRatio );
     }
 }
 
@@ -99,6 +114,10 @@ void steve::setpix(int p)
         setPixmap(rightmoving2);
     if(p==6)
         setPixmap(leftmoving2);
+    if(p==7)
+        setPixmap(rightholding);
+    if(p==8)
+        setPixmap(leftholding);
     return;
 }
 void steve::setvelocity(int x)
