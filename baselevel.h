@@ -22,7 +22,7 @@
 #include <QMouseEvent>
 #include <QSoundEffect>
 #include "arrow.h"
-
+#include "bow.h"
 
 
 
@@ -62,6 +62,7 @@ public:
     void shootarrow();
     void movearrows();
     void checkarrowhitenemy();
+    void addbow();
 public slots:
     // void spawn_enemy();
     //void endGame();
@@ -109,6 +110,8 @@ private:
     QElapsedTimer chargetime;
     QSoundEffect *bowsound = new QSoundEffect(this);
     QSoundEffect *dingsound = new QSoundEffect(this);
+
+    bow * bowitem;
 
 };
 

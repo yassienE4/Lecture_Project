@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     arrow.cpp \
     baselevel.cpp \
+    bow.cpp \
     diamonds.cpp \
     game.cpp \
     health.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
 HEADERS += \
     arrow.h \
     baselevel.h \
+    bow.h \
     diamonds.h \
     game.h \
     health.h \

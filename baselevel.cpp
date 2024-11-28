@@ -236,6 +236,7 @@ void baselevel::keyPressEvent(QKeyEvent * e)
             charging = true;
             chargetime.start();
             qDebug() << "called";
+            //addbow();
         }
     }
 
@@ -281,6 +282,20 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
                 chargetime.restart();
         }
     }
+}
+
+void baselevel::addbow()
+{
+    int x = m_steve->x();
+    int y = m_steve->y();
+    bool d = m_steve->getdirection();
+    if(!bowitem)
+    {
+        bowitem = new bow(x,y,d);
+        m_scene->addItem(bowitem);
+    }
+
+
 }
 
 void baselevel::shootarrow()
@@ -399,11 +414,15 @@ void baselevel::moveHorizontally()
     if(leftpressed && !m_steve->getcolideleft())
     {
         m_steve->moveBy(-10,0);
+        if(bowitem)
+            bowitem->moveBy(-10,0);
 
     }
     if(rightpressed && !m_steve->getcolideright())
     {
         m_steve->moveBy(10,0);
+        if(bowitem)
+            bowitem->moveBy(10,0);
     }
 
 }
@@ -428,6 +447,8 @@ void baselevel::moveVertically()
 
 
         m_steve->moveBy(0, m_steve->getvelocity());
+        if(bowitem)
+            bowitem->moveBy(0, m_steve->getvelocity());
         m_steve->setvelocity(m_steve->getvelocity() +1);
         if(m_steve->y() >= floor)
         {
@@ -436,6 +457,8 @@ void baselevel::moveVertically()
                 m_steve->setstate(Static);
             }
             m_steve->setY(floor);
+            if(bowitem)
+                bowitem->setY(m_steve->y()+10);
             m_steve->setvelocity(0);
         }
 
@@ -448,6 +471,8 @@ void baselevel::moveVertically()
         {
             m_steve->setvelocity(m_steve->getvelocity() +1);
             m_steve->moveBy(0, m_steve->getvelocity());
+            if(bowitem)
+                bowitem->moveBy(0, m_steve->getvelocity());
             if(m_steve->y() >= floor ) //||  m_steve->getcolidedown()
             {
                 if(!leftpressed && !rightpressed)
@@ -455,6 +480,8 @@ void baselevel::moveVertically()
                     m_steve->setstate(Static);
                 }
                 m_steve->setY(floor);
+                if(bowitem)
+                    bowitem->setY(m_steve->y()+10);
                 m_steve->setvelocity(0);
             }
         }
@@ -558,12 +585,24 @@ void baselevel::animate()
 
     if(charging)
     {
+        addbow();
         if(m_steve->getdirection())
         {   m_steve->setpix(7);
+            bowitem->changedirection(m_steve->x(),m_steve->y(),1);
             return;}
         else
         {   m_steve->setpix(8);
+            bowitem->changedirection(m_steve->x(),m_steve->y(),0);
             return;}
+    }
+    else
+    {
+        if(bowitem)
+        {
+            delete bowitem;
+            bowitem = nullptr;
+            m_steve->setstate(Static);
+        }
     }
     if(m_steve->getstate() == Static)
     {
