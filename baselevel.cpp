@@ -359,7 +359,34 @@ void baselevel::checkarrowhitenemy()
                 ++enemyIt;
         }
         if (!arrowDeleted)
+        {
             ++it;
+        }
+    }
+}
+void baselevel::checkarrowhitobstacle()
+{
+    for(auto it = arrows.begin(); it != arrows.end();)
+    {
+        arrow* arr = *it;
+        QRectF arrowbox = arr->boundingRect().translated(arr->pos());
+        bool arrowDeleted = false;
+        for(auto obs: obstacles)
+        {
+            QRectF obstacleBox = obs->boundingRect().translated(obs->pos());
+            if(arrowbox.intersects(obstacleBox))
+            {
+                m_scene->removeItem(arr);
+                delete arr;
+                it = arrows.erase(it);
+                arrowDeleted = true;
+                break;
+            }
+        }
+        if (!arrowDeleted)
+        {
+            ++it;
+        }
     }
 }
 
@@ -387,6 +414,7 @@ void baselevel::update()
         checkenemycollision();
         movearrows();
         checkarrowhitenemy();
+        checkarrowhitobstacle();
         if(!portaltouched)
         {
             checkend();

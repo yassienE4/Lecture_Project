@@ -62,6 +62,7 @@ public:
     void shootarrow();
     void movearrows();
     void checkarrowhitenemy();
+    void checkarrowhitobstacle();
     void addbow();
 public slots:
     // void spawn_enemy();
