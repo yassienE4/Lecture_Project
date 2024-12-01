@@ -18,6 +18,7 @@ class mainmenu : public QGraphicsScene
     public slots:
         void new_game(); // for the button "New Game"
         void skinSelector();
+        void openshop();
 
 };
 

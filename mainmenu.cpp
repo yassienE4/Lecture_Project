@@ -72,6 +72,25 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
                        "}"
         );
 
+    QPushButton* shop_Button = new QPushButton();
+    shop_Button->setFixedSize(buttonimage.size());
+    shop_Button->move(448,400);
+    shop_Button->setText("Open Shop");
+    shop_Button->setObjectName(QString("shop_Button"));
+    shop_Button->setToolTip("Open Shop");
+    shop_Button->setStyleSheet(
+        "QPushButton {"
+        "    border: none;"                // Remove border
+        "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
+        "    background-repeat: no-repeat;"
+        "    background-position: center;"
+        "    color: white;"                // Set text color
+        "    font-family: '" + fontFamily + "';" // Set the custom font
+                       "    font-size: 16px;"             // Set text size
+                       "    text-align: center;"          // Center the text
+                       "}"
+        );
+
 
     QSoundEffect *buttonsound = new QSoundEffect(this);
     buttonsound->setSource(QUrl("qrc:/sounds/buttonclick.wav"));
@@ -90,6 +109,13 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
         buttonsound->play();
         mainmenu::skinSelector();
     });
+
+    addWidget(shop_Button);
+    connect(shop_Button, &QPushButton::clicked, this, [this, buttonsound] ()
+            {
+                buttonsound->play();
+                mainmenu::openshop();
+            });
 }
 
 void mainmenu::new_game()
@@ -104,4 +130,10 @@ void mainmenu::skinSelector()
 {
     game->closemenu();
     game->openskinselect();
+}
+
+void mainmenu::openshop()
+{
+    game->closemenu();
+    game->openshop();
 }

@@ -654,6 +654,7 @@ void baselevel::checkend()
         portalsound->setVolume(1);
         portaltouched = true;
         portalsound->play();
+        shop::totaldiamonds = score + shop::totaldiamonds;
         QTimer::singleShot(250, this, [this]() {
             m_game->closelevel();
             m_game->openselect();

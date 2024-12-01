@@ -20,6 +20,7 @@ class Game : public QGraphicsView
         void openlevel5();
         void openskinselect();
         void openmenu();
+        void openshop();
     private:
         QGraphicsScene* gamescene; // the scene for the game
 

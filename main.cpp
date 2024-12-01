@@ -8,8 +8,10 @@
 #include "mainmenu.h"
 #include "steve.h"
 #include <QIcon>
+#include "shop.h"
 
 int steve::skin_static = 1; // sets default skin to steve
+int shop::totaldiamonds = 0; // start at 0
 
 int main(int argc, char *argv[])
 {

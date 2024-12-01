@@ -32,6 +32,7 @@ SOURCES += \
     obstacle.cpp \
     portal.cpp \
     score.cpp \
+    shop.cpp \
     skinselect.cpp \
     spikes.cpp \
     steve.cpp
@@ -56,6 +57,7 @@ HEADERS += \
     obstacle.h \
     portal.h \
     score.h \
+    shop.h \
     skinselect.h \
     spikes.h \
     steve.h

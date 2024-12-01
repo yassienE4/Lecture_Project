@@ -26,6 +26,7 @@
 #include "spikes.h"
 #include "fireball.h"
 #include "ghast.h"
+#include "shop.h"
 
 class baselevel : public QObject
 {

@@ -7,6 +7,7 @@
 #include "level3.h"
 #include "level4.h"
 #include "level5.h"
+#include "shop.h"
 
 
 Game::Game(int width, int height)
@@ -51,6 +52,14 @@ void Game::openskinselect()
     this->setScene(skinscene);
     this->show();
 }
+
+void Game::openshop()
+{
+    QGraphicsScene* shopscene = new shop(this);
+    this->setScene(shopscene);
+    this->show();
+}
+
 
 void Game::openlevel1()
 {
