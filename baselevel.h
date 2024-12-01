@@ -23,7 +23,7 @@
 #include <QSoundEffect>
 #include "arrow.h"
 #include "bow.h"
-
+#include "spikes.h"
 
 
 class baselevel : public QObject
@@ -64,6 +64,9 @@ public:
     void checkarrowhitenemy();
     void checkarrowhitobstacle();
     void addbow();
+
+    void checkspikes();
+    void addspikes(spikes *s);
 public slots:
     // void spawn_enemy();
     //void endGame();
@@ -74,6 +77,7 @@ protected:
     QList<diamonds*> diamond;
     QList<moving_enemy*> enemies;
     QList<arrow*> arrows;
+    QList<spikes*> m_spikes;
     portal* nportal;
     int floorlevel=0;
 

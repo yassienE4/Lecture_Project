@@ -168,6 +168,11 @@ void baselevel::addportal(portal * p)
     m_scene->addItem(p);
 }
 
+void baselevel::addspikes(spikes *s)
+{
+    m_scene->addItem(s);
+}
+
 bool baselevel::eventFilter(QObject *obj, QEvent *event) // scenes cant be focused so i overloaded
 {
 
@@ -416,6 +421,7 @@ void baselevel::update()
         m_steve->update();
         moveEnemy();
         checkenemycollision();
+        checkspikes();
         movearrows();
         checkarrowhitenemy();
         checkarrowhitobstacle();
@@ -769,4 +775,32 @@ void baselevel::checkenemycollision()
 
 }
 
+void baselevel::checkspikes()
+{
+    for(auto * spi : m_spikes)
+    {
+        QRectF spikebox = spi->boundingRect().translated(spi->pos());
+        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+        QSoundEffect *hurtsound = new QSoundEffect(this);
+        hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
+        hurtsound->setVolume(1);
 
+        if((steveRightBox.intersects(spikebox)) || (steveLeftBox.intersects(spikebox)) || (steveUpBox.intersects(spikebox)) || (steveDownBox.intersects(spikebox)))
+        {
+
+            qDebug() << "spike colided";
+            if(invincibilityTimer.elapsed() > graceperiod) // timer
+            {
+                h.applydamage();
+                hurtsound->play();
+                invincibilityTimer.restart();
+            }
+            else
+                qDebug() << "spike ignored";
+
+        }
+    }
+}

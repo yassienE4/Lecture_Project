@@ -84,12 +84,14 @@ void level1::initialize()
     baselevel::spawn_enemy(enemies[2]);
 
 
+    //adding spikes
+    m_spikes.push_back(new spikes(1000,420,100,100));
+    baselevel::addspikes(m_spikes[0]);
 
 
 
 
 
-    // must declare coin here (doing a class named coin)
 
 
 }
