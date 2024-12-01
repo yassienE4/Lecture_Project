@@ -15,7 +15,7 @@ void level1::initialize()
     // adding portal (transports to level2, levelselect for now)
     nportal = new portal(4500, 120); // change 1000 to the end of the level
     baselevel::addportal(nportal);
-
+    baselevel::floorlevel = 320;
     baselevel::initialize();
     //
     // add obstacles and stuff

@@ -15,6 +15,8 @@ void level3::initialize()
     nportal = new portal(4500, 120); // change 1000 to the end of the level
     baselevel::addportal(nportal);
 
+    baselevel::floorlevel = 720-200;
+
     baselevel::initialize();
 }
 

@@ -18,6 +18,7 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
 
 
 
+
 }
 
 baselevel::~baselevel()
@@ -216,9 +217,9 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
-        spacepressed = true;
-        m_steve->setstate(Jumping);
-        m_steve->setvelocity(-15);
+            spacepressed = true;
+            m_steve->setstate(Jumping);
+            m_steve->setvelocity(-15);
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -472,7 +473,7 @@ void baselevel::moveVertically()
         //floor = ground->y() + ground->boundingRect().y() - ground->getheight();
     }
     else
-        floor = 320;
+        floor = floorlevel;
         //floor = previousFloor;
 
 

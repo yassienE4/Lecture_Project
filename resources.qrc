@@ -76,6 +76,7 @@
         <file>images/level3scene.png</file>
         <file>images/level4scene.png</file>
         <file>images/level5scene.png</file>
+        <file>images/icon.icns</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

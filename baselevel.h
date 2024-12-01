@@ -75,6 +75,7 @@ protected:
     QList<moving_enemy*> enemies;
     QList<arrow*> arrows;
     portal* nportal;
+    int floorlevel=0;
 
 
 
@@ -95,6 +96,10 @@ private:
     int frameCounter;
     int rcount;
     int lcount;
+
+
+
+
 
     health h;
     QElapsedTimer invincibilityTimer; // tracks grace period
