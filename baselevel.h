@@ -24,7 +24,8 @@
 #include "arrow.h"
 #include "bow.h"
 #include "spikes.h"
-
+#include "fireball.h"
+#include "ghast.h"
 
 class baselevel : public QObject
 {
@@ -67,6 +68,13 @@ public:
 
     void checkspikes();
     void addspikes(spikes *s);
+
+    // ghast/fireball implementations
+    void addghast(ghast*);
+    void shootball();
+    void moveBall();
+    void checkballcollisions();
+    void checkballobstacle();
 public slots:
     // void spawn_enemy();
     //void endGame();
@@ -78,6 +86,7 @@ protected:
     QList<moving_enemy*> enemies;
     QList<arrow*> arrows;
     QList<spikes*> m_spikes;
+    QList<ghast*> ghasts;
     portal* nportal;
     int floorlevel=0;
 
@@ -122,6 +131,10 @@ private:
     QSoundEffect *dingsound = new QSoundEffect(this);
 
     bow * bowitem;
+
+    // ghast and fireball
+    QSoundEffect *ghastsound = new QSoundEffect(this);
+    QSoundEffect *fireballsound = new QSoundEffect(this);
 
 };
 

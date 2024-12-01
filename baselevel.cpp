@@ -399,6 +399,100 @@ void baselevel::checkarrowhitobstacle()
     }
 }
 
+void baselevel::addghast(ghast* g)
+{
+    m_scene->addItem(g);
+}
+void baselevel::shootball()
+{
+    ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
+    ghastsound->setVolume(1);
+    fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
+    fireballsound->setVolume(1);
+
+    for(auto gh : ghasts)
+    {
+        if(gh->returnball() == nullptr) // need to add an elasped timer
+        {
+            gh->setball(new fireball(gh->x(),gh->y()));
+            gh->setpix(2);
+            ghastsound->play();
+            QTimer::singleShot(300, this, [this, gh]() {
+                fireballsound->play();
+                gh->setpix(1);
+            });
+            m_scene->addItem(gh->returnball());
+        }
+        else
+        {
+            //
+        }
+    }
+}
+void baselevel::moveBall()
+{
+    for(auto gh : ghasts)
+    {
+        if(gh->returnball() != nullptr)
+        {
+            gh->returnball()->moveBy(-5,0);
+        }
+    }
+}
+void baselevel::checkballcollisions()
+{
+    for(auto gh : ghasts)
+    {
+        if(gh->returnball() !=nullptr)
+        {
+            fireball * f = gh->returnball();
+            QRectF ballbox = f->boundingRect().translated(f->pos());
+            //get steve box
+            QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+            QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+            QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+            QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+            QSoundEffect *hurtsound = new QSoundEffect(this);
+            hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
+            hurtsound->setVolume(1);
+
+            if((steveRightBox.intersects(ballbox)) || (steveLeftBox.intersects(ballbox)) || (steveUpBox.intersects(ballbox)) || (steveDownBox.intersects(ballbox)))
+            {
+                if(invincibilityTimer.elapsed() > graceperiod) // timer
+                {
+                    h.applydamage();
+                    hurtsound->play();
+                    invincibilityTimer.restart();
+                }
+                m_scene->removeItem(f);
+                delete f;
+                gh->setball(nullptr);
+            }
+        }
+    }
+}
+void baselevel::checkballobstacle()
+{
+    for(auto gh : ghasts)
+    {
+        if(gh->returnball() !=nullptr)
+        {
+            fireball * f = gh->returnball();
+            QRectF ballbox = f->boundingRect().translated(f->pos());
+            for(auto obs : obstacles)
+            {
+                QRectF obstacleBox = obs->boundingRect().translated(obs->pos());
+                if(ballbox.intersects(obstacleBox) && gh->returnball())
+                {
+                    m_scene->removeItem(f);
+                    delete f;
+                    gh->setball(nullptr);
+                }
+            }
+        }
+    }
+}
+
 
 void baselevel::update()
 {
@@ -425,6 +519,13 @@ void baselevel::update()
         movearrows();
         checkarrowhitenemy();
         checkarrowhitobstacle();
+
+        //ghast functions
+        shootball();
+        moveBall();
+        checkballcollisions();
+        checkballobstacle();
+
         if(!portaltouched)
         {
             checkend();
@@ -759,17 +860,12 @@ void baselevel::checkenemycollision()
 
         if((steveRightBox.intersects(enemybox)) || (steveLeftBox.intersects(enemybox)) || (steveUpBox.intersects(enemybox)) || (steveDownBox.intersects(enemybox)))
         {
-
-            qDebug() << "enemy colided";
             if(invincibilityTimer.elapsed() > graceperiod) // timer
             {
                 h.applydamage();
                 hurtsound->play();
                 invincibilityTimer.restart();
             }
-            else
-                qDebug() << "collision ignored";
-
         }
     }
 
@@ -790,17 +886,12 @@ void baselevel::checkspikes()
 
         if((steveRightBox.intersects(spikebox)) || (steveLeftBox.intersects(spikebox)) || (steveUpBox.intersects(spikebox)) || (steveDownBox.intersects(spikebox)))
         {
-
-            qDebug() << "spike colided";
             if(invincibilityTimer.elapsed() > graceperiod) // timer
             {
                 h.applydamage();
                 hurtsound->play();
                 invincibilityTimer.restart();
             }
-            else
-                qDebug() << "spike ignored";
-
         }
     }
 }

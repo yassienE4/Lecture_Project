@@ -22,6 +22,8 @@ void level1::initialize()
     obstacles.push_back(new obstacle(0,517,5000,10,":/images/groundimage.png")); // ground
     baselevel::addobstacle(obstacles[0]);
 
+
+
     obstacles.push_back(new obstacle(400,420,400,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[1]);
     obstacles.push_back(new obstacle(700,300,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
@@ -42,6 +44,12 @@ void level1::initialize()
     baselevel::addobstacle(obstacles[8]);
     obstacles.push_back(new obstacle(3300,420,300,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[9]);
+
+    obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
+    baselevel::addobstacle(obstacles[10]);
+
+    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
+    baselevel::addobstacle(obstacles[11]);
 
 
     // adding coins(diamonds)
@@ -88,6 +96,10 @@ void level1::initialize()
     m_spikes.push_back(new spikes(1000,420,100,100));
     baselevel::addspikes(m_spikes[0]);
 
+
+    //adding ghasts
+    ghasts.push_back(new ghast(500,100));
+    baselevel::addghast(ghasts[0]);
 
 
 

@@ -16,7 +16,9 @@ SOURCES += \
     baselevel.cpp \
     bow.cpp \
     diamonds.cpp \
+    fireball.cpp \
     game.cpp \
+    ghast.cpp \
     health.cpp \
     level1.cpp \
     level2.cpp \
@@ -39,7 +41,9 @@ HEADERS += \
     baselevel.h \
     bow.h \
     diamonds.h \
+    fireball.h \
     game.h \
+    ghast.h \
     health.h \
     level1.h \
     level2.h \

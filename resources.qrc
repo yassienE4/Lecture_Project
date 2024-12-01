@@ -77,6 +77,11 @@
         <file>images/level4scene.png</file>
         <file>images/level5scene.png</file>
         <file>images/icon.icns</file>
+        <file>images/ghast.png</file>
+        <file>images/ghast2.png</file>
+        <file>sounds/ghastball.wav</file>
+        <file>sounds/ghastcharge.wav</file>
+        <file>images/fireball.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>
