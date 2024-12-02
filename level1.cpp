@@ -1,8 +1,5 @@
 #include "level1.h"
-level1::level1(QGraphicsScene *scene, Game * game) : baselevel(scene,game)
-{
-
-}
+level1::level1(QGraphicsScene *scene, Game * game) : baselevel(scene,game) {}
 
 void level1::initialize()
 {
@@ -13,41 +10,43 @@ void level1::initialize()
     baselevel::setbackground(background1);
 
     // adding portal (transports to level2, levelselect for now)
-    nportal = new portal(4500, 120); // change 1000 to the end of the level
+    nportal = new portal(4500, 120);
     baselevel::addportal(nportal);
     baselevel::floorlevel = 320;
     baselevel::initialize();
     //
     // add obstacles and stuff
+    int o = 0;
     obstacles.push_back(new obstacle(0,517,5000,10,":/images/groundimage.png")); // ground
-    baselevel::addobstacle(obstacles[0]);
-
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
+    baselevel::addobstacle(obstacles[o++]);
 
 
     obstacles.push_back(new obstacle(400,420,400,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[1]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(700,300,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[2]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(1500,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[3]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(1700,350,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[4]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(2200,390,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[5]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(2400,340,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[6]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(2600,290,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[7]);
+    baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(2800,240,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[8]);
+    baselevel::addobstacle(obstacles[o++]);
+
     obstacles.push_back(new obstacle(3300,420,300,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    baselevel::addobstacle(obstacles[9]);
+    baselevel::addobstacle(obstacles[o++]);
 
-    obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
-    baselevel::addobstacle(obstacles[10]);
 
-    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
-    baselevel::addobstacle(obstacles[11]);
+
 
 
     // adding coins(diamonds)

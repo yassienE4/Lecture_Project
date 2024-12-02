@@ -230,7 +230,6 @@ obstacle *steve::getGround(const QList<obstacle *> & obstacles)
     }
     return nullptr;
 }
-
 //testing bounding box
  /*
 void steve::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

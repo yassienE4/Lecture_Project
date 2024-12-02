@@ -257,18 +257,18 @@ void baselevel::keyReleaseEvent(QKeyEvent *e)
     if(e->key() == Qt::Key_Left || e->key() == Qt::Key_A)
     {
         leftpressed = false;
-        if(!spacepressed)
-        {
+        //if(!spacepressed)
+        //{
             m_steve->setstate(Static);
-        }
+        //}
     }
     if(e->key() == Qt::Key_Right || e->key() == Qt::Key_D)
     {
         rightpressed = false;
-        if(!spacepressed)
-        {
+        //if(!spacepressed)
+        //{
             m_steve->setstate(Static);
-        }
+        //}
     }
     if((e->key() == Qt::Key_Up || e->key() == Qt::Key_W || e->key() == Qt::Key_Space) && !m_steve->getjump())
     {
@@ -525,7 +525,6 @@ void baselevel::update()
         animate();
         moveVertically();
         moveHorizontally();
-        checkgrounded();
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
 
@@ -653,18 +652,6 @@ void baselevel::moveVertically()
                 m_steve->setvelocity(0);
             }
         }
-    }
-}
-
-void baselevel::checkgrounded()
-{
-    if(m_steve->getvelocity()==0 && m_steve->getcolidedown())
-    {
-        m_steve->setgrounded(true);
-    }
-    else
-    {
-        m_steve->setgrounded(false);
     }
 }
 
