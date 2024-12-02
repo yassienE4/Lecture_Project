@@ -410,15 +410,26 @@ void baselevel::shootball()
     fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
     fireballsound->setVolume(1);
 
+    //check if ghast on screen to play sound
+    QRectF viewRect = m_game->mapToScene(m_game->viewport()->rect()).boundingRect();
+
     for(auto gh : ghasts)
     {
+        QRectF ghastRect = gh->boundingRect().translated(gh->pos());
         if(gh->returnball() == nullptr && gh->cooldown.elapsed() > 2000) // need to add an elasped timer
         {
             gh->setball(new fireball(gh->x(),gh->y()));
             gh->setpix(2);
-            ghastsound->play();
+            if(ghastRect.intersects(viewRect))
+            {
+                gh->shown = true;
+                ghastsound->play();
+            }
+            else
+                gh->shown = false;
             QTimer::singleShot(300, this, [this, gh]() {
-                fireballsound->play();
+                if(gh->shown)
+                    fireballsound->play();
                 gh->setpix(1);
                 gh->cooldown.restart();
             });

@@ -15,6 +15,7 @@ public:
     fireball* returnball(); // basically if not null dont spawn another
     void setball(fireball *);
     QElapsedTimer cooldown;
+    bool shown; // for sound check
 private:
     QPixmap right;
     QPixmap rightcharge;
