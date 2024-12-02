@@ -7,6 +7,7 @@
 #include <QGraphicsPixmapItem>
 #include <QPushButton>
 #include <QFontDatabase>
+#include <QGraphicsTextItem>
 #include "game.h"
 
 class shop : public QGraphicsScene
@@ -17,6 +18,7 @@ public:
     static int totaldiamonds; // static so that all instances share
 private:
     Game* game;
+    QGraphicsTextItem *textItem = new QGraphicsTextItem(nullptr);
 public slots:
     void purchase1();
     void back();

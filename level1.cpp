@@ -98,7 +98,7 @@ void level1::initialize()
 
 
     //adding ghasts
-    ghasts.push_back(new ghast(500,100));
+    ghasts.push_back(new ghast(500,0));
     baselevel::addghast(ghasts[0]);
 
 

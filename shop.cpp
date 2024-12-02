@@ -1,4 +1,5 @@
 #include "shop.h"
+using namespace std;
 
 shop::shop(Game* game)
 {
@@ -66,6 +67,13 @@ shop::shop(Game* game)
         buttonsound->play();
         back();
     });
+
+    //displaying diamonds
+    QFont customFont(fontFamily, 24);
+    textItem = new QGraphicsTextItem("Total Diamonds:" + QString::fromStdString(to_string(totaldiamonds)));
+    textItem->setFont(customFont);
+    textItem->setPos(0,0);
+    addItem(textItem);
 
 }
 void shop::back()
