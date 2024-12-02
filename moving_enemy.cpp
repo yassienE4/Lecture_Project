@@ -62,26 +62,3 @@ void moving_enemy::setdirection(bool x)
 }
 
 
-// moving to base level
-
-// void moving_enemy::move() {
-//     // Horizontal movement
-//     m_horizontalDistance += m_direction * 1; // Move 1 unit per frame
-//     setPos(x() + m_direction, y());
-
-//     // Change direction if horizontal distance exceeds allowed range
-//     if (m_horizontalDistance >= m_allowedHorizontalMovement || m_horizontalDistance <= -m_allowedHorizontalMovement) {
-//         m_direction *= -1; // Reverse direction
-//     }
-
-//     // Vertical movement: Ensure enemies stay near the ground level
-//     m_verticalDistance += m_speed;
-//     if (m_verticalDistance >= m_allowedVerticalMovement) {
-//         m_verticalDistance = 0;
-//     }
-
-//     // Collision detection with "Steve"
-//     if (m_level && m_level->getSteve() && collidesWithItem(m_level->getSteve())) {
-//         emit gameOver();
-//     }
-// }

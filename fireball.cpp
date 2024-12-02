@@ -6,4 +6,5 @@ fireball::fireball(int x, int y)
 
     setPixmap(ball.scaled(100, 100, Qt::KeepAspectRatio));
     setPos(x+40,y+60);
+    graceperiod.start();
 }

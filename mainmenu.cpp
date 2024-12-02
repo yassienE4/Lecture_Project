@@ -120,7 +120,6 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
 
 void mainmenu::new_game()
 {
-    //game->scene()->clear();
     game->closemenu();
     game->openselect();
 

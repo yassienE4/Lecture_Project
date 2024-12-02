@@ -9,6 +9,7 @@ ghast::ghast(int x, int y)
 
     setPos(x,y);
     setPixmap(right);
+    cooldown.start();
 
 
 }

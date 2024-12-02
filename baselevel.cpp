@@ -412,7 +412,7 @@ void baselevel::shootball()
 
     for(auto gh : ghasts)
     {
-        if(gh->returnball() == nullptr) // need to add an elasped timer
+        if(gh->returnball() == nullptr && gh->cooldown.elapsed() > 2000) // need to add an elasped timer
         {
             gh->setball(new fireball(gh->x(),gh->y()));
             gh->setpix(2);
@@ -420,6 +420,7 @@ void baselevel::shootball()
             QTimer::singleShot(300, this, [this, gh]() {
                 fireballsound->play();
                 gh->setpix(1);
+                gh->cooldown.restart();
             });
             m_scene->addItem(gh->returnball());
         }
@@ -458,15 +459,18 @@ void baselevel::checkballcollisions()
 
             if((steveRightBox.intersects(ballbox)) || (steveLeftBox.intersects(ballbox)) || (steveUpBox.intersects(ballbox)) || (steveDownBox.intersects(ballbox)))
             {
-                if(invincibilityTimer.elapsed() > graceperiod) // timer
+                if(invincibilityTimer.elapsed() > graceperiod && gh->returnball()->graceperiod.elapsed() > 100) // timer
                 {
                     h.applydamage();
                     hurtsound->play();
                     invincibilityTimer.restart();
                 }
-                m_scene->removeItem(f);
-                delete f;
-                gh->setball(nullptr);
+                if(gh->returnball()->graceperiod.elapsed() > 100)
+                {
+                    m_scene->removeItem(f);
+                    delete f;
+                    gh->setball(nullptr);
+                }
             }
         }
     }

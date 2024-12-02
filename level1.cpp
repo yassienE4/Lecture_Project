@@ -32,8 +32,6 @@ void level1::initialize()
     baselevel::addobstacle(obstacles[3]);
     obstacles.push_back(new obstacle(1700,350,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[4]);
-    //obstacles.push_back(new obstacle(2000,420,300,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
-    //baselevel::addobstacle(obstacles[5]);
     obstacles.push_back(new obstacle(2200,390,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[5]);
     obstacles.push_back(new obstacle(2400,340,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
