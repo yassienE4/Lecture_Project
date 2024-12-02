@@ -218,7 +218,7 @@ void steve::setboundingboxes()
     downBoundingBox = QRectF(x+10, (height-height/12), (width/3 -20), height / 12);
 }
 
-obstacle *steve::isGrounded(const QList<obstacle *> & obstacles)
+obstacle *steve::getGround(const QList<obstacle *> & obstacles)
 {
     QRectF rect(x(), y() + boundingRect().height() - 5, boundingRect().width(), 5);
     for(auto * item : obstacles)

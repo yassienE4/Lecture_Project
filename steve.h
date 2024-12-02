@@ -49,7 +49,7 @@ public:
     QRectF getupBoundingBox();
     QRectF getdownBoundingBox();
 
-    obstacle* isGrounded(const QList<obstacle*>&);
+    obstacle* getGround(const QList<obstacle*>&);
 
     //for skin select
     static int skin_static;

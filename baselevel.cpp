@@ -68,7 +68,6 @@ void baselevel::initialize()
     fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
 
 
-
 }
 void baselevel::checkdiamondcolide()
 {
@@ -479,6 +478,7 @@ void baselevel::checkballcollisions()
                 if(invincibilityTimer.elapsed() > graceperiod)
                 {
                     h.applydamage();
+                    m_steve->setstate(Static);
                     explodesound->play();
                     invincibilityTimer.restart();
                 }
@@ -596,7 +596,7 @@ void baselevel::moveVertically()
 
     //static int previousFloor = 380;
 
-    obstacle* ground = m_steve->isGrounded(obstacles);
+    obstacle* ground = m_steve->getGround(obstacles);
     int floor;
     if(ground)
     {
@@ -890,6 +890,7 @@ void baselevel::checkenemycollision()
             if(invincibilityTimer.elapsed() > graceperiod) // timer
             {
                 h.applydamage();
+                m_steve->setstate(Static);
                 hurtsound->play();
                 invincibilityTimer.restart();
             }
@@ -916,6 +917,7 @@ void baselevel::checkspikes()
             if(invincibilityTimer.elapsed() > graceperiod) // timer
             {
                 h.applydamage();
+                m_steve->setstate(Static);
                 hurtsound->play();
                 invincibilityTimer.restart();
             }

@@ -79,6 +79,11 @@ shop::shop(Game* game)
     insufficientFunds->setFont(customFont);
     insufficientFunds->setPos(500,500);
 
+
+    if(arrowgravitybought)
+    {   buy_arrow->setEnabled(false);
+        return;}
+
 }
 void shop::back()
 {
@@ -88,14 +93,11 @@ void shop::back()
 
 void shop::purchase1(QPushButton * buy_arrow)
 {
-    if(arrowgravitybought)
-    {   buy_arrow->setEnabled(false);
-        return;}
-    if(totaldiamonds >= 2 && !arrowgravitybought)
+    if(totaldiamonds >= 20 && !arrowgravitybought)
     {
         if(items().contains(insufficientFunds))
             removeItem(insufficientFunds);
-        totaldiamonds = totaldiamonds-2;
+        totaldiamonds = totaldiamonds-20;
         textItem->setPlainText("Total Diamonds:" + QString::fromStdString(to_string(totaldiamonds)));
         arrowgravitybought = true;
         buy_arrow->setEnabled(false);

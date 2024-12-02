@@ -91,8 +91,22 @@ void level1::initialize()
 
 
     //adding spikes
-    m_spikes.push_back(new spikes(1000,420,100,100));
-    baselevel::addspikes(m_spikes[0]);
+    int s = 0;
+    m_spikes.push_back(new spikes(1000,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+
+    m_spikes.push_back(new spikes(2950,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(3000,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(3050,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(3100,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(3150,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(3200,451,50,69));
+    baselevel::addspikes(m_spikes[s++]);
 
 
     //adding ghasts
