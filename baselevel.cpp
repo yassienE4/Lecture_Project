@@ -16,6 +16,7 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
     // connect(spawnTimer, &QTimer::timeout, this, &baselevel::spawn_enemy);
     // spawnTimer->start(2000);
 
+    isopen = true;
 
 
 
@@ -23,6 +24,7 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
 
 baselevel::~baselevel()
 {
+    qDebug() << "destructer called";
     delete m_steve;
     delete m_scene;
     delete m_game;
@@ -324,7 +326,11 @@ void baselevel::movearrows()
 {
     for(auto arr : arrows)
     {
-        double y = arr->getvelocity();
+        double y;
+        if(shop::arrowgravitybought)
+            y = 0;
+        else
+            y = arr->getvelocity();
         if(arr->getdirection())
         {
             arr->moveBy(5,y);
@@ -464,19 +470,19 @@ void baselevel::checkballcollisions()
             QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
             QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
             QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
-            QSoundEffect *hurtsound = new QSoundEffect(this);
-            hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
-            hurtsound->setVolume(1);
+            QSoundEffect *explodesound = new QSoundEffect(this);
+            explodesound->setSource(QUrl("qrc:/sounds/explode4.wav"));
+            explodesound->setVolume(1);
 
             if((steveRightBox.intersects(ballbox)) || (steveLeftBox.intersects(ballbox)) || (steveUpBox.intersects(ballbox)) || (steveDownBox.intersects(ballbox)))
             {
-                if(invincibilityTimer.elapsed() > graceperiod && gh->returnball()->graceperiod.elapsed() > 100) // timer
+                if(invincibilityTimer.elapsed() > graceperiod)
                 {
                     h.applydamage();
-                    hurtsound->play();
+                    explodesound->play();
                     invincibilityTimer.restart();
                 }
-                if(gh->returnball()->graceperiod.elapsed() > 100)
+                if(gh->returnball()->graceperiod.elapsed() > 100) // prevent lag
                 {
                     m_scene->removeItem(f);
                     delete f;
@@ -513,7 +519,7 @@ void baselevel::update()
 {
 
     checkpaused();
-    if(!ispaused)
+    if(!ispaused && isopen)
     {
         checkcolide();
         animate();
@@ -540,6 +546,10 @@ void baselevel::update()
         moveBall();
         checkballcollisions();
         checkballobstacle();
+        for(auto gh:ghasts)
+        {
+            gh->shown = false;
+        }
 
         if(!portaltouched)
         {
@@ -677,6 +687,7 @@ void baselevel::checkend()
         QTimer::singleShot(2750,this,[this](){
             portalsound->stop();
         });
+        isopen = false;
 
     }
 }

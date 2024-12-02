@@ -24,6 +24,7 @@ class Game : public QGraphicsView
     private:
         QGraphicsScene* gamescene; // the scene for the game
 
+
 };
 
 

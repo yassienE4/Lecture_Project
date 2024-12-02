@@ -82,6 +82,7 @@ public slots:
 private slots:
     void update();
 protected:
+    //protected so levels can access them
     QList<obstacle*> obstacles;
     QList<diamonds*> diamond;
     QList<moving_enemy*> enemies;
@@ -101,6 +102,7 @@ private:
     bool leftpressed, rightpressed, spacepressed;
     QGraphicsRectItem* Steve;
     bool ispaused;
+    bool isopen;
     bool pausemenushown = false;
     int pausecount;
     QGraphicsPixmapItem * pause;

@@ -82,6 +82,8 @@
         <file>sounds/ghastball.wav</file>
         <file>sounds/ghastcharge.wav</file>
         <file>images/fireball.png</file>
+        <file>sounds/explode4.wav</file>
+        <file>sounds/levelup.wav</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

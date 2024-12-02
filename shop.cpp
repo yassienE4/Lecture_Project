@@ -20,13 +20,13 @@ shop::shop(Game* game)
     buttonsound->setVolume(1);
 
 
-    QPushButton* buy_thing = new QPushButton();
-    buy_thing->setFixedSize(buttonimage.size());
-    buy_thing->move(448,600);
-    buy_thing->setText("Buy x");
-    buy_thing->setObjectName(QString("buy_thing"));
-    buy_thing->setToolTip("Purchase thing");
-    buy_thing->setStyleSheet(
+    QPushButton* buy_arrow = new QPushButton();
+    buy_arrow->setFixedSize(buttonimage.size());
+    buy_arrow->move(448,600);
+    buy_arrow->setText("Remove Arrow Gravity (20)");
+    buy_arrow->setObjectName(QString("buy_arrow"));
+    buy_arrow->setToolTip("Purchase thing");
+    buy_arrow->setStyleSheet(
         "QPushButton {"
         "    border: none;"                // Remove border
         "    background-image: url(:/images/mcbuttonimage);" // Set the image as background
@@ -38,10 +38,10 @@ shop::shop(Game* game)
                        "    text-align: center;"          // Center the text
                        "}"
         );
-    addWidget(buy_thing);
-    connect(buy_thing, &QPushButton::clicked, this, [this, buttonsound]() {
+    addWidget(buy_arrow);
+    connect(buy_arrow, &QPushButton::clicked, this, [this, buttonsound, buy_arrow]() {
         buttonsound->play();
-        purchase1();
+        purchase1(buy_arrow);
     });
 
     QPushButton* back_Button = new QPushButton();
@@ -75,6 +75,10 @@ shop::shop(Game* game)
     textItem->setPos(0,0);
     addItem(textItem);
 
+    insufficientFunds = new QGraphicsTextItem("Not Enough Diamonds");
+    insufficientFunds->setFont(customFont);
+    insufficientFunds->setPos(500,500);
+
 }
 void shop::back()
 {
@@ -82,7 +86,26 @@ void shop::back()
     game->openmenu();
 }
 
-void shop::purchase1()
+void shop::purchase1(QPushButton * buy_arrow)
 {
-    qDebug() << totaldiamonds;
+    if(arrowgravitybought)
+    {   buy_arrow->setEnabled(false);
+        return;}
+    if(totaldiamonds >= 2 && !arrowgravitybought)
+    {
+        if(items().contains(insufficientFunds))
+            removeItem(insufficientFunds);
+        totaldiamonds = totaldiamonds-2;
+        textItem->setPlainText("Total Diamonds:" + QString::fromStdString(to_string(totaldiamonds)));
+        arrowgravitybought = true;
+        buy_arrow->setEnabled(false);
+        QSoundEffect *purchasesound = new QSoundEffect(this);
+        purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+        purchasesound->setVolume(1);
+        purchasesound->play();
+    }
+    else
+    {
+        addItem(insufficientFunds);
+    }
 }

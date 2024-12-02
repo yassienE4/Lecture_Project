@@ -16,11 +16,13 @@ class shop : public QGraphicsScene
 public:
     shop(Game* game);
     static int totaldiamonds; // static so that all instances share
+    static bool arrowgravitybought;
 private:
     Game* game;
     QGraphicsTextItem *textItem = new QGraphicsTextItem(nullptr);
+    QGraphicsTextItem *insufficientFunds = new QGraphicsTextItem(nullptr);
 public slots:
-    void purchase1();
+    void purchase1(QPushButton *);
     void back();
 };
 
