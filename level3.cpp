@@ -12,7 +12,7 @@ void level3::initialize()
     QGraphicsPixmapItem* background1 = new QGraphicsPixmapItem(backgroundpixmap);
     baselevel::setbackground(background1);
 
-    nportal = new portal(4500, 120); // change 1000 to the end of the level
+    nportal = new portal(4500, 120+200); // change 1000 to the end of the level
     baselevel::addportal(nportal);
 
     baselevel::floorlevel = 720-200;
