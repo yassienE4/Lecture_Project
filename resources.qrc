@@ -84,6 +84,7 @@
         <file>images/fireball.png</file>
         <file>sounds/explode4.wav</file>
         <file>sounds/levelup.wav</file>
+        <file>images/mossybrick.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

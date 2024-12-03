@@ -19,6 +19,25 @@ void level2::initialize()
 
     baselevel::initialize();
 
+    int o =0;
+    int s = 0;
+    obstacles.push_back(new obstacle(0,710,5000,10,":/images/groundimage.png")); // ground
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(300,600, 200, 100,":/images/mossybrick.png"));
+    baselevel::addobstacle(obstacles[o++]);
+
+    m_spikes.push_back(new spikes(500,582,200,138));
+    baselevel::addspikes(m_spikes[s++]);
+
+    obstacles.push_back(new obstacle(900,600, 200, 100,":/images/mossybrick.png"));
+    baselevel::addobstacle(obstacles[o++]);
+
+    /*
     enemies.push_back(new moving_enemy(500,420,600,400)); // spawns enemy at pos 500(x),420(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[0]);
 
@@ -48,5 +67,5 @@ void level2::initialize()
 
     enemies.push_back(new moving_enemy(5000,420,5100,4900)); // spawns enemy at pos 5000(x),420(y) and moves from 4900-5100x
     baselevel::spawn_enemy(enemies[9]);
-
+    */
 }
