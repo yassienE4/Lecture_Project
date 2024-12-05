@@ -31,11 +31,31 @@ void level2::initialize()
     obstacles.push_back(new obstacle(300,600, 200, 100,":/images/mossybrick.png"));
     baselevel::addobstacle(obstacles[o++]);
 
-    m_spikes.push_back(new spikes(500,582,200,138));
+    m_spikes.push_back(new spikes(500,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(600,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(700,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(800,582+69,100,69));
     baselevel::addspikes(m_spikes[s++]);
 
     obstacles.push_back(new obstacle(900,600, 200, 100,":/images/mossybrick.png"));
     baselevel::addobstacle(obstacles[o++]);
+
+    m_spikes.push_back(new spikes(1100,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(1200,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(1300,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(1400,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+
+    obstacles.push_back(new obstacle(1500,600, 200, 100,":/images/mossybrick.png"));
+    baselevel::addobstacle(obstacles[o++]);
+
+
 
     /*
     enemies.push_back(new moving_enemy(500,420,600,400)); // spawns enemy at pos 500(x),420(y) and moves from 400-600x

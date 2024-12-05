@@ -640,7 +640,7 @@ void baselevel::moveVertically()
             m_steve->moveBy(0, m_steve->getvelocity());
             if(bowitem)
                 bowitem->moveBy(0, m_steve->getvelocity());
-            if(m_steve->y() >= floor ) //||  m_steve->getcolidedown()
+            if(m_steve->y() >= floor ) //||  m_steve->getcolidedown())
             {
                 if(!leftpressed && !rightpressed)
                 {
