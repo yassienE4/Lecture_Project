@@ -19,7 +19,6 @@
         <file>images/level1scene.png</file>
         <file>images/level1sceneold.png</file>
         <file>images/loadingscreen.png</file>
-        <file>images/Makefile</file>
         <file>images/marioleft.png</file>
         <file>images/marioleftwalk1.png</file>
         <file>images/marioleftwalk2.png</file>
@@ -36,7 +35,6 @@
         <file>images/obstacle.jpg</file>
         <file>images/oldsteve.png</file>
         <file>images/pausemenu.png</file>
-        <file>images/qrc_resources.cpp</file>
         <file>images/README.md</file>
         <file>images/spike.png</file>
         <file>images/startscreen.png</file>
