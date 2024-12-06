@@ -94,6 +94,8 @@ protected:
     QList<ghast*> ghasts;
     portal* nportal;
     int floorlevel=0;
+    int graceperiod = 1000;
+    health h;
 
 
 
@@ -120,9 +122,9 @@ private:
 
 
 
-    health h;
+
     QElapsedTimer invincibilityTimer; // tracks grace period
-    const int graceperiod = 1000; // grace period
+    // int graceperiod = 1000; i made it protected
     int score;
     QGraphicsTextItem* scoreText;
 

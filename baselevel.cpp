@@ -66,11 +66,16 @@ void baselevel::initialize()
 
     fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+    graceperiod = 1000;
 
 
 }
 void baselevel::checkdiamondcolide()
 {
+    QSoundEffect *diamondsound = new QSoundEffect(this);
+    diamondsound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+    diamondsound->setVolume(1);
+
     for(auto * dia : diamond)
     {
         QRectF diamondBox = dia->boundingRect().translated(dia->pos());
@@ -84,6 +89,7 @@ void baselevel::checkdiamondcolide()
             score++; // Increment score
             scoreText->setPlainText(QString("Score: %1").arg(score)); // Update displayed score
             dia->setPos(100000, 10000); // Move diamond out of view or delete it
+            diamondsound->play();
             // if(dia)
             // {delete dia; dia= nullptr;}
 
