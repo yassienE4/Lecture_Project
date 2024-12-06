@@ -57,8 +57,8 @@ void level2::initialize()
 
 
 
-    /*
-    enemies.push_back(new moving_enemy(500,420,600,400)); // spawns enemy at pos 500(x),420(y) and moves from 400-600x
+
+    enemies.push_back(new moving_enemy(300,500,600,400)); // spawns enemy at pos 500(x),420(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[0]);
 
     enemies.push_back(new moving_enemy(1000,420,1100,900)); // spawns enemy at pos 1000(x),420(y) and moves from 900-1100x
@@ -87,5 +87,5 @@ void level2::initialize()
 
     enemies.push_back(new moving_enemy(5000,420,5100,4900)); // spawns enemy at pos 5000(x),420(y) and moves from 4900-5100x
     baselevel::spawn_enemy(enemies[9]);
-    */
+
 }
