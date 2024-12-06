@@ -35,7 +35,7 @@ void level3::initialize()
     baselevel::spawn_enemy(enemies[0]);
 
 
-    ghasts.push_back(new ghast(1000,0));
+    ghasts.push_back(new ghast(1000,0,false));
     baselevel::addghast(ghasts[0]);
 
 }

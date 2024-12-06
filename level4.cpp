@@ -25,5 +25,8 @@ void level4::initialize()
     baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
     baselevel::addobstacle(obstacles[o++]);
+
+    ghasts.push_back(new ghast(1000,0,true)); // true makes it a dispenser
+    baselevel::addghast(ghasts[0]);
 }
 
