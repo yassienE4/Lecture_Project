@@ -127,6 +127,8 @@ void level5::init3()
     baselevel::addobstacle(obstacles[o++]);
     diamond.push_back(new diamonds(125+m_startpos,350));
     baselevel::adddiamond(diamond.back());
+    ghasts.push_back(new ghast(m_startpos+125,0,true));
+    baselevel::addghast(ghasts.back());
 
     enemies.push_back(new moving_enemy(400+m_startpos,600,550+m_startpos,300+m_startpos)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies.back());

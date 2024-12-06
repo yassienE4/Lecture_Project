@@ -75,6 +75,11 @@ void baselevel::initialize()
         maxjump = 0;
     jumpcount = 0;
 
+    ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
+    ghastsound->setVolume(1);
+    fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
+    fireballsound->setVolume(1);
+
 
 }
 void baselevel::checkdiamondcolide()
@@ -428,22 +433,18 @@ void baselevel::addghast(ghast* g)
 }
 void baselevel::shootball()
 {
-    ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
-    ghastsound->setVolume(1);
-    fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
-    fireballsound->setVolume(1);
-
     //check if ghast on screen to play sound
     QRectF viewRect = m_game->mapToScene(m_game->viewport()->rect()).boundingRect();
-
+    bool soundplayed = false;
     for(auto gh : ghasts)
     {
-        QRectF ghastRect = gh->boundingRect().translated(gh->pos());
+
         if(gh->returnball() == nullptr && gh->cooldown.elapsed() > 2000) // need to add an elasped timer
         {
             gh->setball(new fireball(gh->x(),gh->y()));
             gh->setpix(2);
             bool shown = false;
+            QRectF ghastRect = gh->boundingRect().translated(gh->pos());
             if(ghastRect.intersects(viewRect))
             {
                 gh->shown = true;
@@ -453,25 +454,33 @@ void baselevel::shootball()
                     ghastsound->play();
                 }
                 else
-                    fireballsound->play();
+                {
+                    if(!soundplayed)
+                        fireballsound->play();
+                    soundplayed = true;
+                }
             }
             else
                 gh->shown = false;
 
-            QTimer::singleShot(300, this, [this, gh,shown]() {
-                if(shown)
-                    fireballsound->play();
-                gh->setpix(1);
+            if(!gh->isdispenser())
+            {
+                QTimer::singleShot(300, this, [this, gh,shown]() {
+                    if(shown)
+                        fireballsound->play();
+                    gh->setpix(1);
+                    gh->cooldown.restart();
+                });
+            }
+            else
                 gh->cooldown.restart();
-            });
+
+
             m_scene->addItem(gh->returnball());
-        }
-        else
-        {
-            //
         }
     }
 }
+
 void baselevel::moveBall()
 {
     for(auto gh : ghasts)
