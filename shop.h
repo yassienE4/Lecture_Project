@@ -30,6 +30,7 @@ public slots:
     void purchase1(QPushButton *);
     void back();
     void purchaseGun(QPushButton *);
+    void purchasedoublejump(QPushButton *);
 };
 
 #endif // SHOP_H

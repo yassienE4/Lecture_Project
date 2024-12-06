@@ -69,6 +69,12 @@ void baselevel::initialize()
     graceperiod = 1000;
     inair= false;
 
+    if(shop::doublejumpbought)
+        maxjump = 1;
+    else
+        maxjump = 0;
+    jumpcount = 0;
+
 
 }
 void baselevel::checkdiamondcolide()
@@ -235,6 +241,7 @@ void baselevel::keyPressEvent(QKeyEvent * e)
             if(!inair)
             {
                 m_steve->setvelocity(-15);
+                jumpcount++;
             }
 
     }
@@ -612,14 +619,21 @@ void baselevel::moveVertically()
     {
         floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
         inair=false;
+        jumpcount = 0;
     }
     else
     {
         floor = floorlevel;
         if(m_steve->y()==520)
+        {
             inair=false;
+            jumpcount = 0;
+        }
         else
-            inair=true;
+        {
+            if(jumpcount == maxjump)
+                inair=true;
+        }
     }
 
 

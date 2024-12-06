@@ -19,7 +19,7 @@ void level4::initialize()
 
     baselevel::initialize();
     int o =0;
-    obstacles.push_back(new obstacle(0,517,5000,10,":/images/groundimage.png")); // ground
+    obstacles.push_back(new obstacle(0,710,5000,10,":/images/groundimage.png")); // ground
     baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
     baselevel::addobstacle(obstacles[o++]);
