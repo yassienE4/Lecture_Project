@@ -17,13 +17,18 @@ public:
     shop(Game* game);
     static int totaldiamonds; // static so that all instances share
     static bool arrowgravitybought;
+    static bool gunbought;
 private:
     Game* game;
+    QString fontFamily;
+    QPixmap buttonimage;
     QGraphicsTextItem *textItem = new QGraphicsTextItem(nullptr);
     QGraphicsTextItem *insufficientFunds = new QGraphicsTextItem(nullptr);
+    QSoundEffect* buttonsound;
 public slots:
     void purchase1(QPushButton *);
     void back();
+    void purchaseGun(QPushButton *);
 };
 
 #endif // SHOP_H

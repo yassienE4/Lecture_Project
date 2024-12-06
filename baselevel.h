@@ -27,6 +27,8 @@
 #include "fireball.h"
 #include "ghast.h"
 #include "shop.h"
+// #include"gun.h"
+// #include"bullet.h"
 
 class baselevel : public QObject
 {
@@ -66,6 +68,7 @@ public:
     void checkarrowhitenemy();
     void checkarrowhitobstacle();
     void addbow();
+
 
     void checkspikes();
     void addspikes(spikes *s);

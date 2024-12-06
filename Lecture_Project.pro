@@ -15,10 +15,12 @@ SOURCES += \
     arrow.cpp \
     baselevel.cpp \
     bow.cpp \
+    bullet.cpp \
     diamonds.cpp \
     fireball.cpp \
     game.cpp \
     ghast.cpp \
+    gun.cpp \
     health.cpp \
     level1.cpp \
     level2.cpp \
@@ -41,10 +43,12 @@ HEADERS += \
     arrow.h \
     baselevel.h \
     bow.h \
+    bullet.h \
     diamonds.h \
     fireball.h \
     game.h \
     ghast.h \
+    gun.h \
     health.h \
     level1.h \
     level2.h \

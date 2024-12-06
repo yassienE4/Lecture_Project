@@ -83,7 +83,29 @@ shop::shop(Game* game)
     if(arrowgravitybought)
     {   buy_arrow->setEnabled(false);
         return;}
-
+    QPushButton* buy_gun = new QPushButton();
+    buy_gun->setFixedSize(buttonimage.size());
+    buy_gun->move(648, 600); // Position for gun button
+    buy_gun->setText("Buy Gun (30)");
+    buy_gun->setObjectName(QString("buy_gun"));
+    buy_gun->setToolTip("Purchase Gun");
+    buy_gun->setStyleSheet(
+        "QPushButton {"
+        "    border: none;"
+        "    background-image: url(:/images/mcbuttonimage);"
+        "    background-repeat: no-repeat;"
+        "    background-position: center;"
+        "    color: white;"
+        "    font-family: '" + fontFamily + "';"
+                       "    font-size: 16px;"
+                       "    text-align: center;"
+                       "}"
+        );
+    addWidget(buy_gun);
+    connect(buy_gun, &QPushButton::clicked, this, [this, buy_gun]() {
+        this->buttonsound->play(); // Use this-> to access the member variable
+        purchaseGun(buy_gun);
+    });
 }
 void shop::back()
 {
@@ -110,4 +132,27 @@ void shop::purchase1(QPushButton * buy_arrow)
     {
         addItem(insufficientFunds);
     }
+
+
 }
+void shop::purchaseGun(QPushButton * buy_gun)
+{
+    if (totaldiamonds >= 30 && !gunbought)
+    {
+        if (items().contains(insufficientFunds))
+            removeItem(insufficientFunds);
+        totaldiamonds -= 30;
+        textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
+        gunbought = true;
+        buy_gun->setEnabled(false);
+        QSoundEffect *purchasesound = new QSoundEffect(this);
+        purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+        purchasesound->setVolume(1);
+        purchasesound->play();
+    }
+    else
+    {
+        addItem(insufficientFunds);
+    }
+}
+bool shop::gunbought = false;
