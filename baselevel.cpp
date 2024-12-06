@@ -861,17 +861,16 @@ void baselevel::moveEnemy()
 
 void baselevel::checkenemycollision()
 {
+    QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+    QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+    QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+    QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+    QSoundEffect *hurtsound = new QSoundEffect(this);
+    hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
+    hurtsound->setVolume(1);
     for(auto * ene : enemies)
     {
         QRectF enemybox = ene->boundingRect().translated(ene->pos());
-        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
-        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
-        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
-        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
-        QSoundEffect *hurtsound = new QSoundEffect(this);
-        hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
-        hurtsound->setVolume(1);
-
         if((steveRightBox.intersects(enemybox)) || (steveLeftBox.intersects(enemybox)) || (steveUpBox.intersects(enemybox)) || (steveDownBox.intersects(enemybox)))
         {
             if(invincibilityTimer.elapsed() > graceperiod) // timer
@@ -888,17 +887,16 @@ void baselevel::checkenemycollision()
 
 void baselevel::checkspikes()
 {
+    QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
+    QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
+    QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
+    QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
+    QSoundEffect *hurtsound = new QSoundEffect(this);
+    hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
+    hurtsound->setVolume(1);
     for(auto * spi : m_spikes)
     {
         QRectF spikebox = spi->boundingRect().translated(spi->pos());
-        QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
-        QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
-        QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
-        QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
-        QSoundEffect *hurtsound = new QSoundEffect(this);
-        hurtsound->setSource(QUrl("qrc:/sounds/hurtsound.wav"));
-        hurtsound->setVolume(1);
-
         if((steveRightBox.intersects(spikebox)) || (steveLeftBox.intersects(spikebox)) || (steveUpBox.intersects(spikebox)) || (steveDownBox.intersects(spikebox)))
         {
             if(invincibilityTimer.elapsed() > graceperiod) // timer
