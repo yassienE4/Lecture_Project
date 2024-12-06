@@ -26,6 +26,7 @@ baselevel::~baselevel()
 {
     qDebug() << "destructer called";
     delete m_steve;
+    m_scene->clear();
     delete m_scene;
     delete m_game;
     delete timer;
@@ -34,6 +35,14 @@ baselevel::~baselevel()
     delete back_button1;
     delete proxyButton;
     delete scoreText;
+
+    //delete sounds
+
+    delete dingsound;
+    delete bowsound;
+    delete fireballsound;
+    delete ghastsound;
+
 
 }
 

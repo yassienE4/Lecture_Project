@@ -40,23 +40,24 @@ void level5::initialize()
     random_device rd;
     mt19937 g(rd());
     shuffle(numbers.begin(), numbers.end(), g);
+    addblock = false;
+    if( (numbers[0] == 1 && numbers[1] == 3) || (numbers[1] == 1 && numbers[2] == 3)) // check if module1 is directly before module2
+        addblock = true;
     for(int num : numbers)
     {
         switch(num){
         case 1:
             init1();
-            qDebug() << "1";
             break;
         case 2:
             init2();
-            qDebug() << "2";
             break;
         case 3:
             init3();
-            qDebug() << "3";
             break;
         }
     }
+
 
 
 }
@@ -118,8 +119,11 @@ void level5::init2()
 
 void level5::init3()
 {
-    obstacles.push_back(new obstacle(m_startpos+99,400,1,1,":/images/groundimage.png")); // small left wall to block fireball
-    baselevel::addobstacle(obstacles[o++]);
+    if(addblock) // wall only needed if init1 is b4 init3
+    {
+        obstacles.push_back(new obstacle(m_startpos+99,400,1,1,":/images/groundimage.png")); // small left wall to block fireball
+        baselevel::addobstacle(obstacles[o++]);
+    }
 
     for(int i =0; i <3; i++)
     {

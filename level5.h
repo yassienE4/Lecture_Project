@@ -11,6 +11,7 @@ private:
     int m_startpos;
     int o;
     int s;
+    bool addblock;
 public:
     level5(QGraphicsScene *scene, Game* game);
     void initialize();
