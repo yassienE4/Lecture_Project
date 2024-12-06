@@ -118,6 +118,8 @@ private:
     int rcount;
     int lcount;
     bool inair;
+    int jumpcount;
+    int maxjump;
 
 
 

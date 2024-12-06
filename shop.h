@@ -18,6 +18,7 @@ public:
     static int totaldiamonds; // static so that all instances share
     static bool arrowgravitybought;
     static bool gunbought;
+    static bool doublejumpbought;
 private:
     Game* game;
     QString fontFamily;

@@ -233,7 +233,10 @@ void baselevel::keyPressEvent(QKeyEvent * e)
             spacepressed = true;
             m_steve->setstate(Jumping);
             if(!inair)
+            {
                 m_steve->setvelocity(-15);
+            }
+
     }
     if(e->key() == Qt::Key_Escape)
     {

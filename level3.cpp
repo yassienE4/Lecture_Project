@@ -18,5 +18,10 @@ void level3::initialize()
     baselevel::floorlevel = 720-200;
 
     baselevel::initialize();
+
+    //adding ghasts
+    ghasts.push_back(new ghast(1000,0));
+    baselevel::addghast(ghasts[0]);
+
 }
 

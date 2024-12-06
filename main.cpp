@@ -14,6 +14,7 @@ int steve::skin_static = 1; // sets default skin to steve
 int shop::totaldiamonds = 0; // start at 0
 bool shop::arrowgravitybought = 0; // didnt buy yet
 bool shop::gunbought = false;
+bool shop::doublejumpbought = false;
 
 int main(int argc, char *argv[])
 {
