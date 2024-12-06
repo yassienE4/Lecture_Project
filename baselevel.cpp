@@ -446,7 +446,8 @@ void baselevel::shootball()
             if(ghastRect.intersects(viewRect))
             {
                 gh->shown = true;
-                ghastsound->play();
+                if(!gh->isdispenser())
+                    ghastsound->play();
             }
             else
                 gh->shown = false;
@@ -470,7 +471,11 @@ void baselevel::moveBall()
     {
         if(gh->returnball() != nullptr)
         {
-            gh->returnball()->moveBy(-5,0);
+            if(gh->isdispenser())
+                gh->returnball()->moveBy(0,5);
+            else
+                gh->returnball()->moveBy(-5,0);
+
         }
     }
 }

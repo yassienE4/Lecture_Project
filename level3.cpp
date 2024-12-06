@@ -47,7 +47,7 @@ void level3::initialize()
     baselevel::addspikes(m_spikes[s++]);
 
     //adding ghasts
-    ghasts.push_back(new ghast(1000,0));
+    ghasts.push_back(new ghast(1000,0,false));
     baselevel::addghast(ghasts[0]);
 
 }

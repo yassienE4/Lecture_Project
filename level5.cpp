@@ -139,7 +139,7 @@ void level5::init3()
     baselevel::adddiamond(diamond.back());
     m_startpos = m_startpos + 200;
 
-    ghasts.push_back(new ghast(m_startpos+170,300));
+    ghasts.push_back(new ghast(m_startpos+170,300,false));
     baselevel::addghast(ghasts.back());
     m_startpos = m_startpos + 300;
 
