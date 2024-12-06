@@ -67,6 +67,7 @@ void baselevel::initialize()
     fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
     graceperiod = 1000;
+    inair= false;
 
 
 }
@@ -231,7 +232,8 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
             spacepressed = true;
             m_steve->setstate(Jumping);
-            m_steve->setvelocity(-15);
+            if(!inair)
+                m_steve->setvelocity(-15);
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -599,19 +601,24 @@ void baselevel::moveHorizontally()
 void baselevel::moveVertically()
 {
 
-    //static int previousFloor = 380;
+
 
     obstacle* ground = m_steve->getGround(obstacles);
     int floor;
     if(ground)
     {
         floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
-        //previousFloor = floor;
-        //floor = ground->y() + ground->boundingRect().y() - ground->getheight();
+        inair=false;
     }
     else
+    {
         floor = floorlevel;
-        //floor = previousFloor;
+        if(m_steve->y()==520)
+            inair=false;
+        else
+            inair=true;
+    }
+
 
 
 

@@ -117,6 +117,7 @@ private:
     int frameCounter;
     int rcount;
     int lcount;
+    bool inair;
 
 
 
