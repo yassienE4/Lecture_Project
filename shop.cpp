@@ -85,7 +85,7 @@ shop::shop(Game* game)
         return;}
     QPushButton* buy_gun = new QPushButton();
     buy_gun->setFixedSize(buttonimage.size());
-    buy_gun->move(648, 600); // Position for gun button
+    buy_gun->move(50, 600); // Position for gun button
     buy_gun->setText("Buy Gun (30)");
     buy_gun->setObjectName(QString("buy_gun"));
     buy_gun->setToolTip("Purchase Gun");
@@ -102,10 +102,14 @@ shop::shop(Game* game)
                        "}"
         );
     addWidget(buy_gun);
-    connect(buy_gun, &QPushButton::clicked, this, [this, buy_gun]() {
-        this->buttonsound->play(); // Use this-> to access the member variable
+    connect(buy_gun, &QPushButton::clicked, this, [this, buttonsound, buy_gun]() {
+        buttonsound->play();
         purchaseGun(buy_gun);
     });
+
+    if(gunbought)
+    {   buy_gun->setEnabled(false);
+        return;}
 }
 void shop::back()
 {
@@ -155,4 +159,4 @@ void shop::purchaseGun(QPushButton * buy_gun)
         addItem(insufficientFunds);
     }
 }
-bool shop::gunbought = false;
+
