@@ -443,16 +443,23 @@ void baselevel::shootball()
         {
             gh->setball(new fireball(gh->x(),gh->y()));
             gh->setpix(2);
+            bool shown = false;
             if(ghastRect.intersects(viewRect))
             {
                 gh->shown = true;
                 if(!gh->isdispenser())
+                {
+                    shown = gh->shown;
                     ghastsound->play();
+                }
+                else
+                    fireballsound->play();
             }
             else
                 gh->shown = false;
-            QTimer::singleShot(300, this, [this, gh]() {
-                if(gh->shown)
+
+            QTimer::singleShot(300, this, [this, gh,shown]() {
+                if(shown)
                     fireballsound->play();
                 gh->setpix(1);
                 gh->cooldown.restart();
