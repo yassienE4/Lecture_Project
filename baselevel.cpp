@@ -104,7 +104,6 @@ void baselevel::checkdiamondcolide()
     QSoundEffect *diamondsound = new QSoundEffect(this);
     diamondsound->setSource(QUrl("qrc:/sounds/levelup.wav"));
     diamondsound->setVolume(1);
-
     for(auto * dia : diamond)
     {
         QRectF diamondBox = dia->boundingRect().translated(dia->pos());
@@ -117,11 +116,9 @@ void baselevel::checkdiamondcolide()
         {
             score++; // Increment score
             scoreText->setPlainText(QString("Score: %1").arg(score)); // Update displayed score
-            dia->setPos(100000, 10000); // Move diamond out of view or delete it
+            dia->setPos(100000, 10000);
+            m_scene->removeItem(dia); // Move diamond out of view or delete it
             diamondsound->play();
-            // if(dia)
-            // {delete dia; dia= nullptr;}
-
         }
     }
 }
@@ -612,6 +609,8 @@ void baselevel::moveBall()
 }
 void baselevel::checkballcollisions()
 {
+    explodesound->setSource(QUrl("qrc:/sounds/explode4.wav"));
+    explodesound->setVolume(1);
     for(auto gh : ghasts)
     {
         if(gh->returnball() !=nullptr)
@@ -623,10 +622,6 @@ void baselevel::checkballcollisions()
             QRectF steveLeftBox =  m_steve->mapRectToScene(m_steve->getleftBoundingBox());
             QRectF steveUpBox = m_steve->mapRectToScene(m_steve->getupBoundingBox());
             QRectF steveDownBox = m_steve->mapRectToScene(m_steve->getdownBoundingBox());
-            QSoundEffect *explodesound = new QSoundEffect(this);
-            explodesound->setSource(QUrl("qrc:/sounds/explode4.wav"));
-            explodesound->setVolume(1);
-
             if((steveRightBox.intersects(ballbox)) || (steveLeftBox.intersects(ballbox)) || (steveUpBox.intersects(ballbox)) || (steveDownBox.intersects(ballbox)))
             {
                 if(invincibilityTimer.elapsed() > graceperiod)

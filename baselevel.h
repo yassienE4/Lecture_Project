@@ -151,7 +151,7 @@ private:
     int fontId;
     QString fontFamily;
     QSoundEffect *portalsound = new QSoundEffect(this);
-
+    QSoundEffect *explodesound = new QSoundEffect(this);
     //arrow/bow
     bool charging;
     QElapsedTimer chargetime;
