@@ -1131,13 +1131,29 @@ void baselevel::addObstacle(obstacle* obstacle) {
 }
 
 void baselevel::updateMovingObstacles() {
-    for (auto* obstacle : m_obstacles) {
+    for (auto* m : m_obstacles) {
         // Only update if it's a MovingObstacle
-        if (auto* mo = dynamic_cast<MovingObstacle*>(obstacle)) {
-            mo->updatePosition();
+        // if (auto* mo = dynamic_cast<MovingObstacle*>(obstacle)) {
+        //     mo->updatePosition();
+        // }
+        if(m->x() == m->getmaxrange()) //enemy->getmaxrange()
+        {
+            m->setdirection(0);
+        }
+        if(m->x() == m->getminrange())
+        {
+            m->setdirection(1);
+        }
+        if(m->getdirection())
+        {
+            m->moveBy(1,0);
+        }
+        else
+        {
+            m->moveBy(-1,0);
         }
     }
 }
-QGraphicsScene& baselevel::getScene() {
-    return m_scene; // Return the reference
-}
+// QGraphicsScene& baselevel::getScene() {
+//     return m_scene; // Return the reference
+// }
