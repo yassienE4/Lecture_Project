@@ -45,8 +45,8 @@ void level3::initialize()
     baselevel::addobstacle(obstacles[o++]);  //wooden block 7
     obstacles.push_back(new obstacle(2500,570,200,50,":/images/woodenblock.png")); // block at 1800,650
     baselevel::addobstacle(obstacles[o++]);  //wooden block 8
-    obstacles.push_back(new obstacle(3200,670,200,100,":/images/woodenblock.png")); // block at 1800,650
-    baselevel::addobstacle(obstacles[o++]);  //wooden block 9
+    //obstacles.push_back(new obstacle(3200,670,200,100,":/images/woodenblock.png")); // block at 1800,650
+    //baselevel::addobstacle(obstacles[o++]);  //wooden block 9
     obstacles.push_back(new obstacle(3400,670,200,100,":/images/woodenblock.png")); // block at 1800,650
     baselevel::addobstacle(obstacles[o++]);  //wooden block 10
 
@@ -76,6 +76,11 @@ void level3::initialize()
     baselevel::adddiamond(diamond[6]);
     diamond.push_back(new diamonds(2500,470)); // diamond at 1850(x),650(y)
     baselevel::adddiamond(diamond[7]);
+    diamond.push_back(new diamonds(2400,670)); // diamond at 1850(x),650(y)
+    baselevel::adddiamond(diamond[8]);
+    diamond.push_back(new diamonds(2450,670)); // diamond at 1850(x),650(y)
+    baselevel::adddiamond(diamond[9]);
+
 
 
     //adding spikes
@@ -109,6 +114,12 @@ void level3::initialize()
     baselevel::addghast(ghasts[0]);
     ghasts.push_back(new ghast(1500,300,true)); // spawns a ghast near new wooden blocks and diamonds
     baselevel::addghast(ghasts[1]);
+    ghasts.push_back(new ghast(2100,350,false)); // spawns a ghast near new wooden blocks and diamonds
+    baselevel::addghast(ghasts[2]);
+    ghasts.push_back(new ghast(2500,350,false)); // spawns a ghast near new wooden blocks and diamonds
+    baselevel::addghast(ghasts[3]);
+    ghasts.push_back(new ghast(3000,450,false)); // spawns a ghast near new wooden blocks and diamonds
+    baselevel::addghast(ghasts[4]);
     // ghasts.push_back(new ghast(1000,0,false));
     // baselevel::addghast(ghasts[2]);
 
