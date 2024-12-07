@@ -120,7 +120,7 @@ void Game::openlevel5()
     level5Scene->setSceneRect(0, 0, 1280, 720);
     class level5* level = new class level5(level5Scene, this);
     level->initialize();
-    this->setSceneRect(0,0,5000,720); // 5000 is level width, 720 height
+    this->setSceneRect(0,0,6500,720); // 5000 is level width, 720 height
     this->setScene(level5Scene);
     this->show();
 }

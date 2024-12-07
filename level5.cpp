@@ -15,13 +15,13 @@ void level5::initialize()
     QGraphicsPixmapItem* background1 = new QGraphicsPixmapItem(backgroundpixmap);
     baselevel::setbackground(background1);
 
-    nportal = new portal(4700, 120+200);
+    nportal = new portal(6100, 120+200);
     baselevel::addportal(nportal);
 
     baselevel::floorlevel = 720-200;
 
     baselevel::initialize();
-    baselevel::graceperiod = 500; // half the grace period
+    baselevel::graceperiod = 10000; // half the grace period
     h.applydamage();
     h.applydamage(); // half health
 
@@ -32,17 +32,21 @@ void level5::initialize()
     baselevel::addobstacle(obstacles[o++]);
     obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
     baselevel::addobstacle(obstacles[o++]);
-    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
+    obstacles.push_back(new obstacle(6500,0,1,1000,":/images/groundimage.png")); // right wall
     baselevel::addobstacle(obstacles[o++]);
 
     // randomizes the level
-    QVector<int> numbers = {1, 2, 3};
+    QVector<int> numbers = {1, 2, 3,4};
     random_device rd;
     mt19937 g(rd());
     shuffle(numbers.begin(), numbers.end(), g);
     addblock = false;
-    if( (numbers[0] == 1 && numbers[1] == 3) || (numbers[1] == 1 && numbers[2] == 3)) // check if module1 is directly before module2
+    addblock2 = false;
+    if( (numbers[0] == 1 && numbers[1] == 3) || (numbers[1] == 1 && numbers[2] == 3)|| (numbers[2] == 1 && numbers[3] == 3)) // check if module1 is directly before module2
         addblock = true;
+
+    if( (numbers[0] == 4 && numbers[1] == 3) || (numbers[1] == 4 && numbers[2] == 3)|| (numbers[2] == 4 && numbers[3] == 3)) // check if module4 is directly before module2
+        addblock2 = true;
     for(int num : numbers)
     {
         switch(num){
@@ -55,8 +59,13 @@ void level5::initialize()
         case 3:
             init3();
             break;
+        case 4:
+            init4();
+            break;
         }
     }
+
+
 
 
 
@@ -119,7 +128,7 @@ void level5::init2()
 
 void level5::init3()
 {
-    if(addblock) // wall only needed if init1 is b4 init3
+    if(addblock || addblock2) // wall only needed if init1 is b4 init3
     {
         obstacles.push_back(new obstacle(m_startpos+99,400,1,1,":/images/groundimage.png")); // small left wall to block fireball
         baselevel::addobstacle(obstacles[o++]);
@@ -152,3 +161,33 @@ void level5::init3()
 
 }
 
+void level5::init4()
+{
+    obstacles.push_back(new obstacle(100+m_startpos,600,100,100,":/images/sculkbrick.png"));
+    baselevel::addobstacle(obstacles[o++]);
+
+    for (int i = 0; i < 12; ++i) {
+        int xPos = 200 + m_startpos + i * 100;
+        m_spikes.push_back(new spikes(xPos, 582 + 69, 100, 69));
+        baselevel::addspikes(m_spikes.back());
+        m_spikes.back()->makelava();
+    }
+    int sync;
+    for (int i = 0; i < 3; ++i) {
+        int xPos = 300 + m_startpos + i * 400;
+        if(i==0) {sync = -50;}
+        if(i==1) {sync = 50;}
+        if(i==2) {sync = -50;}
+        MovingObstacle* movingObstacle = new MovingObstacle(xPos+sync, 600, 60, 60, ":/images/sculkbrick.png", xPos-100, xPos+100);
+        obstacles.push_back(movingObstacle);
+        m_obstacles.push_back(movingObstacle);
+        baselevel::addobstacle(obstacles[o++]);
+
+        ghasts.push_back(new ghast(xPos-sync,0,true));
+        baselevel::addghast(ghasts.back());
+    }
+
+    obstacles.push_back(new obstacle(1400+m_startpos,600,100,100,":/images/sculkbrick.png"));
+    baselevel::addobstacle(obstacles[o++]);
+    m_startpos = m_startpos + 1400;
+}

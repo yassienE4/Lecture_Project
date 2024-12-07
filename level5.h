@@ -12,12 +12,14 @@ private:
     int o;
     int s;
     bool addblock;
+    bool addblock2;
 public:
     level5(QGraphicsScene *scene, Game* game);
     void initialize();
     void init1();
     void init2();
     void init3();
+    void init4();
 };
 
 #endif // LEVEL5_H
