@@ -80,9 +80,7 @@ shop::shop(Game* game)
     insufficientFunds->setPos(500,500);
 
 
-    if(arrowgravitybought)
-    {   buy_arrow->setEnabled(false);
-        return;}
+
 
 
     QPushButton* buy_gun = new QPushButton();
@@ -109,9 +107,7 @@ shop::shop(Game* game)
         purchaseGun(buy_gun);
     });
 
-    if(gunbought)
-    {   buy_gun->setEnabled(false);
-        return;}
+
 
 
     QPushButton* buy_jump = new QPushButton();
@@ -140,7 +136,13 @@ shop::shop(Game* game)
 
     if(doublejumpbought)
     {   buy_jump->setEnabled(false);
-        return;}
+        ;}
+    if(arrowgravitybought)
+    {   buy_arrow->setEnabled(false);
+        ;}
+    if(gunbought)
+    {   buy_gun->setEnabled(false);
+        ;}
 }
 void shop::back()
 {
@@ -194,7 +196,7 @@ void shop::purchaseGun(QPushButton * buy_gun)
 
 
 
-void shop::purchasedoublejump(QPushButton * buy_gun)
+void shop::purchasedoublejump(QPushButton * buy_jump)
 {
     if (totaldiamonds >= 50 && !doublejumpbought)
     {
@@ -203,7 +205,7 @@ void shop::purchasedoublejump(QPushButton * buy_gun)
         totaldiamonds -= 50;
         textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
         doublejumpbought = true;
-        buy_gun->setEnabled(false);
+        buy_jump->setEnabled(false);
         QSoundEffect *purchasesound = new QSoundEffect(this);
         purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
         purchasesound->setVolume(1);
