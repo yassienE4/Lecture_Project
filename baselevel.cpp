@@ -58,7 +58,7 @@ void baselevel::initialize()
     m_scene->installEventFilter(this);
 
     QPixmap pixmap(":/images/pausemenu.png");
-    pixmap =pixmap.scaled(5000,720);
+    pixmap =pixmap.scaled(6500,720);
     pause = new QGraphicsPixmapItem(pixmap);
     pause->setOpacity(0.5);
 
