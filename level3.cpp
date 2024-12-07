@@ -112,12 +112,10 @@ void level3::initialize()
     //adding ghasts
     ghasts.push_back(new ghast(1000,0,false));
     baselevel::addghast(ghasts[0]);
-    ghasts.push_back(new ghast(1500,300,true)); // spawns a ghast near new wooden blocks and diamonds
-    baselevel::addghast(ghasts[1]);
+
     ghasts.push_back(new ghast(2100,350,false)); // spawns a ghast near new wooden blocks and diamonds
     baselevel::addghast(ghasts[2]);
-    ghasts.push_back(new ghast(2500,350,false)); // spawns a ghast near new wooden blocks and diamonds
-    baselevel::addghast(ghasts[3]);
+
     ghasts.push_back(new ghast(3000,450,false)); // spawns a ghast near new wooden blocks and diamonds
     baselevel::addghast(ghasts[4]);
     // ghasts.push_back(new ghast(1000,0,false));
