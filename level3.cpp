@@ -27,14 +27,18 @@ void level3::initialize()
     baselevel::addobstacle(obstacles[o++]);
 
 
-    obstacles.push_back(new obstacle(400,720,400,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    obstacles.push_back(new obstacle(400,620,400,100,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[o++]);
-    obstacles.push_back(new obstacle(700,600,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
+    obstacles.push_back(new obstacle(800,500,200,50,":/images/woodenblock.png")); // block at 400,400 size 400/100
     baselevel::addobstacle(obstacles[o++]);
 
 
-    enemies.push_back(new moving_enemy(500,620,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
+    enemies.push_back(new moving_enemy(500,520,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
     baselevel::spawn_enemy(enemies[0]);
+
+    //adding diamonds
+    diamond.push_back(new diamonds(800,400)); // diamond at 800,400
+    baselevel::adddiamond(diamond[0]);
 
 
     //adding spikes

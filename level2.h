@@ -4,7 +4,7 @@
 #include "baselevel.h"
 #include <QGraphicsRectItem>
 #include <QList>
-class level2 : public virtual baselevel // inhert from baselevel
+class level2 : public baselevel // inhert from baselevel
 {
     Q_OBJECT
 private:
