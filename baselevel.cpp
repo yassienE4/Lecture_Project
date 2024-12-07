@@ -1125,10 +1125,10 @@ void baselevel::enableGun() {
 }
 
 
-void baselevel::addObstacle(obstacle* obstacle) {
-    m_obstacles.push_back(obstacle);
-    m_scene->addItem(obstacle); // Add obstacle to the scene
-}
+// void baselevel::addObstacle(obstacle* obstacle) {
+//     m_obstacles.push_back(obstacle);
+//     m_scene->addItem(obstacle); // Add obstacle to the scene
+// }
 
 void baselevel::updateMovingObstacles() {
     for (auto* m : m_obstacles) {

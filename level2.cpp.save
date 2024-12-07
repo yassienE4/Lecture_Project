@@ -1,3 +1,4 @@
+^x
 #include "level2.h"
 
 level2::level2(QGraphicsScene *scene, Game * game) : baselevel(scene,game)

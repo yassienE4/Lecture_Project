@@ -86,9 +86,8 @@ public:
     void movebullets();
     void checkbullethitenemy();
 
-    void addObstacle(obstacle* obstacle); // Add static or moving obstacle
     void updateMovingObstacles();
-    QGraphicsScene& getScene();
+
 
 public slots:
     // void spawn_enemy();
@@ -105,6 +104,7 @@ protected:
     QList<spikes*> m_spikes;
     QList<ghast*> ghasts;
     QList<bullet*> bullets;
+    QList<obstacle*> m_obstacles;
     portal* nportal;
     int floorlevel=0;
     int graceperiod = 1000;
@@ -133,7 +133,7 @@ private:
     bool inair;
     int jumpcount;
     int maxjump;
-std::vector<obstacle*> m_obstacles;
+
 
 
     void enableGun();
