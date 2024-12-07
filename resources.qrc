@@ -86,6 +86,10 @@
         <file>images/sculkbrick.png</file>
         <file>images/sculkpillar.png</file>
         <file>images/dispenser.png</file>
+        <file>images/bulletleft .png</file>
+        <file>images/bulletright.webp</file>
+        <file>images/try_gun_left.png</file>
+        <file>images/try_gun_right.jpeg</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>
