@@ -244,7 +244,7 @@ void level2::initialize()
     }
 
     // Lava pools
-    for (int i = 2200; i <= 2600; i += 150) {
+    for (int i = 2200; i <= 2600; i += 100) {
         m_spikes.push_back(new spikes(i, 710 - 50, 100, 50));
         m_spikes.back()->makelava(); // Make it lava
         baselevel::addspikes(m_spikes[s++]);
