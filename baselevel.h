@@ -30,7 +30,7 @@
 #include"gun.h"
 #include"bullet.h"
 #include<vector>
-
+#include "moving_obstacle.h"
 
 class baselevel : public QObject
 {
@@ -86,6 +86,9 @@ public:
     void movebullets();
     void checkbullethitenemy();
 
+    void addObstacle(obstacle* obstacle); // Add static or moving obstacle
+    void updateMovingObstacles();
+    QGraphicsScene& getScene();
 
 public slots:
     // void spawn_enemy();
@@ -130,6 +133,7 @@ private:
     bool inair;
     int jumpcount;
     int maxjump;
+std::vector<obstacle*> m_obstacles;
 
 
     void enableGun();

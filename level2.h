@@ -8,6 +8,7 @@ class level2 : public baselevel // inhert from baselevel
 {
     Q_OBJECT
 private:
+    std::vector<obstacle*> obstacles;
 public:
     level2(QGraphicsScene *scene, Game* game);
     void initialize();

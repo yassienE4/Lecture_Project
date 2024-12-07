@@ -1125,3 +1125,19 @@ void baselevel::enableGun() {
 }
 
 
+void baselevel::addObstacle(obstacle* obstacle) {
+    m_obstacles.push_back(obstacle);
+    m_scene->addItem(obstacle); // Add obstacle to the scene
+}
+
+void baselevel::updateMovingObstacles() {
+    for (auto* obstacle : m_obstacles) {
+        // Only update if it's a MovingObstacle
+        if (auto* mo = dynamic_cast<MovingObstacle*>(obstacle)) {
+            mo->updatePosition();
+        }
+    }
+}
+QGraphicsScene& baselevel::getScene() {
+    return m_scene; // Return the reference
+}

@@ -103,5 +103,20 @@ void level2::initialize()
 
 
 
+    // Add moving obstacles
+    MovingObstacle* movingObstacle = new MovingObstacle(300, 300, 60, 60, ":/images/moving_obstacle.png", 2, 0);
+    m_scene->addItem(movingObstacle);
+    obstacles.push_back(movingObstacle);
+
+    // Simulate movement
+    for (int i = 0; i < 100; ++i) {
+        for (auto* obstacle : obstacles) {
+            // Only update position for MovingObstacle
+            if (auto* mo = dynamic_cast<MovingObstacle*>(obstacle)) {
+                mo->updatePosition();
+            }
+        }
+    }
+
 
 }

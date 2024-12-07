@@ -31,6 +31,7 @@ SOURCES += \
     main.cpp \
     mainmenu.cpp \
     moving_enemy.cpp \
+    moving_obstacle.cpp \
     obstacle.cpp \
     portal.cpp \
     score.cpp \
@@ -58,6 +59,7 @@ HEADERS += \
     levelselect.h \
     mainmenu.h \
     moving_enemy.h \
+    moving_obstacle.h \
     obstacle.h \
     portal.h \
     score.h \
