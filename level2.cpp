@@ -90,18 +90,49 @@ void level2::initialize()
     int brickHeight = 100; // Adjust this according to the actual brick height
     int extraOffset = 0;
 //these works:
-    enemies.push_back(new moving_enemy(300, 600 - brickHeight - extraOffset, 600, 400));
+    // enemies.push_back(new moving_enemy(300, 600 - brickHeight - extraOffset, 200, 100));
+    // baselevel::spawn_enemy(enemies[0]);
+
+    // // For the second brick (900,600), we position the enemy at Y = 600 - brickHeight - extraOffset
+    // enemies.push_back(new moving_enemy(1000, 600 - brickHeight - extraOffset, 1100, 900));
+    // baselevel::spawn_enemy(enemies[1]);
+
+    // // For the third brick (1500,600), we position the enemy at Y = 600 - brickHeight - extraOffset
+    // enemies.push_back(new moving_enemy(1500, 600 - brickHeight - extraOffset, 1600, 1400));
+    // baselevel::spawn_enemy(enemies[2]);
+
+    enemies.push_back(new moving_enemy(300, 600 - brickHeight - extraOffset, 500, 300)); // First brick
     baselevel::spawn_enemy(enemies[0]);
 
-    // For the second brick (900,600), we position the enemy at Y = 600 - brickHeight - extraOffset
-    enemies.push_back(new moving_enemy(1000, 600 - brickHeight - extraOffset, 1100, 900));
+    enemies.push_back(new moving_enemy(900, 600 - brickHeight - extraOffset, 1100, 900)); // Second brick
     baselevel::spawn_enemy(enemies[1]);
 
-    // For the third brick (1500,600), we position the enemy at Y = 600 - brickHeight - extraOffset
-    enemies.push_back(new moving_enemy(1500, 600 - brickHeight - extraOffset, 1600, 1400));
+    enemies.push_back(new moving_enemy(1500, 600 - brickHeight - extraOffset, 1700, 1500)); // Third brick
     baselevel::spawn_enemy(enemies[2]);
 
+    // obstacles.push_back(new obstacle(300, 600, 200, 100, ":/images/mossybrick.png", 300, 500, 5));
+    // baselevel::addobstacle(obstacles[o++]);
 
+    // obstacles.push_back(new obstacle(900, 600, 200, 100, ":/images/mossybrick.png", 900, 1100, 3));
+    // baselevel::addobstacle(obstacles[o++]);
 
+    // Creating multiple moving mossy bricks at different heights
+    obstacles.push_back(new obstacle(300, 600, 200, 100, ":/images/mossybrick.png", 300, 500, 5));  // Brick 1
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(900, 500, 200, 100, ":/images/mossybrick.png", 900, 1100, 5));  // Brick 2
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(1500, 550, 200, 100, ":/images/mossybrick.png", 1500, 1700, 5)); // Brick 3
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(2000, 600, 200, 100, ":/images/mossybrick.png", 2000, 2200, 5));  // Brick 4
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(2500, 650, 200, 100, ":/images/mossybrick.png", 2500, 2700, 5)); // Brick 5
+    baselevel::addobstacle(obstacles[o++]);
+
+    obstacles.push_back(new obstacle(3000, 550, 200, 100, ":/images/mossybrick.png", 3000, 3200, 5));  // Brick 6
+    baselevel::addobstacle(obstacles[o++]);
 
 }
