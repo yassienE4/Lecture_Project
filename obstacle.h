@@ -12,9 +12,9 @@ class obstacle:public QGraphicsPixmapItem,public QObject
 public:
     // constructor to set specefic values for position and size
     // obstacle(int x, int y, int width, int height,const QString& imagePath);
-     obstacle(int x, int y, int width, int height, const QString& imagePath, QObject* parent = nullptr);
+    obstacle(int x, int y, int width, int height, const QString& imagePath, QObject* parent = nullptr);
      // constructor for moving obstacle:
-     obstacle(int x, int y, int width, int height, const QString& imagePath, int startX, int endX, int speed, QObject* parent = nullptr);
+    obstacle(int x, int y, int width, int height, const QString& imagePath, int startX, int endX, int speed, QObject* parent = nullptr);
 
 
     // create getter functions for the dimensions of static objects

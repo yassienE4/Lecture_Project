@@ -18,6 +18,7 @@ public:
     void init1();
     void init2();
     void init3();
+
 };
 
 #endif // LEVEL5_H
