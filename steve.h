@@ -54,7 +54,7 @@ public:
     //for skin select
     static int skin_static;
 
-
+void equipGun();
 
 private:
     QPixmap playerpixmap;

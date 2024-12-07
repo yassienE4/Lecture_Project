@@ -139,24 +139,60 @@ void shop::purchase1(QPushButton * buy_arrow)
 
 
 }
-void shop::purchaseGun(QPushButton * buy_gun)
-{
-    if (totaldiamonds >= 30 && !gunbought)
-    {
+// void shop::purchaseGun(QPushButton * buy_gun)
+// {
+//     if (totaldiamonds >= 30 && !gunbought)
+//     {
+//         if (items().contains(insufficientFunds))
+//             removeItem(insufficientFunds);
+//         totaldiamonds -= 30;
+//         textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
+//         gunbought = true;
+//         buy_gun->setEnabled(false);
+//         QSoundEffect *purchasesound = new QSoundEffect(this);
+//         purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+//         purchasesound->setVolume(1);
+//         purchasesound->play();
+//     }
+//     else
+//     {
+//         addItem(insufficientFunds);
+//     }
+//     if (!gunPurchased) {
+//         gunPurchased = true;
+//         emit gunPurchasedSignal(); // Notify that the gun has been purchased
+//         buy_gun->setEnabled(false); // Disable the button after purchase (optional)
+//     }
+// }
+
+void shop::purchaseGun(QPushButton* buy_gun) {
+    if (totaldiamonds >= 30 && !gunbought) {
         if (items().contains(insufficientFunds))
             removeItem(insufficientFunds);
         totaldiamonds -= 30;
         textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
         gunbought = true;
+
+        // Emit a signal to notify the game level
+        emit gunPurchasedSignal();
+
+        // Disable the button after purchase
         buy_gun->setEnabled(false);
-        QSoundEffect *purchasesound = new QSoundEffect(this);
+
+        QSoundEffect* purchasesound = new QSoundEffect(this);
         purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
         purchasesound->setVolume(1);
         purchasesound->play();
-    }
-    else
-    {
+    } else {
         addItem(insufficientFunds);
     }
 }
 
+
+bool shop::gunPurchased = false;
+
+// In shop.cpp
+
+bool shop::isGunPurchased() const {
+    return gunPurchased; // Return the value of gunPurchased
+}

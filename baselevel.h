@@ -27,8 +27,10 @@
 #include "fireball.h"
 #include "ghast.h"
 #include "shop.h"
-// #include"gun.h"
-// #include"bullet.h"
+#include"gun.h"
+#include"bullet.h"
+#include<vector>
+
 
 class baselevel : public QObject
 {
@@ -79,11 +81,20 @@ public:
     void moveBall();
     void checkballcollisions();
     void checkballobstacle();
+
+    void shootgun();
+    void movebullets();
+    void checkbullethitenemy();
+    void checkShopPurchases(shop*);
+    void setupConnections(shop* myShop);
+
 public slots:
     // void spawn_enemy();
     //void endGame();
+     void onGunPurchased();
 private slots:
     void update();
+    void replaceArrowWithGun();
 protected:
     //protected so levels can access them
     QList<obstacle*> obstacles;
@@ -116,9 +127,13 @@ private:
     int rcount;
     int lcount;
 
+    bool gunPurchased;
+void enableGun();
+bool arrowRemoved = false;
+QGraphicsPixmapItem* arrowItem = nullptr;
 
 
-
+std::vector<bullet*> bullets;
 
     health h;
     QElapsedTimer invincibilityTimer; // tracks grace period

@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QPointF>
 #include <QSoundEffect>
+#include<QGraphicsScene>
+#include<QGraphicsItem>
 
 
 baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nullptr), m_game(game)
@@ -17,6 +19,7 @@ baselevel::baselevel(QGraphicsScene *scene, Game* game) : QObject(), m_steve(nul
     // spawnTimer->start(2000);
 
     isopen = true;
+
 
 
 
@@ -310,6 +313,11 @@ void baselevel::addbow()
 
 void baselevel::shootarrow()
 {
+    if (gunPurchased) {
+        shootgun();
+        return;
+    }
+
     bowsound->setSource(QUrl("qrc:/sounds/bowsound.wav"));
     bowsound->setVolume(1);
     bowsound->play();
@@ -319,6 +327,90 @@ void baselevel::shootarrow()
     arrows.push_back(new arrow(x,y,d));
     m_scene->addItem(arrows.back());
 
+}
+void baselevel::shootgun() {
+    // Play gun sound
+    // QSoundEffect* gunsound = new QSoundEffect(this);
+    // //gunsound->setSource(QUrl("qrc:/sounds/gunsound.wav"));
+    // gunsound->setVolume(1);
+    // gunsound->play();
+
+    // Get player position and direction
+    int x = m_steve->x();
+    int y = m_steve->y();
+    bool direction = m_steve->getdirection();
+
+    // Create a new bullet and add it to the scene
+    auto* new_bullet = new bullet(x, y, direction);
+    m_scene->addItem(new_bullet);
+
+    // Track the bullet in the vector
+    bullets.push_back(new_bullet);
+}
+
+
+void baselevel::movebullets() {
+    for (auto it = bullets.begin(); it != bullets.end();) {
+        bullet* current_bullet = *it;
+
+        // Move bullet based on its direction
+        if (current_bullet->get_bullet_direction()) {
+            current_bullet->moveBy(10, 0); // Move right
+        } else {
+            current_bullet->moveBy(-10, 0); // Move left
+        }
+
+        // Apply gravity (if part of bullet behavior)
+        current_bullet->bullet_gravity();
+
+        // Remove bullet if off-screen
+        if (current_bullet->x() < 0 || current_bullet->x() > m_scene->width()) {
+            m_scene->removeItem(current_bullet);
+            delete current_bullet;
+            it = bullets.erase(it); // Remove from vector
+        } else {
+            ++it;
+        }
+    }
+}
+
+void baselevel::checkbullethitenemy() {
+    for (auto it = bullets.begin(); it != bullets.end();) {
+        bullet* bullet = *it;
+        QRectF bulletBox = bullet->boundingRect().translated(bullet->pos());
+        bool bulletDeleted = false;
+
+        for (auto enemyIt = enemies.begin(); enemyIt != enemies.end();) {
+            moving_enemy* enemy = *enemyIt;
+            QRectF enemyBox = enemy->boundingRect().translated(enemy->pos());
+
+            if (bulletBox.intersects(enemyBox)) {
+                m_scene->removeItem(bullet);
+                m_scene->removeItem(enemy);
+                delete bullet;
+                delete enemy;
+                enemyIt = enemies.erase(enemyIt);
+                it = bullets.erase(it);
+                bulletDeleted = true;
+                break;
+            } else {
+                ++enemyIt;
+            }
+        }
+
+        if (!bulletDeleted) {
+            ++it;
+        }
+    }
+}
+void baselevel::onGunPurchased() {
+    gunPurchased = true; // Update the level's state
+}
+
+void baselevel::checkShopPurchases(shop* myShop) {
+    if (myShop->isGunPurchased()) { // Use a pointer or reference
+        gunPurchased = true;
+    }
 }
 
 void baselevel::movearrows()
@@ -527,6 +619,8 @@ void baselevel::update()
         moveHorizontally();
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
+        movebullets();
+        //movebullets();
 
         QPointF scenePos = m_game->mapToScene(0,0);
         h.setPos(scenePos.x(), scenePos.y());
@@ -909,3 +1003,34 @@ void baselevel::checkspikes()
         }
     }
 }
+
+void baselevel::setupConnections(shop* myShop) {
+    connect(myShop, &shop::gunPurchasedSignal, this, &baselevel::replaceArrowWithGun);
+}
+
+
+void baselevel::replaceArrowWithGun() {
+    if (!arrowRemoved) {
+        arrowRemoved = true; // Update the state
+        enableGun();         // Activate gun functionality
+        qDebug() << "Arrow replaced with gun.";
+    }
+}
+
+void baselevel::enableGun() {
+    qDebug() << "Gun has been enabled.";
+
+    // Remove the arrow from the scene
+    if (arrowItem) {
+        m_scene->removeItem(arrowItem); // Remove arrow from the scene
+        delete arrowItem;      // Free memory
+        arrowItem = nullptr;   // Nullify the pointer
+    }
+
+    // Equip the gun for Steve
+    if (m_steve) {
+        m_steve->equipGun(); // Equip gun for Steve
+    }
+}
+
+
