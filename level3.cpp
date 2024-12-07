@@ -39,6 +39,17 @@ void level3::initialize()
     obstacles.push_back(new obstacle(1800,650,200,50,":/images/woodenblock.png")); // block at 1800,650
     baselevel::addobstacle(obstacles[o++]);  //(newchanges)
 
+    obstacles.push_back(new obstacle(2100,670,200,50,":/images/woodenblock.png")); // block at 1800,650
+    baselevel::addobstacle(obstacles[o++]);  //wooden block 6
+    obstacles.push_back(new obstacle(2300,620,200,50,":/images/woodenblock.png")); // block at 1800,650
+    baselevel::addobstacle(obstacles[o++]);  //wooden block 7
+    obstacles.push_back(new obstacle(2500,570,200,50,":/images/woodenblock.png")); // block at 1800,650
+    baselevel::addobstacle(obstacles[o++]);  //wooden block 8
+    obstacles.push_back(new obstacle(3200,670,200,100,":/images/woodenblock.png")); // block at 1800,650
+    baselevel::addobstacle(obstacles[o++]);  //wooden block 9
+    obstacles.push_back(new obstacle(3400,670,200,100,":/images/woodenblock.png")); // block at 1800,650
+    baselevel::addobstacle(obstacles[o++]);  //wooden block 10
+
 
     //adding enemy
     enemies.push_back(new moving_enemy(500,520,600,400)); // spawns enemy at pos 500(x),280(y) and moves from 400-600x
@@ -59,6 +70,14 @@ void level3::initialize()
     diamond.push_back(new diamonds(1850,550)); // diamond at 1850(x),650(y)
     baselevel::adddiamond(diamond[4]);
 
+    diamond.push_back(new diamonds(2100,570)); // diamond at 1850(x),650(y)
+    baselevel::adddiamond(diamond[5]);
+    diamond.push_back(new diamonds(2300,520)); // diamond at 1850(x),650(y)
+    baselevel::adddiamond(diamond[6]);
+    diamond.push_back(new diamonds(2500,470)); // diamond at 1850(x),650(y)
+    baselevel::adddiamond(diamond[7]);
+
+
     //adding spikes
     int s = 0;
     m_spikes.push_back(new spikes(1000,650,50,69));
@@ -68,11 +87,30 @@ void level3::initialize()
     m_spikes.push_back(new spikes(1100,650,50,69));
     baselevel::addspikes(m_spikes[s++]);
 
+    m_spikes.push_back(new spikes(2800,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 4
+    m_spikes.push_back(new spikes(2850,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 5
+    m_spikes.push_back(new spikes(2900,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 6
+    m_spikes.push_back(new spikes(2950,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 6
+
+    // adding spikes in between block
+    m_spikes.push_back(new spikes(3200,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 7
+    m_spikes.push_back(new spikes(3250,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 8
+    m_spikes.push_back(new spikes(3300,650,50,69));
+    baselevel::addspikes(m_spikes[s++]); //spike number 9
+
     //adding ghasts
     ghasts.push_back(new ghast(1000,0,false));
     baselevel::addghast(ghasts[0]);
-    ghasts.push_back(new ghast(1500,400,true)); // spawns a ghast near new wooden blocks and diamonds
+    ghasts.push_back(new ghast(1500,300,true)); // spawns a ghast near new wooden blocks and diamonds
     baselevel::addghast(ghasts[1]);
+    ghasts.push_back(new ghast(1000,0,false));
+    baselevel::addghast(ghasts[2]);
 
 }
 
