@@ -77,6 +77,7 @@ void level2::initialize()
     // Add moving obstacles
     MovingObstacle* movingObstacle = new MovingObstacle(300, 300, 60, 60, ":/images/block.png", 2, 0);
     obstacles.push_back(movingObstacle);
+    m_obstacles.push_back(movingObstacle);
     baselevel::addobstacle(obstacles.back());
 
     // Simulate movement
