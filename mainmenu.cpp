@@ -72,6 +72,13 @@ mainmenu::mainmenu(Game* game): QGraphicsScene()
                        "}"
         );
 
+    QFont customFont(fontFamily, 20);
+    textItem = new QGraphicsTextItem("hint: hold c to use your weapon (default is bow and arrow)");
+    textItem->setFont(customFont);
+    textItem->setPos(rand() % 180 + 100,rand() % 180 + 100);
+    textItem->setDefaultTextColor(Qt::white);
+    addItem(textItem);
+
     QPushButton* shop_Button = new QPushButton();
     shop_Button->setFixedSize(buttonimage.size());
     shop_Button->move(448,400);
