@@ -103,5 +103,17 @@ void level2::initialize()
 
 
 
+<<<<<<< Updated upstream
+=======
+    // Add moving obstacles
+    MovingObstacle* movingObstacle = new MovingObstacle(300, 600, 60, 60, ":/images/block.png", 200, 400);
+    obstacles.push_back(movingObstacle);
+    m_obstacles.push_back(movingObstacle);
+    baselevel::addobstacle(obstacles.back());
+
+
+
+
+>>>>>>> Stashed changes
 
 }

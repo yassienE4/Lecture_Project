@@ -64,6 +64,7 @@ public:
 
     void spawn_enemy(moving_enemy* enemy);
     void moveEnemy();
+    void moveObstacle();
     void checkenemycollision();
     void shootarrow();
     void movearrows();
@@ -102,6 +103,10 @@ protected:
     QList<spikes*> m_spikes;
     QList<ghast*> ghasts;
     QList<bullet*> bullets;
+<<<<<<< Updated upstream
+=======
+    QList<MovingObstacle*> m_obstacles;
+>>>>>>> Stashed changes
     portal* nportal;
     int floorlevel=0;
     int graceperiod = 1000;

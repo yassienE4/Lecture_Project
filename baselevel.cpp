@@ -690,6 +690,7 @@ void baselevel::update()
 
         m_steve->update();
         moveEnemy();
+        moveObstacle();
         checkenemycollision();
         checkspikes();
         movearrows();
@@ -1050,6 +1051,29 @@ void baselevel::moveEnemy()
 
 }
 
+void baselevel::moveObstacle()
+{
+    for(auto move : m_obstacles)
+    {
+        if(move->x() == move->getx1())
+        {
+            move->setdir(1);
+        }
+        if(move->x() == move->getx2())
+        {
+            move->setdir(0);
+        }
+        if(move->getdir())
+        {
+            move->moveBy(1,0);
+        }
+        else
+        {
+            move->moveBy(-1,0);
+        }
+    }
+}
+
 void baselevel::checkenemycollision()
 {
     QRectF steveRightBox = m_steve->mapRectToScene(m_steve->getrightBoundingBox());
@@ -1125,3 +1149,15 @@ void baselevel::enableGun() {
 }
 
 
+<<<<<<< Updated upstream
+=======
+// void baselevel::addObstacle(obstacle* obstacle) {
+//     m_obstacles.push_back(obstacle);
+//     m_scene->addItem(obstacle); // Add obstacle to the scene
+// }
+
+
+// QGraphicsScene& baselevel::getScene() {
+//     return m_scene; // Return the reference
+// }
+>>>>>>> Stashed changes
