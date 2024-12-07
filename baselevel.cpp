@@ -30,6 +30,7 @@ baselevel::~baselevel()
     qDebug() << "destructer called";
     delete m_steve;
     m_scene->clear();
+    disconnect(); // if glitch remove this line
     delete m_scene;
     delete m_game;
     delete timer;
