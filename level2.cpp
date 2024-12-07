@@ -254,12 +254,12 @@ void level2::initialize()
     MovingObstacle* movingObstacle1 = new MovingObstacle(1400, 450, 150, 80, ":/images/block.png", 1300, 1500);
     obstacles.push_back(movingObstacle1);
     m_obstacles.push_back(movingObstacle1);
-    baselevel::addobstacle(obstacles.back());
+    baselevel::addobstacle(obstacles[o++]);
 
     MovingObstacle* movingObstacle2 = new MovingObstacle(2100, 500, 200, 100, ":/images/block.png", 2000, 2200);
     obstacles.push_back(movingObstacle2);
     m_obstacles.push_back(movingObstacle2);
-    baselevel::addobstacle(obstacles.back());
+    baselevel::addobstacle(obstacles[o++]);
 
     // Additional stepping bricks for high areas
     obstacles.push_back(new obstacle(2500, 400, 100, 50, ":/images/mossybrick.png")); // Stepping stone for lava area
