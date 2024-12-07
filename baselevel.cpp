@@ -87,6 +87,9 @@ void baselevel::initialize()
         maxjump = 0;
     jumpcount = 0;
 
+    if(shop::gunbought)
+        replaceArrowWithGun();
+
     ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
     ghastsound->setVolume(1);
     fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));

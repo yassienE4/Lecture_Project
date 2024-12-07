@@ -2,8 +2,8 @@
 
 bullet::bullet(int x, int y, bool d)
 {
-    right_bullet = QPixmap(":/images/bulletright");
-    left_bullet = QPixmap(":/images/bulletleft ");
+    right_bullet = QPixmap(":/images/bulletright.png");
+    left_bullet = QPixmap(":/images/bulletleft .png");
     if(d)
     {   setPixmap(right_bullet.scaled(100, 28, Qt::KeepAspectRatio));
         setPos(x+40,y+40);}
