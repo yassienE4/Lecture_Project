@@ -182,11 +182,9 @@ void level5::init4()
         obstacles.push_back(movingObstacle);
         m_obstacles.push_back(movingObstacle);
         baselevel::addobstacle(obstacles[o++]);
-        //if(i !=2)
-        //{
+
         ghasts.push_back(new ghast(xPos-sync,0,true));
         baselevel::addghast(ghasts.back());
-        //}
     }
 
     obstacles.push_back(new obstacle(1400+m_startpos,600,100,100,":/images/sculkbrick.png"));
