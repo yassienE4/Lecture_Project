@@ -231,8 +231,8 @@ void level2::initialize()
     obstacles.push_back(new obstacle(1100, 400, 150, 100, ":/images/mossybrick.png")); // Stepping stone to high area
     baselevel::addobstacle(obstacles[o++]);
 
-    obstacles.push_back(new obstacle(1500, 500, 200, 100, ":/images/mossybrick.png")); // Higher platform
-    baselevel::addobstacle(obstacles[o++]);
+    // obstacles.push_back(new obstacle(1500, 500, 200, 100, ":/images/mossybrick.png")); // Higher platform
+    // baselevel::addobstacle(obstacles[o++]);
 
     obstacles.push_back(new obstacle(1900, 350, 200, 100, ":/images/mossybrick.png")); // Far high platform
     baselevel::addobstacle(obstacles[o++]);
@@ -289,6 +289,23 @@ void level2::initialize()
 
     diamond.push_back(new diamonds(3000, 400)); // Reward on last platform
     baselevel::adddiamond(diamond[d++]);
+
+    // Adding enemies
+    enemies.push_back(new moving_enemy(500, 520, 600, 400)); // On the first platform
+    baselevel::spawn_enemy(enemies[0]);
+
+    enemies.push_back(new moving_enemy(800, 420, 900, 700)); // On the second platform
+    baselevel::spawn_enemy(enemies[1]);
+
+    enemies.push_back(new moving_enemy(1500, 420, 1550, 1450)); // On the moving obstacle at (1400,450)
+    baselevel::spawn_enemy(enemies[2]);
+
+    enemies.push_back(new moving_enemy(1900, 270, 2000, 1800)); // On the high platform
+    baselevel::spawn_enemy(enemies[3]);
+
+    enemies.push_back(new moving_enemy(2900, 370, 3000, 2800)); // On the last platform near lava
+    baselevel::spawn_enemy(enemies[4]);
+
 }
 
 
