@@ -297,14 +297,14 @@ void level2::initialize()
     enemies.push_back(new moving_enemy(800, 420, 900, 700)); // On the second platform
     baselevel::spawn_enemy(enemies[1]);
 
-    enemies.push_back(new moving_enemy(1500, 420, 1550, 1450)); // On the moving obstacle at (1400,450)
-    baselevel::spawn_enemy(enemies[2]);
+    // enemies.push_back(new moving_enemy(1500, 420, 1550, 1450)); // On the moving obstacle at (1400,450)
+    // baselevel::spawn_enemy(enemies[2]);
 
     // enemies.push_back(new moving_enemy(1900, 270, 2000, 1800)); // On the high platform
-    // baselevel::spawn_enemy(enemies[3]);
+    // baselevel::spawn_enemy(enemies[2]);
 
     enemies.push_back(new moving_enemy(2900, 370, 3000, 2800)); // On the last platform near lava
-    baselevel::spawn_enemy(enemies[3]);
+    baselevel::spawn_enemy(enemies[2]);
 
 }
 
