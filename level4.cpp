@@ -18,5 +18,15 @@ void level4::initialize()
     baselevel::floorlevel = 720-200;
 
     baselevel::initialize();
+    int o =0;
+    obstacles.push_back(new obstacle(0,710,5000,10,":/images/groundimage.png")); // ground
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(0,0,1,1000,":/images/groundimage.png")); // left wall
+    baselevel::addobstacle(obstacles[o++]);
+    obstacles.push_back(new obstacle(5000,0,1,1000,":/images/groundimage.png")); // right wall
+    baselevel::addobstacle(obstacles[o++]);
+
+    ghasts.push_back(new ghast(1000,0,true)); // true makes it a dispenser
+    baselevel::addghast(ghasts[0]);
 }
 

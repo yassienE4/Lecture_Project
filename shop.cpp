@@ -46,7 +46,7 @@ shop::shop(Game* game)
 
     QPushButton* back_Button = new QPushButton();
     back_Button->setFixedSize(buttonimage.size());
-    back_Button->move(850,600);
+    back_Button->move(850,500);
     back_Button->setText("Back");
     back_Button->setObjectName(QString("back_Button"));
     back_Button->setToolTip("Opens main menu");
@@ -109,6 +109,35 @@ shop::shop(Game* game)
 
     if(gunbought)
     {   buy_gun->setEnabled(false);
+        return;}
+
+
+    QPushButton* buy_jump = new QPushButton();
+    buy_jump->setFixedSize(buttonimage.size());
+    buy_jump->move(850, 600); // Position for gun button
+    buy_jump->setText("Buy Double Jump (50)");
+    buy_jump->setObjectName(QString("buy_jump"));
+    buy_jump->setToolTip("Purchase Double Jump");
+    buy_jump->setStyleSheet(
+        "QPushButton {"
+        "    border: none;"
+        "    background-image: url(:/images/mcbuttonimage);"
+        "    background-repeat: no-repeat;"
+        "    background-position: center;"
+        "    color: white;"
+        "    font-family: '" + fontFamily + "';"
+                       "    font-size: 16px;"
+                       "    text-align: center;"
+                       "}"
+        );
+    addWidget(buy_jump);
+    connect(buy_jump, &QPushButton::clicked, this, [this, buttonsound, buy_jump]() {
+        buttonsound->play();
+        purchasedoublejump(buy_jump);
+    });
+
+    if(doublejumpbought)
+    {   buy_jump->setEnabled(false);
         return;}
 }
 void shop::back()
@@ -188,6 +217,7 @@ void shop::purchaseGun(QPushButton* buy_gun) {
     }
 }
 
+<<<<<<< HEAD
 
 bool shop::gunPurchased = false;
 
@@ -196,3 +226,26 @@ bool shop::gunPurchased = false;
 bool shop::isGunPurchased() const {
     return gunPurchased; // Return the value of gunPurchased
 }
+=======
+void shop::purchasedoublejump(QPushButton * buy_gun)
+{
+    if (totaldiamonds >= 50 && !doublejumpbought)
+    {
+        if (items().contains(insufficientFunds))
+            removeItem(insufficientFunds);
+        totaldiamonds -= 50;
+        textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
+        doublejumpbought = true;
+        buy_gun->setEnabled(false);
+        QSoundEffect *purchasesound = new QSoundEffect(this);
+        purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+        purchasesound->setVolume(1);
+        purchasesound->play();
+    }
+    else
+    {
+        addItem(insufficientFunds);
+    }
+}
+
+>>>>>>> effa7394409c7908543ea16e4266c4a56755e350

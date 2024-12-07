@@ -29,6 +29,7 @@ baselevel::~baselevel()
 {
     qDebug() << "destructer called";
     delete m_steve;
+    m_scene->clear();
     delete m_scene;
     delete m_game;
     delete timer;
@@ -37,6 +38,14 @@ baselevel::~baselevel()
     delete back_button1;
     delete proxyButton;
     delete scoreText;
+
+    //delete sounds
+
+    delete dingsound;
+    delete bowsound;
+    delete fireballsound;
+    delete ghastsound;
+
 
 }
 
@@ -69,11 +78,28 @@ void baselevel::initialize()
 
     fontId = QFontDatabase::addApplicationFont(":/fonts/mcfont.ttf");
     fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+    graceperiod = 1000;
+    inair= false;
+
+    if(shop::doublejumpbought)
+        maxjump = 1;
+    else
+        maxjump = 0;
+    jumpcount = 0;
+
+    ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
+    ghastsound->setVolume(1);
+    fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
+    fireballsound->setVolume(1);
 
 
 }
 void baselevel::checkdiamondcolide()
 {
+    QSoundEffect *diamondsound = new QSoundEffect(this);
+    diamondsound->setSource(QUrl("qrc:/sounds/levelup.wav"));
+    diamondsound->setVolume(1);
+
     for(auto * dia : diamond)
     {
         QRectF diamondBox = dia->boundingRect().translated(dia->pos());
@@ -87,6 +113,7 @@ void baselevel::checkdiamondcolide()
             score++; // Increment score
             scoreText->setPlainText(QString("Score: %1").arg(score)); // Update displayed score
             dia->setPos(100000, 10000); // Move diamond out of view or delete it
+            diamondsound->play();
             // if(dia)
             // {delete dia; dia= nullptr;}
 
@@ -228,7 +255,12 @@ void baselevel::keyPressEvent(QKeyEvent * e)
     {
             spacepressed = true;
             m_steve->setstate(Jumping);
-            m_steve->setvelocity(-15);
+            if(!inair)
+            {
+                m_steve->setvelocity(-15);
+                jumpcount++;
+            }
+
     }
     if(e->key() == Qt::Key_Escape)
     {
@@ -502,49 +534,65 @@ void baselevel::addghast(ghast* g)
 }
 void baselevel::shootball()
 {
-    ghastsound->setSource(QUrl("qrc:/sounds/ghastcharge.wav"));
-    ghastsound->setVolume(1);
-    fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
-    fireballsound->setVolume(1);
-
     //check if ghast on screen to play sound
     QRectF viewRect = m_game->mapToScene(m_game->viewport()->rect()).boundingRect();
-
+    bool soundplayed = false;
     for(auto gh : ghasts)
     {
-        QRectF ghastRect = gh->boundingRect().translated(gh->pos());
+
         if(gh->returnball() == nullptr && gh->cooldown.elapsed() > 2000) // need to add an elasped timer
         {
             gh->setball(new fireball(gh->x(),gh->y()));
             gh->setpix(2);
+            bool shown = false;
+            QRectF ghastRect = gh->boundingRect().translated(gh->pos());
             if(ghastRect.intersects(viewRect))
             {
                 gh->shown = true;
-                ghastsound->play();
+                if(!gh->isdispenser())
+                {
+                    shown = gh->shown;
+                    ghastsound->play();
+                }
+                else
+                {
+                    if(!soundplayed)
+                        fireballsound->play();
+                    soundplayed = true;
+                }
             }
             else
                 gh->shown = false;
-            QTimer::singleShot(300, this, [this, gh]() {
-                if(gh->shown)
-                    fireballsound->play();
-                gh->setpix(1);
+
+            if(!gh->isdispenser())
+            {
+                QTimer::singleShot(300, this, [this, gh,shown]() {
+                    if(shown)
+                        fireballsound->play();
+                    gh->setpix(1);
+                    gh->cooldown.restart();
+                });
+            }
+            else
                 gh->cooldown.restart();
-            });
+
+
             m_scene->addItem(gh->returnball());
-        }
-        else
-        {
-            //
         }
     }
 }
+
 void baselevel::moveBall()
 {
     for(auto gh : ghasts)
     {
         if(gh->returnball() != nullptr)
         {
-            gh->returnball()->moveBy(-5,0);
+            if(gh->isdispenser())
+                gh->returnball()->moveBy(0,5);
+            else
+                gh->returnball()->moveBy(-5,0);
+
         }
     }
 }
@@ -687,19 +735,31 @@ void baselevel::moveHorizontally()
 void baselevel::moveVertically()
 {
 
-    //static int previousFloor = 380;
+
 
     obstacle* ground = m_steve->getGround(obstacles);
     int floor;
     if(ground)
     {
         floor = ground->y() + ground->boundingRect().y() - m_steve->boundingRect().height();
-        //previousFloor = floor;
-        //floor = ground->y() + ground->boundingRect().y() - ground->getheight();
+        inair=false;
+        jumpcount = 0;
     }
     else
+    {
         floor = floorlevel;
-        //floor = previousFloor;
+        if(m_steve->y()==520)
+        {
+            inair=false;
+            jumpcount = 0;
+        }
+        else
+        {
+            if(jumpcount == maxjump)
+                inair=true;
+        }
+    }
+
 
 
 

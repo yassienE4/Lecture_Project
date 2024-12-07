@@ -13,10 +13,13 @@ public:
     int getwidth() const;
     int getheight() const;
 
+
+
 private:
     // dimensions of obstacle
     int width;
     int height;
+
 
 };
 

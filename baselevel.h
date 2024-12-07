@@ -105,6 +105,8 @@ protected:
     QList<ghast*> ghasts;
     portal* nportal;
     int floorlevel=0;
+    int graceperiod = 1000;
+    health h;
 
 
 
@@ -126,6 +128,10 @@ private:
     int frameCounter;
     int rcount;
     int lcount;
+    bool inair;
+    int jumpcount;
+    int maxjump;
+
 
     bool gunPurchased;
 void enableGun();
@@ -135,9 +141,8 @@ QGraphicsPixmapItem* arrowItem = nullptr;
 
 std::vector<bullet*> bullets;
 
-    health h;
     QElapsedTimer invincibilityTimer; // tracks grace period
-    const int graceperiod = 1000; // grace period
+    // int graceperiod = 1000; i made it protected
     int score;
     QGraphicsTextItem* scoreText;
 
