@@ -82,6 +82,11 @@ void level2::initialize()
     m_obstacles.push_back(movingObstacle);
     baselevel::addobstacle(obstacles.back());
 
+    //adding lava
+    m_spikes.push_back(new spikes(100,582+69,100,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.back()->makelava();
+
 
 
 

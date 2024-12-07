@@ -9,6 +9,7 @@ public:
     spikes(int x, int y, int width, int height);
     int getwidth() const;
     int getheight() const;
+    void makelava();
 private:
     // dimensions of obstacle
     int width;

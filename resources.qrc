@@ -90,6 +90,7 @@
         <file>images/try_gun_left.png</file>
         <file>images/try_gun_right.jpeg</file>
         <file>images/bulletright.png</file>
+        <file>images/lava.png</file>
     </qresource>
     <qresource prefix="/fonts">
         <file>mcfont.ttf</file>

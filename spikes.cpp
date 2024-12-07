@@ -16,3 +16,8 @@ int spikes::getwidth() const{
 int spikes:: getheight()const {
     return height;
 }
+
+void spikes::makelava()
+{
+    setPixmap(QPixmap(":/images/lava.png").scaled(width, height));
+}
