@@ -69,7 +69,7 @@ shop::shop(Game* game)
     });
 
     //displaying diamonds
-    QFont customFont(fontFamily, 24);
+    QFont customFont(fontFamily, 50);
     textItem = new QGraphicsTextItem("Total Diamonds:" + QString::fromStdString(to_string(totaldiamonds)));
     textItem->setFont(customFont);
     textItem->setPos(0,0);
