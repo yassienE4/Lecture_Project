@@ -155,6 +155,7 @@ private:
     QSoundEffect *dingsound = new QSoundEffect(this);
 
     bow * bowitem;
+    gun * gunitem;
 
     // ghast and fireball
     QSoundEffect *ghastsound = new QSoundEffect(this);

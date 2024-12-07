@@ -15,12 +15,6 @@ public:
 private:
     QPixmap right_gun;
     QPixmap left_gun;
-    QPixmap right1_gun;
-    QPixmap left1_gun;
-    QPixmap right2_gun;
-    QPixmap left2_gun;
-    QPixmap right3_gun;
-    QPixmap left3_gun;
     bool dir_gun;
 };
 

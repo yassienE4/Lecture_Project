@@ -95,6 +95,8 @@ void baselevel::initialize()
     fireballsound->setSource(QUrl("qrc:/sounds/ghastball.wav"));
     fireballsound->setVolume(1);
 
+    gunitem = nullptr;
+
 
 }
 void baselevel::checkdiamondcolide()
@@ -337,10 +339,21 @@ void baselevel::addbow()
     int x = m_steve->x();
     int y = m_steve->y();
     bool d = m_steve->getdirection();
+    if(shop::gunbought)
+    {
+        if(!gunitem)
+        {
+            gunitem = new gun(x,y,d);
+            m_scene->addItem(gunitem);
+        }
+    }
+    else
+    {
     if(!bowitem)
     {
         bowitem = new bow(x,y,d);
         m_scene->addItem(bowitem);
+    }
     }
 
 
@@ -669,7 +682,7 @@ void baselevel::update()
         checkdiamondcolide();
         m_game->ensureVisible(m_steve,500,0);
         movebullets();
-        //movebullets();
+        checkbullethitenemy();
 
         QPointF scenePos = m_game->mapToScene(0,0);
         h.setPos(scenePos.x(), scenePos.y());
@@ -897,6 +910,8 @@ void baselevel::animate()
 
     if(charging)
     {
+        if(!shop::gunbought)
+        {
         addbow();
         if(m_steve->getdirection())
         {   m_steve->setpix(7);
@@ -921,6 +936,21 @@ void baselevel::animate()
                 bowitem->setpix(8);
 
             return;}
+        }
+        else
+        {
+            addbow();
+            if(m_steve->getdirection())
+            {
+                m_steve->setpix(7);
+                gunitem->changedirection_gun(m_steve->x(),m_steve->y(),1);
+            }
+            else
+            {
+                m_steve->setpix(8);
+                gunitem->changedirection_gun(m_steve->x(),m_steve->y(),0);
+            }
+        }
     }
     else
     {
@@ -928,6 +958,12 @@ void baselevel::animate()
         {
             delete bowitem;
             bowitem = nullptr;
+            m_steve->setstate(Static);
+        }
+        if(gunitem)
+        {
+            delete gunitem;
+            gunitem = nullptr;
             m_steve->setstate(Static);
         }
     }
@@ -1086,10 +1122,6 @@ void baselevel::enableGun() {
         arrowItem = nullptr;   // Nullify the pointer
     }
 
-    // Equip the gun for Steve
-    if (m_steve) {
-        m_steve->equipGun(); // Equip gun for Steve
-    }
 }
 
 

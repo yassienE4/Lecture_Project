@@ -230,10 +230,7 @@ obstacle *steve::getGround(const QList<obstacle *> & obstacles)
     }
     return nullptr;
 }
-void steve::equipGun() {
-    // Code to equip the gun, e.g., changing the image or state
-    qDebug() << "Gun equipped!";
-}
+
 
 //testing bounding box
 /*
