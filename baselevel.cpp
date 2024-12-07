@@ -1145,12 +1145,8 @@ void baselevel::enableGun() {
         delete arrowItem;      // Free memory
         arrowItem = nullptr;   // Nullify the pointer
     }
-
 }
 
-
-<<<<<<< Updated upstream
-=======
 // void baselevel::addObstacle(obstacle* obstacle) {
 //     m_obstacles.push_back(obstacle);
 //     m_scene->addItem(obstacle); // Add obstacle to the scene
@@ -1160,4 +1156,5 @@ void baselevel::enableGun() {
 // QGraphicsScene& baselevel::getScene() {
 //     return m_scene; // Return the reference
 // }
->>>>>>> Stashed changes
+
+

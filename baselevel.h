@@ -30,6 +30,7 @@
 #include"gun.h"
 #include"bullet.h"
 #include<vector>
+#include "moving_obstacle.h"
 
 
 class baselevel : public QObject
@@ -103,10 +104,8 @@ protected:
     QList<spikes*> m_spikes;
     QList<ghast*> ghasts;
     QList<bullet*> bullets;
-<<<<<<< Updated upstream
-=======
     QList<MovingObstacle*> m_obstacles;
->>>>>>> Stashed changes
+
     portal* nportal;
     int floorlevel=0;
     int graceperiod = 1000;
