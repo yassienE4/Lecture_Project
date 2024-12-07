@@ -11,7 +11,7 @@
 #include "shop.h"
 
 int steve::skin_static = 1; // sets default skin to steve
-int shop::totaldiamonds = 30; // start at 0
+int shop::totaldiamonds = 0; // start at 0
 bool shop::arrowgravitybought = false; // didnt buy yet
 bool shop::gunbought = false;
 bool shop::doublejumpbought = false;
