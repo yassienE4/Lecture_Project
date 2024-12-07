@@ -72,8 +72,9 @@ shop::shop(Game* game)
     QFont customFont(fontFamily, 50);
     textItem = new QGraphicsTextItem("Total Diamonds:" + QString::fromStdString(to_string(totaldiamonds)));
     textItem->setFont(customFont);
-    textItem->setPos(0,0);
-    textItem->setDefaultTextColor(Qt::black);
+    textItem->setPos(360,360);
+    //textItem->setDefaultTextColor(Qt::black);
+    textItem->setDefaultTextColor(QColor(39,229,232));
     addItem(textItem);
 
     insufficientFunds = new QGraphicsTextItem("Not Enough Diamonds");

@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include "game.h"
 #include <QMediaPlayer>
+#include <QGraphicsTextItem>
 #include <QAudioOutput>
 
 class mainmenu : public QGraphicsScene
@@ -13,6 +14,7 @@ class mainmenu : public QGraphicsScene
         mainmenu(Game* game); // main menu takes game as a paramter
     private:
         Game* game;
+        QGraphicsTextItem *textItem = new QGraphicsTextItem(nullptr);
         QMediaPlayer *backgroundMusic;
         QAudioOutput *audioOutput;
     public slots:
