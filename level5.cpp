@@ -21,7 +21,7 @@ void level5::initialize()
     baselevel::floorlevel = 720-200;
 
     baselevel::initialize();
-    baselevel::graceperiod = 10000; // half the grace period
+    baselevel::graceperiod = 500; // half the grace period
     h.applydamage();
     h.applydamage(); // half health
 
