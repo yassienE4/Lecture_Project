@@ -52,20 +52,20 @@ void level3::initialize()
     diamond.push_back(new diamonds(900,400)); // diamond at 900,400
     baselevel::adddiamond(diamond[1]);
 
-    diamond.push_back(new diamonds(1250,670)); // diamond at 1250(x),670(y)(newchanges)
+    diamond.push_back(new diamonds(1250,570)); // diamond at 1250(x),670(y)(newchanges)
     baselevel::adddiamond(diamond[2]);
-    diamond.push_back(new diamonds(1550,550)); // diamond at 1550(x),550(y)
+    diamond.push_back(new diamonds(1550,500)); // diamond at 1550(x),550(y)
     baselevel::adddiamond(diamond[3]);
-    diamond.push_back(new diamonds(1850,650)); // diamond at 1850(x),650(y)
+    diamond.push_back(new diamonds(1850,550)); // diamond at 1850(x),650(y)
     baselevel::adddiamond(diamond[4]);
 
     //adding spikes
     int s = 0;
+    m_spikes.push_back(new spikes(1000,650,50,69));
+    baselevel::addspikes(m_spikes[s++]);
+    m_spikes.push_back(new spikes(1050,650,50,69));
+    baselevel::addspikes(m_spikes[s++]);
     m_spikes.push_back(new spikes(1100,650,50,69));
-    baselevel::addspikes(m_spikes[s++]);
-    m_spikes.push_back(new spikes(1150,650,50,69));
-    baselevel::addspikes(m_spikes[s++]);
-    m_spikes.push_back(new spikes(1150,650,50,69));
     baselevel::addspikes(m_spikes[s++]);
 
     //adding ghasts
