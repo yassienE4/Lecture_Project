@@ -343,9 +343,12 @@ void baselevel::addbow()
 
 }
 
+
+
+
 void baselevel::shootarrow()
 {
-    if (gunPurchased) {
+    if (shop::gunbought) {
         shootgun();
         return;
     }
@@ -435,15 +438,10 @@ void baselevel::checkbullethitenemy() {
         }
     }
 }
-void baselevel::onGunPurchased() {
-    gunPurchased = true; // Update the level's state
-}
 
-void baselevel::checkShopPurchases(shop* myShop) {
-    if (myShop->isGunPurchased()) { // Use a pointer or reference
-        gunPurchased = true;
-    }
-}
+
+
+
 
 void baselevel::movearrows()
 {
@@ -1064,9 +1062,7 @@ void baselevel::checkspikes()
     }
 }
 
-void baselevel::setupConnections(shop* myShop) {
-    connect(myShop, &shop::gunPurchasedSignal, this, &baselevel::replaceArrowWithGun);
-}
+
 
 
 void baselevel::replaceArrowWithGun() {

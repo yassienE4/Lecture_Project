@@ -85,13 +85,11 @@ public:
     void shootgun();
     void movebullets();
     void checkbullethitenemy();
-    void checkShopPurchases(shop*);
-    void setupConnections(shop* myShop);
+
 
 public slots:
     // void spawn_enemy();
     //void endGame();
-     void onGunPurchased();
 private slots:
     void update();
     void replaceArrowWithGun();
@@ -103,6 +101,7 @@ protected:
     QList<arrow*> arrows;
     QList<spikes*> m_spikes;
     QList<ghast*> ghasts;
+    QList<bullet*> bullets;
     portal* nportal;
     int floorlevel=0;
     int graceperiod = 1000;
@@ -133,13 +132,12 @@ private:
     int maxjump;
 
 
-    bool gunPurchased;
-void enableGun();
-bool arrowRemoved = false;
-QGraphicsPixmapItem* arrowItem = nullptr;
+    void enableGun();
+    bool arrowRemoved = false;
+    QGraphicsPixmapItem* arrowItem = nullptr;
 
 
-std::vector<bullet*> bullets;
+
 
     QElapsedTimer invincibilityTimer; // tracks grace period
     // int graceperiod = 1000; i made it protected

@@ -83,6 +83,8 @@ shop::shop(Game* game)
     if(arrowgravitybought)
     {   buy_arrow->setEnabled(false);
         return;}
+
+
     QPushButton* buy_gun = new QPushButton();
     buy_gun->setFixedSize(buttonimage.size());
     buy_gun->move(50, 600); // Position for gun button
@@ -168,65 +170,30 @@ void shop::purchase1(QPushButton * buy_arrow)
 
 
 }
-// void shop::purchaseGun(QPushButton * buy_gun)
-// {
-//     if (totaldiamonds >= 30 && !gunbought)
-//     {
-//         if (items().contains(insufficientFunds))
-//             removeItem(insufficientFunds);
-//         totaldiamonds -= 30;
-//         textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
-//         gunbought = true;
-//         buy_gun->setEnabled(false);
-//         QSoundEffect *purchasesound = new QSoundEffect(this);
-//         purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
-//         purchasesound->setVolume(1);
-//         purchasesound->play();
-//     }
-//     else
-//     {
-//         addItem(insufficientFunds);
-//     }
-//     if (!gunPurchased) {
-//         gunPurchased = true;
-//         emit gunPurchasedSignal(); // Notify that the gun has been purchased
-//         buy_gun->setEnabled(false); // Disable the button after purchase (optional)
-//     }
-// }
 
-void shop::purchaseGun(QPushButton* buy_gun) {
-    if (totaldiamonds >= 30 && !gunbought) {
+void shop::purchaseGun(QPushButton * buy_gun)
+{
+    if (totaldiamonds >= 30 && !gunbought)
+    {
         if (items().contains(insufficientFunds))
             removeItem(insufficientFunds);
         totaldiamonds -= 30;
         textItem->setPlainText("Total Diamonds: " + QString::fromStdString(to_string(totaldiamonds)));
         gunbought = true;
-
-        // Emit a signal to notify the game level
-        emit gunPurchasedSignal();
-
-        // Disable the button after purchase
         buy_gun->setEnabled(false);
-
-        QSoundEffect* purchasesound = new QSoundEffect(this);
+        QSoundEffect *purchasesound = new QSoundEffect(this);
         purchasesound->setSource(QUrl("qrc:/sounds/levelup.wav"));
         purchasesound->setVolume(1);
         purchasesound->play();
-    } else {
+    }
+    else
+    {
         addItem(insufficientFunds);
     }
 }
 
-<<<<<<< HEAD
 
-bool shop::gunPurchased = false;
 
-// In shop.cpp
-
-bool shop::isGunPurchased() const {
-    return gunPurchased; // Return the value of gunPurchased
-}
-=======
 void shop::purchasedoublejump(QPushButton * buy_gun)
 {
     if (totaldiamonds >= 50 && !doublejumpbought)
@@ -248,4 +215,4 @@ void shop::purchasedoublejump(QPushButton * buy_gun)
     }
 }
 
->>>>>>> effa7394409c7908543ea16e4266c4a56755e350
+

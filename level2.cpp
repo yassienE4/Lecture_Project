@@ -88,7 +88,7 @@ void level2::initialize()
     enemies.push_back(new moving_enemy(5000,420,5100,4900)); // spawns enemy at pos 5000(x),420(y) and moves from 4900-5100x
     baselevel::spawn_enemy(enemies[9]);
 
-    ghasts.push_back(new ghast(1000,0));
+    ghasts.push_back(new ghast(1000,0, false));
     baselevel::addghast(ghasts[0]);
 
 }
