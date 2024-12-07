@@ -2,8 +2,8 @@
 
 gun::gun(int x, int y, bool d)
 {
-    right_gun = QPixmap(":/images/try_gun_right").scaled(100, 100, Qt::KeepAspectRatio);
-    left_gun = QPixmap(":/images/try_gun_left").scaled(100, 100, Qt::KeepAspectRatio);
+    right_gun = QPixmap(":/images/gun_right.png").scaled(100, 100, Qt::KeepAspectRatio);
+    left_gun = QPixmap(":/images/gun_left.png").scaled(100, 100, Qt::KeepAspectRatio);
     if(d)
     {
         setPos(x+65,y+10);
