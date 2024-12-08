@@ -707,7 +707,7 @@ void baselevel::update()
         {
             checkend();
         }
-        if(h.gethealth() == 0)
+        if(h.gethealth() <= 0)
         {
             ispaused = true;
             QPointF scenePos = m_game->mapToScene(448, 600);
